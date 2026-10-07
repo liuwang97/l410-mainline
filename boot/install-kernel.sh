@@ -42,7 +42,11 @@ rm -rf "$R/boot/l410.prev"
 [ -d "$R/boot/l410" ] && mv "$R/boot/l410" "$R/boot/l410.prev"
 install -d "$R/boot/l410"
 install -m 644 "$B/Image" "$B/l410.dtb" "$B/initrd.img" "$R/boot/l410/"
-sed "s/@ROOT_UUID@/$UUID/" "$B/boot.cfg" > "$R/boot/l410/boot.cfg"
+# Drop l410_deadman=0: the firmware leaves the AP watchdog WDT0 running (about 60 s left at
+# handover) and with l410_deadman=0 the kernel does not touch it, so the board panics a minute
+# after boot. Without it the l410-deadman driver rewrites WDT0 and l410-watchdog-off.service
+# (system/hardware) stops it early in boot.
+sed -e "s/@ROOT_UUID@/$UUID/" -e 's/ l410_deadman=0//' "$B/boot.cfg" > "$R/boot/l410/boot.cfg"
 [ -f "$B/config" ] && install -m 644 "$B/config" "$R/boot/l410/config-$KVER"
 if [ -f "$B/modules.tar.gz" ]; then
 	rm -rf "$R/lib/modules/$KVER"

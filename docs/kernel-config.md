@@ -25,8 +25,7 @@ L410 的内核配置是 arm64 defconfig 加上内核树（[linux-l410](https://g
 - 启动：未压缩的 `Image` 加 EFI stub，不用 `EFI_ZBOOT`，因为 GRUB 2.04 要认 arm64 Image 头。gzip 的 initrd、devtmpfs 自动挂载、`IKCONFIG_PROC`。
 - 控制台：simpledrm 接 UEFI 留下的 GOP 帧缓冲（`SYSFB_SIMPLEFB`、`DRM_SIMPLEDRM`、fbdev 仿真、fbcon）。
 - 崩溃日志：pstore/ramoops，和厂商内核共用 0x26e00000 起 1 MiB 的区域，带控制台、pmsg 和压缩；崩溃后从 `/sys/fs/pstore` 取。另开 `DEBUG_FS`。
-- `CONFIG_L410_DEADMAN=y`：移植期间的兜底看门狗，开机就启动 SP805（WDT0）且不喂狗。`build.sh` 生成的启动参数带 `l410_deadman=0`，正常使用时它不起作用，
-  见 [dev/README.md](../dev/README.md)。通用的 `ARM_SP805_WATCHDOG` 驱动不开，WDT0 由这个驱动直接操作。
+- `CONFIG_L410_DEADMAN=y`：移植期间的兜底看门狗，开机就启动 SP805（WDT0）且不喂狗。它同时负责接管固件留下的 WDT0：固件进内核前已经启动 WDT0（约 60 s 后到期，中断走 FIQ），所以正常使用时也要让它在开机时改写 WDT0，再由 `l410-watchdog-off.service` 写 sysfs 停掉；带 `l410_deadman=0` 开机会在约 60 s 时 panic。见 [dev/README.md](../dev/README.md)。通用的 `ARM_SP805_WATCHDOG` 驱动不开，WDT0 由这个驱动直接操作。
 - 先关掉、等 SoC 支持做好才开的：`ARM_PSCI_CPUIDLE`、`CPU_FREQ`（这两项在 `20-power` 里重新打开）、`CORESIGHT`、`I3C`、`POWER_RESET_HISI`、`ARM_SMMU_V3`。
   它们开着会去绑定厂商设备树里的节点。
 - Debian 用户态需要的：ext4（ACL、安全标签）、autofs、cgroups 和 memcg、BPF 系统调用和 cgroup BPF、fanotify、seccomp。`ZRAM` 编成模块，默认不用（见 [tuning/memory.md](tuning/memory.md)）。

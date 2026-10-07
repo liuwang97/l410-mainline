@@ -16,6 +16,10 @@
 
 ## 已知缺陷
 
+- 看门狗：固件在进内核前已经启动 AP 看门狗 WDT0（SP805，0xfe026000），交给内核时约剩 60 s，中断经 BL31 转成 FIQ。
+  6.18 里没有驱动给它喂狗；内核分支 `l410/build.sh` 生成的 `boot.cfg` 带 `l410_deadman=0`，照原样启动会在开机约 60 s 时
+  panic（"FIQ taken without a root FIQ handler"）。本仓库的 `boot/install-kernel.sh` 安装时去掉这个参数，让 deadman 驱动先改写 WDT0，
+  `system/hardware/l410-watchdog-off.service` 开机后再把它停掉。内核侧的正式修复（`l410_deadman=0` 时也接管并停掉 WDT0）还在做。
 - 睡眠：s2idle 正常（默认）。deep（经 LPM3 的挂起）能睡下去，但唤醒后整机冷启动，所以没用它。s2idle 的耗电还没测；
   键盘唤醒没做（i2c-hid 没设成唤醒源）；合盖、电源键唤醒还没实机按过。见 [hardware/sleep.md](hardware/sleep.md)。
 - 显示：`kirin990_drm.power_off=4`（关屏时连 vivobus/media1 一起断电）会让整机在约 1 秒后挂死，原因未知，默认用 3。

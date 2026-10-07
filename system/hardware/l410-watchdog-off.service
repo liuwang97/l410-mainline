@@ -1,0 +1,17 @@
+# L410: the firmware starts the AP watchdog WDT0 (SP805 at 0xfe026000) before it hands over to the
+# kernel, about 60 s from expiry, and routes its interrupt as an FIQ. Nothing in 6.18 services it, so
+# without this the kernel panics ("FIQ taken without a root FIQ handler") about a minute after boot.
+# The kernel's l410-deadman driver rewrites WDT0 at boot (when the command line does not carry
+# l410_deadman=0, see boot/install-kernel.sh) and this unit then stops it through its sysfs file.
+[Unit]
+Description=L410: stop the AP watchdog the firmware leaves running
+DefaultDependencies=no
+Before=sysinit.target
+ConditionPathExists=/sys/kernel/l410_deadman/timeout
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c 'echo 0 > /sys/kernel/l410_deadman/timeout'
+
+[Install]
+WantedBy=sysinit.target

@@ -69,7 +69,7 @@ l410/build.sh -o ../l410-build          # -n NAME 给版本号加后缀，-f FRA
 ```
 linux /boot/l410/Image root=UUID=<Debian 分区> ro rootwait l410.mode=root ignore_loglevel printk.devkmsg=on
       panic=10 nokaslr efi=noruntime log_buf_len=16M clk_ignore_unused pd_ignore_unused
-      regulator_ignore_unused console=tty0 l410_deadman=0
+      regulator_ignore_unused console=tty0
 initrd /boot/l410/initrd.img
 devicetree /boot/l410/l410.dtb
 ```
@@ -82,7 +82,7 @@ devicetree /boot/l410/l410.dtb
 | `log_buf_len=16M ignore_loglevel printk.devkmsg=on` | 日志全量保留，出问题时从 pstore 能拿到完整记录 |
 | `panic=10` | panic 后 10 秒重启 |
 | `l410.mode=root` | initramfs 正常挂根分区（`probe` 是移植期的诊断模式，见 [../dev/README.md](../dev/README.md)） |
-| `l410_deadman=0` | 不启动移植用的看门狗 |
+| 不带 `l410_deadman=0` | `l410/build.sh` 生成的 `boot.cfg` 里有这个参数，`boot/install-kernel.sh` 安装时会把它去掉。固件在进内核前已经启动了看门狗 WDT0（约 60 s 后到期），只有 deadman 驱动在开机时改写它，开机后 `l410-watchdog-off.service` 再把它停掉；带着 `l410_deadman=0` 开机约 60 s 就会 panic |
 
 GRUB 必须加载未压缩的 `Image`（GRUB 2.04 需要 arm64 Image 头，所以关了 `CONFIG_EFI_ZBOOT`）。
 

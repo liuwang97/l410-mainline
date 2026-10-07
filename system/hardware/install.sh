@@ -1,6 +1,8 @@
 #!/bin/bash
 # hardware: what the L410's devices need from user space on top of the kernel.
 #
+#   l410-watchdog-off       stops the AP watchdog WDT0 the firmware leaves running (else panic
+#                           after about 60 s)
 #   60-l410-ufs-fw-ro.rules the three UFS LUNs with the boot firmware read-only, hidden from udisks
 #   61-l410-keyboard.hwdb   F1-F10 hotkeys: the EC sends them as reserved keyboard usages
 #                           0xA5-0xAF, which mainline maps to KEY_UNKNOWN (docs/hardware/laptop.md)
@@ -14,6 +16,8 @@ set -e
 . "$L410_SYSTEM/lib.sh"
 D=$L410_SYSTEM/hardware
 
+install -m 644 "$D/l410-watchdog-off.service" /etc/systemd/system/l410-watchdog-off.service
+systemctl enable l410-watchdog-off.service
 install -D -m 644 "$D/60-l410-ufs-fw-ro.rules" /etc/udev/rules.d/60-l410-ufs-fw-ro.rules
 install -D -m 644 "$D/61-l410-keyboard.hwdb" /etc/udev/hwdb.d/61-l410-keyboard.hwdb
 systemd-hwdb update

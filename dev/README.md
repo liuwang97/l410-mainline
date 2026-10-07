@@ -24,7 +24,9 @@ build ──► bundle ──scp──► Debian 分区 /boot/l410/
 | 崩溃日志 | ramoops（0x26e00000，1 MiB，`reserved-memory/pstore-mem`，布局和厂商内核相同） | 6.18 的控制台日志留在内存里，复位后由麒麟的 systemd-pstore 归档到 `/var/lib/systemd/pstore/` |
 | 诊断 initramfs | 内核树 `l410/initramfs/init` 的 `l410.mode=probe` | 不挂根分区，把 CPU、中断、未完成的设备探测、块设备、网卡、USB 设备打进内核日志后重启，配合 pstore 看早期启动 |
 
-正式安装的 `boot.cfg` 带 `l410_deadman=0`，看门狗不会启动，也没有 `l410-revert.service`。
+正式安装没有 `l410-revert.service`，deadman 也在开机后被 `l410-watchdog-off.service` 停掉（见下一段）。
+
+注意 `l410_deadman=0` 并不等于“没有看门狗”：L410 的固件在进内核之前就启动了 WDT0，交给内核时只剩约 60 s，它的中断经 BL31 转成 FIQ。厂商 4.19 有看门狗驱动接手喂狗，6.18 没有；`l410_deadman=0` 时 deadman 驱动完全不碰 WDT0，于是开机约 60 s 必定 panic（"FIQ taken without a root FIQ handler"）。移植期间每次开机 deadman 都会改写 WDT0，把这个问题盖住了。所以 `boot/install-kernel.sh` 会去掉 `boot.cfg` 里的 `l410_deadman=0`，让 deadman 先接管 WDT0，再由 `system/hardware/l410-watchdog-off.service` 写 sysfs 把它停掉。
 
 ## 脚本
 

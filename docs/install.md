@@ -153,7 +153,7 @@ sudo bash /opt/l410/tests/quick.sh        # 约 1 分钟，不改动系统；--f
 |---|---|---|
 | base | 中文 locale、上海时区、RTC 用本地时间（和麒麟共用）、主机名、桌面用户、ssh、fcitx5 | |
 | desktop | SDDM（Wayland，可选自动登录）、NTP、AppArmor、关掉这台机器上只会报错的服务 | [tuning/desktop.md](tuning/desktop.md) |
-| hardware | F 行热键（hwdb）、WiFi 国家码 CN、Hi6405 的 UCM、fq_codel | [hardware/](hardware/) |
+| hardware | 停掉固件留下的看门狗 WDT0、UFS 固件分区只读、F 行热键（hwdb）、WiFi 国家码 CN、Hi6405 的 UCM、fq_codel | [hardware/](hardware/) |
 | perf | tuned-ppd 三档电源模式、l410-perfd、KWin 脚本、按电源切换模式 | [tuning/perf-power.md](tuning/perf-power.md) |
 | sched-ext | 开机启动 scx_lavd | [tuning/sched-ext.md](tuning/sched-ext.md) |
 | mem | zswap + swapfile、sysctl、systemd-oomd、会话内存保护、IO 调度器 | [tuning/memory.md](tuning/memory.md) |
