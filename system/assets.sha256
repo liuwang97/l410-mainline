@@ -1,0 +1,6 @@
+# sha256 of the prebuilt files on https://github.com/liuwang97/l410-mainline/releases/tag/userspace-2026.10
+# (fetch_asset in system/lib.sh); each one is built by the script in the directory that uses it
+8aee80f813ee985a12fbc9b7a94625561c9c2ca6152ccb9c7f33f41bf10641b1  libinput.so.10-1.31.3-1
+2c005e46d90fc39ad220bc0a9f32bf4e751eccb6edebc91e1c6480ad92597d1a  libl410-fastrsa.so
+c6672052f1b48768156d165a0d778932486b7e5b3a9d1884cbf5e13c0fb733ec  scx_bpfland
+f1cad7f5b7ee84085b7aa362c60068d1547272ab940c591e7cea5f46460b0b9e  scx_lavd
