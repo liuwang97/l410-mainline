@@ -119,7 +119,9 @@ sudo l410-mainline/rootfs/deploy.sh --part /dev/sddN --format \
 
 重启后 GRUB 直接进 Debian。第一次进入桌面后：
 
-1. 连上网络（Plasma 右下角连 WiFi，或插网线）。
+1. 连上网络。网线（板载 RTL8168 或 USB 网卡）插上就自动用 DHCP 连接；WiFi 在 Plasma 右下角连，或者在终端里
+   `nmcli dev wifi connect <SSID> password <密码>`。WPA2/WPA3 混合模式的路由器按 WPA2（`wpa-psk`）连接即可。
+   有线和 WiFi 都由 NetworkManager 管理，systemd-networkd 不启用。
 2. 补完需要真机的配置：
 
    ```bash
@@ -151,7 +153,7 @@ sudo bash /opt/l410/tests/quick.sh        # 约 1 分钟，不改动系统；--f
 
 | 阶段 | 内容 | 文档 |
 |---|---|---|
-| base | 中文 locale、上海时区、RTC 用本地时间（和麒麟共用）、主机名、桌面用户、ssh、fcitx5 | |
+| base | 中文 locale、上海时区、RTC 用本地时间（和麒麟共用）、主机名、桌面用户、ssh、NetworkManager 管有线和 WiFi、fcitx5 | |
 | desktop | SDDM（Wayland，可选自动登录）、NTP、AppArmor、关掉这台机器上只会报错的服务 | [tuning/desktop.md](tuning/desktop.md) |
 | hardware | 停掉固件留下的看门狗 WDT0、UFS 固件分区只读、F 行热键（hwdb）、WiFi 国家码 CN、Hi6405 的 UCM、fq_codel | [hardware/](hardware/) |
 | perf | tuned-ppd 三档电源模式、l410-perfd、KWin 脚本、按电源切换模式 | [tuning/perf-power.md](tuning/perf-power.md) |

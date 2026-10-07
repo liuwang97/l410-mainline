@@ -10,7 +10,7 @@ sudo system/install.sh --user alice    # 指定桌面用户（默认是调用 su
 
 | 目录 | 装了什么 |
 |---|---|
-| `base/` | 中文 locale、Asia/Shanghai、RTC 本地时间、主机名、桌面用户、ssh、fcitx5 |
+| `base/` | 中文 locale、Asia/Shanghai、RTC 本地时间、主机名、桌面用户、ssh、NetworkManager（通用有线配置）、fcitx5 |
 | `desktop/` | SDDM（Wayland，可选自动登录）、timesyncd、AppArmor，关掉 smartd 和 networkd-wait-online |
 | `hardware/` | 停掉固件留下的看门狗 WDT0 的服务、UFS 固件 LUN 只读规则、F 行热键 hwdb、regulatory.db 与国家码 CN、Hi6405 的 UCM、fq_codel |
 | `perf/` | tuned profile `l410-powersave/balanced/performance`、`profile.sh`、`l410-perfd`、KWin 脚本、systemd 片段 |

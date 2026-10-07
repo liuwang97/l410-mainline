@@ -1,5 +1,5 @@
 #!/bin/bash
-# base: language, time, host name, the desktop user, ssh, input method.
+# base: language, time, host name, the desktop user, ssh, network (NetworkManager), input method.
 #
 # The RTC stays in local time because Kylin, which shares the machine, keeps it that way; with
 # UTC in the RTC every switch between the two systems moves the clock by 8 hours.
@@ -37,6 +37,15 @@ if [ -f /opt/l410/authorized_keys ]; then
 	install -m 600 -o "$U" -g "$U" /opt/l410/authorized_keys "$H/.ssh/authorized_keys"
 fi
 enable_now ssh.service
+
+# network: NetworkManager owns Ethernet and WiFi (Plasma's applet, nmcli); systemd-networkd stays off
+inst network-manager
+for u in systemd-networkd.service systemd-networkd.socket systemd-network-generator.service; do
+	systemctl list-unit-files "$u" --no-legend 2> /dev/null | grep -q . && systemctl disable "$u" 2> /dev/null || true
+done
+install -D -m 600 "$L410_SYSTEM/base/wired.nmconnection" /etc/NetworkManager/system-connections/wired.nmconnection
+enable_now NetworkManager.service
+live && nmcli connection reload 2> /dev/null || true
 
 # keyboard layout of the console and X11 apps; fcitx5 for Chinese input under Plasma
 cat > /etc/default/keyboard << 'K'

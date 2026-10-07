@@ -1,0 +1,16 @@
+# /etc/NetworkManager/system-connections/wired.nmconnection (L410, system/base): any Ethernet port
+# (the on-board RTL8168 or a USB adapter) with DHCP and IPv6 autoconfiguration
+[connection]
+id=Wired
+type=ethernet
+autoconnect=true
+autoconnect-priority=10
+
+[ethernet]
+
+[ipv4]
+method=auto
+
+[ipv6]
+method=auto
+addr-gen-mode=default
