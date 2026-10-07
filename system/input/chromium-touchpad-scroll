@@ -1,0 +1,13 @@
+# Huawei Qingyun L410: two-finger scrolling in Chromium (Wayland) at its real speed.
+#
+# Chromium 154 treats every wl_pointer.axis value as wheel units (10 per notch,
+# 120 px per notch) and multiplies touchpad scrolling by 12, so it scrolled
+# about 13 mm of page per mm of finger travel at 150 % scale while Qt and GTK
+# apps used the compositor's value as pixels (ui/ozone/platform/wayland/host/
+# wayland_pointer.cc, WaylandPointer::OnAxis). WaylandUnscaledTouchpadScrolling,
+# off by default, passes the value through unscaled; wheel scrolling is not
+# affected. docs/tuning/touchpad-scroll.md.
+#
+# Install: /etc/chromium.d/ (Debian's /usr/bin/chromium sources every file there).
+# A later --enable-features switch replaces this one: add other features here.
+export CHROMIUM_FLAGS="$CHROMIUM_FLAGS --enable-features=WaylandUnscaledTouchpadScrolling"

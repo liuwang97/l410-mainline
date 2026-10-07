@@ -1,0 +1,373 @@
+From 88a009f47c412977692dfd8195eab913bbdd5210 Mon Sep 17 00:00:00 2001
+From: liuwang97 <17954538+liuwang97@users.noreply.github.com>
+Date: Thu, 1 Oct 2026 17:00:00 +0800
+Subject: [PATCH] touchpad: speed-dependent two-finger scroll gain (L410)
+
+libinput scrolls touchpads at a constant 10.52 units per mm of finger
+travel, whatever the speed, and the only upstream way to change that, a
+custom acceleration profile, also replaces the adaptive pointer
+acceleration and is not configurable in KWin 6.7 or Mutter.
+
+Multiply the two-finger scroll delta in tp_filter_scroll() by G(v): v is
+the finger speed in mm/s over the last 50 ms of the stroke (reset when a
+scroll starts, after a 100 ms pause and on reversal), G a piecewise linear
+curve read from /etc/l410/scroll-accel.conf when a stroke starts and the
+file changed. The built-in default is ChromeOS's default touchpad scroll
+curve (gestures library, Scroll Sensitivity 3) with its corners rounded:
+gain 1 up to 45 mm/s, v/75 from 105 mm/s, peak 7.3x at 600 mm/s, output
+speed never decreasing. Touchpads with a guessed resolution are left
+alone; the threshold, direction lock and the terminating zero event of
+evdev_post_scroll() are unchanged.
+
+L410_SCROLL_ACCEL_CONFIG (secure_getenv, ignored by the compositor) points
+tests at another curve. The library logs speed and gain per frame at debug
+priority.
+---
+ meson.build                          |   1 +
+ src/evdev-mt-touchpad-gestures.c     |   1 +
+ src/evdev-mt-touchpad-scroll-accel.c | 221 +++++++++++++++++++++++++++
+ src/evdev-mt-touchpad.c              |  13 +-
+ src/evdev-mt-touchpad.h              |  37 +++++
+ 5 files changed, 268 insertions(+), 5 deletions(-)
+ create mode 100644 src/evdev-mt-touchpad-scroll-accel.c
+
+diff --git a/meson.build b/meson.build
+index 8549342..c783365 100644
+--- a/meson.build
++++ b/meson.build
+@@ -437,6 +437,7 @@ src_libinput = src_libfilter + [
+ 	'src/evdev-mt-touchpad-buttons.c',
+ 	'src/evdev-mt-touchpad-edge-scroll.c',
+ 	'src/evdev-mt-touchpad-gestures.c',
++	'src/evdev-mt-touchpad-scroll-accel.c',
+ 	'src/evdev-tablet.c',
+ 	'src/evdev-tablet-pad.c',
+ 	'src/evdev-tablet-pad-leds.c',
+diff --git a/src/evdev-mt-touchpad-gestures.c b/src/evdev-mt-touchpad-gestures.c
+index 03a081c..1a24607 100644
+--- a/src/evdev-mt-touchpad-gestures.c
++++ b/src/evdev-mt-touchpad-gestures.c
+@@ -162,6 +162,7 @@ tp_gesture_init_scroll(struct tp_dispatch *tp)
+ 	tp->scroll.duration.v = usec_from_uint64_t(0);
+ 	tp->scroll.vector = zero;
+ 	tp->scroll.time_prev = usec_from_uint64_t(0);
++	tp_scroll_accel_reset(tp);
+ }
+ 
+ static inline struct device_float_coords
+diff --git a/src/evdev-mt-touchpad-scroll-accel.c b/src/evdev-mt-touchpad-scroll-accel.c
+new file mode 100644
+index 0000000..94e333f
+--- /dev/null
++++ b/src/evdev-mt-touchpad-scroll-accel.c
+@@ -0,0 +1,221 @@
++/*
++ * L410: speed-dependent gain ("acceleration") for two-finger touchpad scrolling.
++ *
++ * Stock libinput scrolls touchpads at a constant rate: touchpad_scroll_filter() uses
++ * touchpad_constant_filter(), 10.52 units per mm of finger travel whatever the speed. The only
++ * way to change that upstream is a custom acceleration profile, which also replaces the adaptive
++ * pointer acceleration and which no desktop (KWin 6.7, Mutter) configures.
++ *
++ * This multiplies the scroll delta by G(v), v being the finger speed in mm/s averaged over the
++ * last window_ms of the stroke, G a piecewise linear curve. The curve is read from
++ * /etc/l410/scroll-accel.conf when a stroke starts and the file changed (stat() once per stroke),
++ * so it can be tuned without restarting the compositor; without the file the built-in default
++ * below applies. Pointer motion, wheels and button scrolling are untouched.
++ *
++ * docs/tuning/touchpad-scroll.md in the l410-mainline repository.
++ */
++
++#include "config.h"
++
++#include <math.h>
++#include <stdlib.h>
++#include <stdio.h>
++#include <string.h>
++#include <sys/stat.h>
++
++#include "evdev-mt-touchpad.h"
++#include "util-strings.h"
++
++#define SCROLL_ACCEL_CONFIG "/etc/l410/scroll-accel.conf"
++
++/* Built-in default, the same curve as system/input/libinput/scroll-accel.conf (which explains it):
++ * ChromeOS's default touchpad scroll curve with its two corners rounded. */
++static const struct tp_scroll_accel_curve default_curve = {
++	.enabled = true,
++	.window_us = 50000,
++	.gap_us = 100000,
++	.npoints = 23,
++	.speed = { 0, 45, 55, 65, 75, 85, 95, 105, 150, 200, 300, 400,
++		   500, 550, 600, 650, 700, 800, 900, 1000, 1200, 1500, 2000 },
++	.gain = { 1.0, 1.0, 1.011, 1.044, 1.1, 1.178, 1.278, 1.4, 2.0, 2.667, 4.0, 5.333,
++		  6.667, 7.133, 7.264, 7.138, 6.81, 6.083, 5.519, 5.067, 4.389, 3.711, 3.033 },
++};
++
++/* Global: every touchpad uses the same file */
++static struct {
++	bool loaded;
++	bool present;
++	struct timespec mtime;
++	struct tp_scroll_accel_curve curve;
++} config;
++
++static bool
++parse_config(FILE *f, struct tp_scroll_accel_curve *c)
++{
++	char line[256];
++
++	*c = default_curve;
++	c->npoints = 0;
++
++	while (fgets(line, sizeof(line), f)) {
++		char *saveptr = NULL;
++		char *hash = strchr(line, '#');
++		const char *key, *s1, *s2;
++		double a, b = 0;
++
++		if (hash)
++			*hash = '\0';
++		key = strtok_r(line, " \t\r\n", &saveptr);
++		s1 = strtok_r(NULL, " \t\r\n", &saveptr);
++		s2 = strtok_r(NULL, " \t\r\n", &saveptr);
++		if (!key || !s1 || !safe_atod(s1, &a))
++			continue;
++		if (s2 && !safe_atod(s2, &b))
++			continue;
++
++		if (streq(key, "enabled"))
++			c->enabled = a != 0;
++		else if (streq(key, "window_ms") && a >= 5 && a <= 500)
++			c->window_us = a * 1000;
++		else if (streq(key, "gap_ms") && a >= 20 && a <= 1000)
++			c->gap_us = a * 1000;
++		else if (streq(key, "point") && s2 &&
++			 c->npoints < TP_SCROLL_ACCEL_MAX_POINTS && a >= 0 && b > 0 && b <= 100 &&
++			 (c->npoints == 0 || a > c->speed[c->npoints - 1])) {
++			c->speed[c->npoints] = a;
++			c->gain[c->npoints] = b;
++			c->npoints++;
++		}
++	}
++
++	return c->npoints > 0;
++}
++
++/* Tests point this elsewhere; secure_getenv() ignores it in the compositor, which runs with
++ * file capabilities (secure execution). */
++static const char *
++config_path(void)
++{
++	const char *path = secure_getenv("L410_SCROLL_ACCEL_CONFIG");
++	return path && path[0] == '/' ? path : SCROLL_ACCEL_CONFIG;
++}
++
++static void
++maybe_reload(struct evdev_device *device)
++{
++	const char *path = config_path();
++	struct stat st;
++	bool present = stat(path, &st) == 0;
++	struct tp_scroll_accel_curve c;
++	FILE *f;
++
++	if (config.loaded && present == config.present &&
++	    (!present || (st.st_mtim.tv_sec == config.mtime.tv_sec &&
++			  st.st_mtim.tv_nsec == config.mtime.tv_nsec)))
++		return;
++
++	config.loaded = true;
++	config.present = present;
++	config.curve = default_curve;
++	if (!present)
++		return;
++
++	config.mtime = st.st_mtim;
++	f = fopen(path, "re");
++	if (f && parse_config(f, &c))
++		config.curve = c;
++	else
++		evdev_log_error(device, "scroll accel: cannot use %s, built-in curve\n", path);
++	if (f)
++		fclose(f);
++	evdev_log_info(device, "scroll accel: %s, %zu points, window %.0f ms\n",
++		       config.curve.enabled ? "enabled" : "disabled",
++		       config.curve.npoints, config.curve.window_us / 1000);
++}
++
++static double
++curve_gain(const struct tp_scroll_accel_curve *c, double v)
++{
++	if (v <= c->speed[0])
++		return c->gain[0];
++	for (size_t i = 1; i < c->npoints; i++) {
++		if (v <= c->speed[i]) {
++			double f = (v - c->speed[i - 1]) / (c->speed[i] - c->speed[i - 1]);
++			return c->gain[i - 1] + f * (c->gain[i] - c->gain[i - 1]);
++		}
++	}
++	return c->gain[c->npoints - 1];
++}
++
++void
++tp_scroll_accel_reset(struct tp_dispatch *tp)
++{
++	tp->scroll_accel.len = 0;
++	tp->scroll_accel.last_us = 0;
++}
++
++struct normalized_coords
++tp_scroll_accel_apply(struct tp_dispatch *tp,
++		      const struct device_float_coords *raw,
++		      struct normalized_coords delta,
++		      usec_t time)
++{
++	struct tp_scroll_accel *sa = &tp->scroll_accel;
++	const uint64_t t = usec_as_uint64_t(time);
++	double mm, dt, sum_mm = 0, sum_us = 0, v, gain;
++	int res = tp->device->abs.absinfo_x->resolution;
++
++	if (tp->device->abs.is_fake_resolution || res <= 0)
++		return delta;
++
++	/* raw is in device units of the x axis (tp_scale_to_xaxis) */
++	mm = hypot(raw->x, raw->y) / res;
++	if (mm == 0)
++		return delta;
++
++	if (!sa->last_us || t <= sa->last_us || t - sa->last_us > config.curve.gap_us) {
++		/* First frame of a stroke: it covers one report interval */
++		maybe_reload(tp->device);
++		sa->len = 0;
++		if (sa->frame_us == 0)
++			sa->frame_us = 8000;
++		dt = sa->frame_us;
++	} else {
++		dt = t - sa->last_us;
++		if (dt < 25000)
++			sa->frame_us += (dt - sa->frame_us) / 16;
++		/* Reversing without lifting the fingers starts over, as macOS does */
++		if (raw->x * sa->last_raw.x + raw->y * sa->last_raw.y < 0)
++			sa->len = 0;
++	}
++	sa->last_us = t;
++	sa->last_raw = *raw;
++
++	sa->head = (sa->head + 1) % TP_SCROLL_ACCEL_HISTORY;
++	sa->hist[sa->head].t = t;
++	sa->hist[sa->head].dt = dt;
++	sa->hist[sa->head].mm = mm;
++	if (sa->len < TP_SCROLL_ACCEL_HISTORY)
++		sa->len++;
++
++	/* Average speed over the frames of the last window (at least this one) */
++	for (int i = 0; i < sa->len; i++) {
++		int j = (sa->head - i + TP_SCROLL_ACCEL_HISTORY) % TP_SCROLL_ACCEL_HISTORY;
++		if (i > 0 && t - sa->hist[j].t >= config.curve.window_us)
++			break;
++		sum_mm += sa->hist[j].mm;
++		sum_us += sa->hist[j].dt;
++	}
++	v = sum_mm / (sum_us / 1e6);
++
++	gain = config.curve.enabled ? curve_gain(&config.curve, v) : 1.0;
++	sa->speed = v;
++	sa->gain = gain;
++	evdev_log_debug(tp->device,
++			"scroll accel: dt %.1f ms, %.3f mm, %.1f mm/s, gain %.3f\n",
++			dt / 1000, mm, v, gain);
++
++	delta.x *= gain;
++	delta.y *= gain;
++	return delta;
++}
+diff --git a/src/evdev-mt-touchpad.c b/src/evdev-mt-touchpad.c
+index e60ced9..10b1e9c 100644
+--- a/src/evdev-mt-touchpad.c
++++ b/src/evdev-mt-touchpad.c
+@@ -109,11 +109,14 @@ tp_filter_scroll(struct tp_dispatch *tp,
+ 	/* Convert to device units with x/y in the same resolution */
+ 	raw = tp_scale_to_xaxis(tp, *unaccelerated);
+ 
+-	return filter_dispatch_scroll(tp->device->pointer.filter,
+-				      &raw,
+-				      tp,
+-				      time,
+-				      FILTER_SCROLL_TYPE_FINGER);
++	return tp_scroll_accel_apply(tp,
++				     &raw,
++				     filter_dispatch_scroll(tp->device->pointer.filter,
++							    &raw,
++							    tp,
++							    time,
++							    FILTER_SCROLL_TYPE_FINGER),
++				     time);
+ }
+ 
+ static inline void
+diff --git a/src/evdev-mt-touchpad.h b/src/evdev-mt-touchpad.h
+index 7e85baf..d81cb1d 100644
+--- a/src/evdev-mt-touchpad.h
++++ b/src/evdev-mt-touchpad.h
+@@ -290,6 +290,32 @@ enum suspend_trigger {
+ 	SUSPEND_TABLET_MODE = 0x8,
+ };
+ 
++/* L410 scroll acceleration, evdev-mt-touchpad-scroll-accel.c */
++#define TP_SCROLL_ACCEL_MAX_POINTS 32
++#define TP_SCROLL_ACCEL_HISTORY 32
++
++struct tp_scroll_accel_curve {
++	bool enabled;
++	double window_us; /* speed averaging window */
++	double gap_us;    /* a longer pause starts a new stroke */
++	size_t npoints;
++	double speed[TP_SCROLL_ACCEL_MAX_POINTS]; /* mm/s, ascending */
++	double gain[TP_SCROLL_ACCEL_MAX_POINTS];
++};
++
++struct tp_scroll_accel {
++	uint64_t last_us;
++	struct device_float_coords last_raw;
++	double frame_us; /* running estimate of the report interval */
++	int len, head;
++	double speed, gain; /* of the last frame */
++	struct {
++		uint64_t t;
++		double dt;
++		double mm;
++	} hist[TP_SCROLL_ACCEL_HISTORY];
++};
++
+ struct tp_dispatch {
+ 	struct evdev_dispatch base;
+ 	struct evdev_device *device;
+@@ -560,6 +586,8 @@ struct tp_dispatch {
+ 		struct evdev_device *tablet_device;
+ 		bool tablet_left_handed_state;
+ 	} left_handed;
++
++	struct tp_scroll_accel scroll_accel;
+ };
+ 
+ static inline struct tp_dispatch *
+@@ -634,6 +662,15 @@ tp_filter_scroll(struct tp_dispatch *tp,
+ 		 const struct device_float_coords *unaccelerated,
+ 		 usec_t time);
+ 
++void
++tp_scroll_accel_reset(struct tp_dispatch *tp);
++
++struct normalized_coords
++tp_scroll_accel_apply(struct tp_dispatch *tp,
++		      const struct device_float_coords *raw,
++		      struct normalized_coords delta,
++		      usec_t time);
++
+ bool
+ tp_touch_active(const struct tp_dispatch *tp, const struct tp_touch *t);
+ 
+-- 
+2.53.0
+

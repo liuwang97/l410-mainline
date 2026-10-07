@@ -1,0 +1,18 @@
+#!/bin/sh
+# apt DPkg::Post-Invoke hook (system/input/libinput/install.sh): the libinput in
+# /usr/local/lib/aarch64-linux-gnu is built from one Debian version of libinput10. When
+# libinput10 changes, a compositor built against the new one could need symbols the old build
+# lacks and fail to start, so move the local build aside; two-finger scrolling is linear again
+# until install.sh is run once more.
+dest=/usr/local/lib/aarch64-linux-gnu
+stamp=$dest/l410-libinput.version
+[ -f "$stamp" ] || exit 0
+now=$(dpkg-query -W -f='${Version}' "libinput10:arm64" 2>/dev/null)
+built=$(cat "$stamp")
+[ "$now" = "$built" ] && exit 0
+mkdir -p "$dest/l410-disabled"
+mv -f "$dest"/libinput.so.10* "$stamp" "$dest/l410-disabled/" 2>/dev/null
+ldconfig
+msg="libinput10 $built -> ${now:-removed}: L410 scroll acceleration disabled, rerun system/input/libinput/install.sh"
+logger -t l410-libinput "$msg"
+echo "l410-libinput: $msg" >&2
