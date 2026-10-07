@@ -1,0 +1,25 @@
+#!/usr/bin/python3
+# Set variables in a GRUB environment block (Debian does not ship grub-editenv unless grub-common is installed), e.g.
+#   grubenv-set /mnt/sysboot/grub/grubenv next_entry=l410-debian
+# Rewrites the 1024-byte block in place, same size, so GRUB's save_env keeps working on it.
+import sys
+
+path, assigns = sys.argv[1], sys.argv[2:]
+data = open(path, "rb").read()
+if len(data) != 1024 or not data.startswith(b"# GRUB Environment Block\n"):
+    sys.exit(f"{path}: not a 1024-byte GRUB environment block")
+env = {}
+for line in data.decode().split("\n")[1:]:
+    if line and not line.startswith("#") and "=" in line:
+        k, v = line.split("=", 1)
+        env[k] = v
+for a in assigns:
+    k, v = a.split("=", 1)
+    env[k] = v
+body = "# GRUB Environment Block\n" + "".join(f"{k}={v}\n" for k, v in env.items())
+if len(body) > 1024:
+    sys.exit("environment block full")
+with open(path, "r+b") as f:
+    f.write((body + "#" * (1024 - len(body))).encode())
+for k, v in env.items():
+    print(f"{k}={v}")
