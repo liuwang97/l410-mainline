@@ -1,0 +1,13 @@
+# /etc/systemd/user/l410-perfd.service (per user)
+[Unit]
+Description=L410 per-user performance hints (KWin/app uclamp, launch boost)
+After=graphical-session-pre.target
+PartOf=graphical-session.target
+
+[Service]
+ExecStart=/usr/local/lib/l410-perf/l410-perfd
+Restart=on-failure
+RestartSec=2
+
+[Install]
+WantedBy=graphical-session.target

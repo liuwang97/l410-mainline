@@ -1,0 +1,12 @@
+{
+    "KPlugin": {
+        "Id": "l410-perf",
+        "Name": "L410 performance hints",
+        "Description": "Tells l410-perfd which window is active and when new windows appear",
+        "EnabledByDefault": true,
+        "License": "GPL",
+        "Version": "1.0"
+    },
+    "KPackageStructure": "KWin/Script",
+    "X-Plasma-API": "javascript"
+}

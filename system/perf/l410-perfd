@@ -1,0 +1,287 @@
+#!/usr/bin/python3
+"""l410-perfd: per-user side of the L410 power profiles (docs/tuning/perf-power.md).
+
+- KWin's cgroup gets cpu.uclamp.min by mode: powersave 27.64 % (283/1024: full speed of
+  whatever core it is on, the pre-uclamp behaviour), balanced and performance max (the
+  big cores at full speed). Its real-time threads use no uclamp of their own.
+- The active window's cgroup gets a floor (balanced 37.5 %: off the little cores, middle
+  cores at their efficient OPPs; performance 50 %).
+- A new app-*.scope / app-*.service (Plasma starts every application in one) kicks the
+  kernel launch boost (/sys/kernel/l410_perf/launch) and gets uclamp max until its first
+  window appears (+400 ms), at most 3 s. Launch times go to ~/.local/state/l410-perfd/.
+- While a sched_ext scheduler is loaded (scx_lavd, docs/tuning/sched-ext.md), task placement
+  ignores uclamp but frequency still honours it, so a floor above a little core's capacity
+  (283) would pin that core at its top OPP. Then: no application floors, no launch uclamp
+  (the kernel launch boost stays), and KWin's cgroup floor drops to 0 so Xwayland and KWin's
+  normal threads go unclamped; scx-run (root) puts the floor on KWin's real-time threads.
+
+Window hints come from the l410-perf KWin script over D-Bus (org.l410.perfd).
+"""
+import os
+import re
+import sys
+import time
+
+import dbus
+import dbus.service
+from dbus.mainloop.glib import DBusGMainLoop
+from gi.repository import GLib
+
+CG = "/sys/fs/cgroup"
+MODE = "/sys/kernel/l410_perf/mode"
+LAUNCH = "/sys/kernel/l410_perf/launch"
+KWIN_MIN = {"powersave": "27.64", "balanced": "max", "performance": "max"}
+FG_MIN = {"powersave": None, "balanced": "37.50", "performance": "50.00"}
+LAUNCH_MAX_MS = 3000
+LAUNCH_TAIL_MS = 400
+APP_UNIT = re.compile(r"^app-.*\.(scope|service)$")
+STATE = os.path.expanduser("~/.local/state/l410-perfd")
+SCX_STATE = "/sys/kernel/sched_ext/state"
+
+
+def log(msg):
+    print(msg, file=sys.stderr, flush=True)
+
+
+def read_mode():
+    try:
+        m = re.search(r"\[(\w+)\]", open(MODE).read())
+        return m.group(1) if m else "balanced"
+    except OSError:
+        return "balanced"
+
+
+def cgroup_of(pid):
+    try:
+        with open(f"/proc/{pid}/cgroup") as f:
+            for line in f:
+                if line.startswith("0::"):
+                    return line[3:].strip()
+    except OSError:
+        pass
+    return None
+
+
+def open_parents(cg):
+    """A cgroup's effective uclamp.min can't exceed its parent's: open up the slices the
+    user manager created between user@UID.service and @cg (root sets the ones above)."""
+    parts = cg.strip("/").split("/")
+    try:
+        top = next(i for i, p in enumerate(parts) if p.startswith("user@"))
+    except StopIteration:
+        return
+    for i in range(top + 2, len(parts)):
+        path = f"{CG}/{'/'.join(parts[:i])}/cpu.uclamp.min"
+        try:
+            if open(path).read().strip() != "max":
+                with open(path, "w") as f:
+                    f.write("max")
+        except OSError:
+            pass
+
+
+def set_uclamp_min(cg, val):
+    if not cg or cg == "/":
+        return False
+    # only the user manager's subtree is delegated to us; a process in a login session's
+    # session-N.scope (e.g. started over ssh) is not ours to clamp
+    if f"/user@{os.getuid()}.service/" not in cg + "/":
+        return False
+    if val not in ("0", "0.00"):
+        open_parents(cg)
+    path = f"{CG}{cg}/cpu.uclamp.min"
+    try:
+        with open(path, "w") as f:
+            f.write(val)
+        return True
+    except OSError as e:
+        log(f"{path} = {val}: {e}")
+        return False
+
+
+def scx_enabled():
+    # /run/l410-perfd.noscx: keep the EAS-era uclamp under sched_ext (A/B config "lavd-uclamp")
+    if os.path.exists("/run/l410-perfd.noscx"):
+        return False
+    try:
+        return open(SCX_STATE).read().strip() == "enabled"
+    except OSError:
+        return False
+
+
+def kwin_pid():
+    for d in os.listdir("/proc"):
+        if d.isdigit():
+            try:
+                if open(f"/proc/{d}/comm").read().strip() == "kwin_wayland":
+                    if os.stat(f"/proc/{d}").st_uid == os.getuid():
+                        return int(d)
+            except OSError:
+                pass
+    return None
+
+
+class Launch:
+    def __init__(self, unit, t0):
+        self.unit = unit
+        self.t0 = t0
+        self.cg = None
+        self.done = False
+
+
+class PerfD(dbus.service.Object):
+    def __init__(self, bus):
+        super().__init__(dbus.service.BusName("org.l410.perfd", bus), "/org/l410/perfd")
+        self.mode = None
+        self.scx = False
+        self.kwin = (None, None)	# pid, cgroup
+        self.fg_cg = None
+        self.fg_pid = None
+        self.launches = {}		# unit -> Launch
+        os.makedirs(STATE, exist_ok=True)
+        self.poll()
+        GLib.timeout_add_seconds(5, self.poll)
+
+    # --- mode and KWin
+    def poll(self):
+        mode = read_mode()
+        scx = scx_enabled()
+        pid = kwin_pid()
+        if pid != self.kwin[0] or mode != self.mode or scx != self.scx:
+            cg = cgroup_of(pid) if pid else None
+            want = KWIN_MIN.get(mode, "max")
+            if cg and set_uclamp_min(cg, "0" if scx else want):
+                log(f"mode {mode}{' sched_ext' if scx else ''}: KWin {pid} {cg} uclamp.min "
+                    f"{'0 (scx-run puts the floor on its RT threads)' if scx else want}")
+            self.kwin = (pid, cg)
+            changed_fg = mode != self.mode or scx != self.scx
+            self.mode, self.scx = mode, scx
+            if changed_fg and self.fg_cg and not self.protected(self.fg_cg):
+                set_uclamp_min(self.fg_cg, self.fg_min() or "0")
+        self.check_fg()
+        # KWin's RT threads get their floor from scx-run (root): kwin_wayland carries
+        # CAP_SYS_NICE, so this user process may not change their sched attributes
+        return True
+
+    def fg_min(self):
+        return None if self.scx else FG_MIN.get(self.mode)
+
+    def protected(self, cg):
+        return cg in (self.kwin[1], None, "/") or any(
+            l.cg == cg and not l.done for l in self.launches.values())
+
+    def apply_fg(self, cg, mode):
+        val = self.fg_min()
+        if val and not self.protected(cg):
+            set_uclamp_min(cg, val)
+
+    # --- hints from the KWin script
+    @dbus.service.method("org.l410.perfd", in_signature="i")
+    def Foreground(self, pid):
+        self.fg_pid = int(pid)
+        GLib.timeout_add(1000, self.check_fg)
+        cg = cgroup_of(pid)
+        if not cg or cg == self.fg_cg:
+            return
+        self.move_fg(cg)
+
+    def check_fg(self):
+        # Chromium moves itself into its own app-org.chromium.Chromium-PID.scope a second or
+        # so after its window is up: follow the foreground process, not the cgroup it had at
+        # activation (again 1 s after activation, then with every poll)
+        if self.fg_pid:
+            cg = cgroup_of(self.fg_pid)
+            if cg and cg != self.fg_cg:
+                self.move_fg(cg)
+        return False
+
+    def move_fg(self, cg):
+        if self.fg_cg and not self.protected(self.fg_cg):
+            set_uclamp_min(self.fg_cg, "0")
+        self.fg_cg = cg
+        self.apply_fg(cg, self.mode)
+
+    @dbus.service.method("org.l410.perfd", in_signature="i")
+    def WindowAdded(self, pid):
+        cg = cgroup_of(pid)
+        now = time.monotonic()
+        for l in list(self.launches.values()):
+            if l.done:
+                continue
+            if l.cg is None:
+                l.cg = self.unit_cgroup(l.unit)
+            if l.cg and cg and (cg == l.cg or cg.startswith(l.cg + "/")):
+                ms = (now - l.t0) * 1000
+                with open(f"{STATE}/launch.log", "a") as f:
+                    f.write(f"{time.strftime('%F %T')} {l.unit} first window {ms:.0f} ms mode {self.mode}\n")
+                GLib.timeout_add(LAUNCH_TAIL_MS, self.end_launch, l.unit)
+
+    # --- application starts
+    def unit_cgroup(self, unit):
+        for base in ("app.slice", "session.slice", "background.slice"):
+            p = f"/user.slice/user-{os.getuid()}.slice/user@{os.getuid()}.service/{base}/{unit}"
+            if os.path.isdir(CG + p):
+                return p
+        return None
+
+    def unit_new(self, unit, path):
+        if self.mode != "balanced" or not APP_UNIT.match(unit) or unit in self.launches:
+            return
+        l = Launch(unit, time.monotonic())
+        self.launches[unit] = l
+        try:
+            with open(LAUNCH, "w") as f:
+                f.write(str(LAUNCH_MAX_MS))
+        except OSError as e:
+            log(f"{LAUNCH}: {e}")
+        # the cgroup appears once the unit has started
+        GLib.timeout_add(30, self.launch_cgroup, unit, 10)
+        GLib.timeout_add(LAUNCH_MAX_MS, self.end_launch, unit)
+
+    def launch_cgroup(self, unit, tries):
+        l = self.launches.get(unit)
+        if not l or l.done:
+            return False
+        l.cg = self.unit_cgroup(unit)
+        if l.cg:
+            if not self.scx:
+                set_uclamp_min(l.cg, "max")
+        elif tries > 1:
+            GLib.timeout_add(30, self.launch_cgroup, unit, tries - 1)
+        return False
+
+    def end_launch(self, unit):
+        l = self.launches.get(unit)
+        if not l or l.done:
+            return False
+        l.done = True
+        if l.cg:
+            if l.cg == self.fg_cg and self.fg_min():
+                set_uclamp_min(l.cg, self.fg_min())
+            else:
+                set_uclamp_min(l.cg, "0")
+        if not any(not x.done for x in self.launches.values()):
+            try:
+                with open(LAUNCH, "w") as f:
+                    f.write("0")
+            except OSError:
+                pass
+        # forget it after a while (the same unit name is never reused)
+        GLib.timeout_add_seconds(10, lambda: self.launches.pop(unit, None) and False)
+        return False
+
+
+def main():
+    DBusGMainLoop(set_as_default=True)
+    bus = dbus.SessionBus()
+    d = PerfD(bus)
+    sd = bus.get_object("org.freedesktop.systemd1", "/org/freedesktop/systemd1")
+    dbus.Interface(sd, "org.freedesktop.systemd1.Manager").Subscribe()
+    bus.add_signal_receiver(d.unit_new, "UnitNew", "org.freedesktop.systemd1.Manager",
+                            None, "/org/freedesktop/systemd1")
+    log(f"l410-perfd: mode {d.mode}")
+    GLib.MainLoop().run()
+
+
+if __name__ == "__main__":
+    main()
