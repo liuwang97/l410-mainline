@@ -1,0 +1,4 @@
+# L410: UFS LUN0-2 (sda, sdb, sdc) hold the boot firmware and must never be written. The 6.18
+# ufs-kirin driver also arms the device's power-on write protection (fPowerOnWPEn); this rule is
+# the second layer. Matched on the UFS host path and SCSI LUN, not on sdX names.
+ACTION=="add|change", SUBSYSTEM=="block", DEVPATH=="*/f8200000.ufs/host*/target*/*:0:0:[012]/block/*", RUN+="/usr/sbin/blockdev --setro $devnode", ENV{UDISKS_IGNORE}="1", ENV{UDISKS_AUTO}="0"

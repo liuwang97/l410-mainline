@@ -1,0 +1,25 @@
+# Huawei Qingyun L410 (Kirin 990) built-in keyboard, emulated by the EC over
+# I2C-HID (7-003a, 14F3:1400).
+#
+# The EC reports the F1-F10 hotkeys as reserved Keyboard-page usages
+# 0xA5-0xAF instead of using the Consumer collection its own descriptor
+# declares, so mainline hid-input maps them to KEY_UNKNOWN. The vendor 4.19
+# kernel patched these codes into hid_keyboard[] in drivers/hid/hid-input.c;
+# this is the same table, done where mainline expects it.
+#
+# 0xAE (probably the Fn-lock toggle) and 0xAF (F3, keyboard backlight, which
+# the EC handles itself) are left unmapped, as in the vendor kernel.
+#
+# Install: /etc/udev/hwdb.d/, then `systemd-hwdb update` and
+# `udevadm trigger --action=change --sysname-match='event*' --subsystem-match=input`.
+
+evdev:name:huawei-keyboard 14F3:1400 Keyboard:dmi:*:svnHUAWEI:pnL410*
+ KEYBOARD_KEY_700a5=brightnessdown                      # F1
+ KEYBOARD_KEY_700a6=brightnessup                        # F2
+ KEYBOARD_KEY_700a7=mute                                # F4
+ KEYBOARD_KEY_700a8=volumedown                          # F5
+ KEYBOARD_KEY_700a9=volumeup                            # F6
+ KEYBOARD_KEY_700aa=micmute                             # F7 (vendor: f20)
+ KEYBOARD_KEY_700ad=switchvideomode                     # F8
+ KEYBOARD_KEY_700ab=wlan                                # F9
+ KEYBOARD_KEY_700ac=config                              # F10
