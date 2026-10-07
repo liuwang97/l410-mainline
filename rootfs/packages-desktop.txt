@@ -1,0 +1,19 @@
+# KDE Plasma desktop (rootfs/mkrootfs.sh without --base). Recommends are installed too.
+
+kde-plasma-desktop sddm plasma-nm plasma-pa bluedevil powerdevil kscreen
+pipewire-audio wireplumber
+fonts-noto-core fonts-noto-ui-core fonts-noto-mono fonts-noto-cjk fonts-noto-cjk-extra fonts-noto-color-emoji
+fcitx5 fcitx5-chinese-addons
+chromium firefox-esr
+
+# power modes, memory, security, time (system/perf, system/mem, system/desktop)
+tuned tuned-ppd systemd-oomd systemd-timesyncd apparmor apparmor-utils
+
+# peripherals: file systems, printing, mobile broadband
+exfatprogs ntfs-3g udftools cifs-utils cryptsetup-bin cups ppp usb-modeswitch modemmanager
+
+# GPU and display test tools (tests/graphics.sh and friends)
+mesa-utils mesa-utils-bin libdrm-tests kmscube glmark2-es2-drm glmark2-es2-wayland drm-info read-edid
+
+# performance tools (tests/bench, tests/perf.sh)
+linux-perf bpftrace stress-ng iperf3 python3-websocket

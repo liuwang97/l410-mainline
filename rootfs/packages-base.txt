@@ -1,0 +1,21 @@
+# Base system for the L410 (rootfs/mkrootfs.sh, always installed). One or more packages per
+# line; '#' starts a comment.
+
+# init, logins, admin
+systemd-sysv udev kmod dbus libpam-systemd sudo locales tzdata
+ca-certificates curl wget less nano bash-completion
+openssh-server openssh-client
+initramfs-tools e2fsprogs dosfstools
+
+# network: NetworkManager owns WiFi and Ethernet; the Realtek RTL8168 (PCIe) and RTL8153 (USB)
+# firmware comes from firmware-realtek
+network-manager wpasupplicant iw rfkill iproute2 iputils-ping ethtool
+firmware-realtek wireless-regdb
+bluez
+
+# used by the system/ scripts
+python3 python3-dbus python3-gi xz-utils zstd patch
+
+# hardware tools the tests in tests/ call
+pciutils usbutils i2c-tools evtest lm-sensors linux-cpupower hdparm sg3-utils fio
+alsa-utils alsa-ucm-conf v4l-utils strace jq bc

@@ -1,0 +1,8 @@
+# Vendor files the 6.18 drivers read, copied by rootfs/deploy.sh from the Kylin that ships on
+# the machine (paths relative to its root; copied to the same place in Debian). They are not
+# redistributable, so they are not in this repository.
+#
+# Hi1105 WiFi/Bluetooth (drivers/staging/hi110x): chip firmware and the board configuration.
+# The firmware device tree names the .ini (ini_file_name); the driver loads the pilot images.
+vendor/firmware/hi1103/pilot
+vendor/etc/cfg_udp_1103_pilot.ini
