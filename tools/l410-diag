@@ -1,0 +1,56 @@
+#!/bin/bash
+# l410-diag: one-shot diagnostic bundle for the L410 on Debian + 6.18 (docs/testing/test-plan.md SVC-01,
+# SVC-04, SVC-05, SVC-08). Collects versions, command line, kernel log and journal of this and
+# the previous boot, pstore, asset and firmware versions, battery and UFS health, temperatures
+# and frequencies, WiFi/Bluetooth state, PCI/USB topology, power mode and memory state.
+# No passwords: NetworkManager secrets, WiFi PSKs, ssh keys and home directories are not read.
+#
+#   sudo l410-diag [output dir, default /var/tmp]        -> l410-diag-<serial>-<time>.tar.zst
+set -u
+[ "$(id -u)" = 0 ] || exec sudo -n "$0" "$@"
+DST=${1:-/var/tmp}
+SN=$(cat /sys/class/dmi/id/product_serial 2> /dev/null | tr -cd 'A-Za-z0-9' || true)
+N=l410-diag-${SN:-unknown}-$(date +%Y%m%d-%H%M%S)
+W=$(mktemp -d)/$N; mkdir -p $W
+t0=$(date +%s)
+r() { local f=$1; shift; timeout 20 "$@" > "$W/$f" 2>&1; }
+rs() { local f=$1; shift; timeout 20 sh -c "$*" > "$W/$f" 2>&1; }
+
+# versions and identity (SVC-04/05)
+rs version.txt 'uname -a; cat /proc/version; . /etc/os-release; echo "$PRETTY_NAME"; cat /etc/debian_version; echo; cat /proc/cmdline'
+rs dmi.txt 'for f in /sys/class/dmi/id/*; do [ -f "$f" ] && [ -r "$f" ] && printf "%s: %s\n" "${f##*/}" "$(cat $f 2>/dev/null)"; done'
+rs firmware.txt 'echo "UEFI: $(cat /sys/class/dmi/id/bios_version 2>/dev/null) $(cat /sys/class/dmi/id/bios_date 2>/dev/null)";
+	for f in /sys/bus/i2c/devices/*/firmware_version /sys/class/power_supply/*/firmware* ; do [ -r "$f" ] && echo "$f: $(cat $f)"; done;
+	for u in /sys/bus/scsi/devices/*:0:0:*; do [ -r $u/rev ] && echo "UFS $(cat $u/vendor 2>/dev/null) $(cat $u/model 2>/dev/null) rev $(cat $u/rev)"; done;
+	modinfo -F version hi110x 2>/dev/null | sed "s/^/hi110x: /"; ethtool -i wlan0 2>/dev/null; hciconfig -a 2>/dev/null | grep -iE "version|manufacturer"'
+rs kernel-build.txt 'zcat /proc/config.gz 2>/dev/null | grep -E "^CONFIG_(LOCALVERSION|DEBUG_INFO_BTF|SCHED_CLASS_EXT|ZSWAP|LRU_GEN)="; cat /proc/sys/kernel/tainted; lsmod'
+
+# logs (SVC-02/03, SVC-08)
+r klog-this-boot.txt journalctl -k -b 0 --no-pager -o short-monotonic
+r klog-prev-boot.txt journalctl -k -b -1 --no-pager -o short-monotonic
+rs journal-errors.txt 'journalctl -b 0 -p warning --no-pager -q | tail -3000'
+r boots.txt journalctl --list-boots --no-pager
+rs pstore.txt 'ls -la /sys/fs/pstore /var/lib/systemd/pstore 2>/dev/null; for f in /sys/fs/pstore/*; do [ -f "$f" ] && { echo "=== $f"; tail -c 65536 "$f"; }; done'
+rs reset-reason.txt 'journalctl -k -b 0 --no-pager -o cat | grep -iE "reboot.?reason|reset reason|boot reason|COLDBOOT|AP_S_" | head; journalctl -k -b -1 --no-pager -o cat | tail -30'
+r failed-units.txt systemctl --failed --no-pager
+
+# hardware state
+rs power.txt 'for d in /sys/class/power_supply/*; do echo "== $d"; grep -H . $d/* 2>/dev/null | grep -vE "/(uevent|device|subsystem|power)" ; done; upower -d 2>/dev/null | head -60'
+rs ufs.txt 'for h in /sys/bus/platform/devices/*.ufs; do echo "== $h"; grep -H . $h/health_descriptor/* $h/device_descriptor/* $h/power_info/* $h/auto_hibern8 $h/rpm_lvl $h/spm_lvl 2>/dev/null; done; lsblk -o NAME,SIZE,RO,TYPE,FSTYPE,MOUNTPOINT; df -h'
+rs thermal.txt 'for z in /sys/class/thermal/thermal_zone*; do echo "$(cat $z/type) $(cat $z/temp) $(cat $z/policy 2>/dev/null)"; done; for c in /sys/class/thermal/cooling_device*; do echo "$(cat $c/type) $(cat $c/cur_state)/$(cat $c/max_state)"; done'
+rs cpu.txt 'lscpu; for p in /sys/devices/system/cpu/cpufreq/policy*; do echo "$p $(cat $p/scaling_governor) $(cat $p/scaling_cur_freq) min $(cat $p/scaling_min_freq) max $(cat $p/scaling_max_freq)"; done; grep -H . /sys/devices/system/cpu/vulnerabilities/*; cat /sys/kernel/sched_ext/state /sys/kernel/sched_ext/root/ops 2>/dev/null'
+rs devfreq.txt 'for d in /sys/class/devfreq/*; do echo "$d $(cat $d/governor) $(cat $d/cur_freq)"; done'
+rs perf-mode.txt 'cat /sys/kernel/l410_perf/mode /sys/kernel/l410_perf/stats 2>/dev/null; tuned-adm active 2>&1; powerprofilesctl get 2>&1'
+rs memory.txt 'cat /proc/meminfo; swapon --show; grep -H . /sys/module/zswap/parameters/* 2>/dev/null; grep -H . /sys/kernel/debug/zswap/* 2>/dev/null; cat /proc/pressure/memory /proc/pressure/cpu /proc/pressure/io; oomctl 2>/dev/null | head -40'
+rs interrupts.txt 'cat /proc/interrupts'
+rs pci-usb.txt 'lspci -nnvv 2>/dev/null || lspci; echo; lsusb -t; lsusb'
+rs network.txt 'ip -br addr; ip route; nmcli -t -f DEVICE,TYPE,STATE,CONNECTION dev; iw dev; iw dev wlan0 link; iw reg get; rfkill list; grep -H . /sys/module/hi110x/parameters/* 2>/dev/null'
+rs bluetooth.txt 'hciconfig -a 2>/dev/null; bluetoothctl show 2>/dev/null; journalctl -b 0 -u bluetooth --no-pager -q | tail -50'
+rs audio.txt 'cat /proc/asound/cards; aplay -l; arecord -l; amixer -c 0 contents 2>/dev/null | head -200'
+rs display.txt 'for c in /sys/class/drm/card*-*; do echo "$c $(cat $c/status 2>/dev/null) $(cat $c/dpms 2>/dev/null)"; done; cat /sys/class/backlight/*/brightness /sys/class/backlight/*/max_brightness; cat /sys/kernel/debug/dri/*/kirin_frames 2>/dev/null | head -20'
+rs deferred.txt 'cat /sys/kernel/debug/devices_deferred 2>/dev/null'  # not clk_summary: reading it with the display off re-evaluates media CRG dividers
+rs packages.txt 'dpkg-query -W -f="\${Package} \${Version}\n" linux-image-* plasma-workspace kwin-wayland libgl1-mesa-dri network-manager wpasupplicant pipewire wireplumber systemd bluez sddm tuned 2>/dev/null'
+
+tar -C "$(dirname $W)" -cf - $N | zstd -q -T0 -o "$DST/$N.tar.zst"
+rm -rf "$(dirname $W)"
+echo "$DST/$N.tar.zst ($(du -h "$DST/$N.tar.zst" | cut -f1), $(( $(date +%s) - t0 )) s)"
