@@ -1,0 +1,6 @@
+// system-wide: panfrost CREATE_BO / SUBMIT / WAIT_BO counts and BO MB per process (group leader comm), for $1 s
+tracepoint:syscalls:sys_enter_ioctl /args.cmd == 0xc0186442/ { @cbo_arg[tid] = args.arg; }
+tracepoint:syscalls:sys_exit_ioctl /@cbo_arg[tid]/ { @create[curtask->group_leader->comm] = count(); @create_mb[curtask->group_leader->comm] = sum(*(uint32 *)@cbo_arg[tid] / 1024); delete(@cbo_arg[tid]); }
+tracepoint:syscalls:sys_enter_ioctl /args.cmd == 0x40306440/ { @submit[curtask->group_leader->comm] = count(); }
+tracepoint:syscalls:sys_enter_ioctl /args.cmd == 0x40106441/ { @waitbo[curtask->group_leader->comm] = count(); }
+interval:s:$1 { exit(); }

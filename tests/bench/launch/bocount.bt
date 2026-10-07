@@ -1,0 +1,8 @@
+// count panfrost CREATE_BO (size histogram), SUBMIT, GEM_CLOSE, mmap/munmap from plasmashell's process
+tracepoint:syscalls:sys_enter_ioctl /pid == $1 && args.cmd == 0xc0186442/ { @cbo_size[tid] = args.arg; }
+tracepoint:syscalls:sys_exit_ioctl /@cbo_size[tid]/ { @create_bo_kb = hist(*(uint32 *)@cbo_size[tid] / 1024); @create_bo_n = count(); @create_bo_total_mb = sum(*(uint32 *)@cbo_size[tid] / 1024); delete(@cbo_size[tid]); }
+tracepoint:syscalls:sys_enter_ioctl /pid == $1 && args.cmd == 0x40306440/ { @submit = count(); }
+tracepoint:syscalls:sys_enter_ioctl /pid == $1 && args.cmd == 0x40086409/ { @gem_close = count(); }
+tracepoint:syscalls:sys_enter_mmap /pid == $1/ { @mmap = count(); }
+tracepoint:syscalls:sys_enter_munmap /pid == $1/ { @munmap = count(); }
+interval:s:$2 { exit(); }
