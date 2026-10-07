@@ -1,0 +1,161 @@
+#!/bin/bash
+# L410 unattended WiFi connect test on the 6.18 Debian (installed as /usr/local/sbin/l410-wifidiag).
+#
+#   l410-wifidiag probe   before NetworkManager: plain wpa_supplicant -dd against the AP, once per
+#                         entry of $CFG/tests (sae, sae-h2e, sae-authopen, psk, psk-pmf),
+#                         with hi110x.verbose=1
+#   l410-wifidiag final   after NetworkManager: bring up the NM profile, check DHCP + gateway.
+#                         Connected: keep the machine up (touch /run/l410-keep) and pet the deadman
+#                         while the gateway answers; 10 min without it, or never connected: reboot
+#                         (GRUB l410_fallback then boots Kylin 2403, which is on the same WLAN).
+#
+# Config in /etc/l410-wifidiag: enable (flag, both units need it), ssid, psk (0600), gw, tests,
+# profiles (NM connection ids to try in order). Results: /var/log/l410-wifidiag/<boot time>/.
+set -u
+CFG=/etc/l410-wifidiag
+BOOT=$(date -d "@$(( $(date +%s) - $(cut -d. -f1 /proc/uptime) ))" +%Y%m%d-%H%M%S)
+OUT=/var/log/l410-wifidiag/$BOOT
+mkdir -p "$OUT"
+exec >> "$OUT/run.log" 2>&1
+log() { echo "$(date +%T) [$(cut -d' ' -f1 /proc/uptime)] $*"; echo "l410-wifidiag: $*" > /dev/kmsg; }
+dm() { [ -w /sys/kernel/l410_deadman/timeout ] && echo "$1" > /sys/kernel/l410_deadman/timeout; }
+SSID=$(cat $CFG/ssid)
+PSK=$(cat $CFG/psk)
+GW=$(cat $CFG/gw 2> /dev/null || ip -4 route show default | awk '{ print $3; exit }')
+P=/sys/module/hi110x/parameters
+
+collect() { # $1 = tag
+	dmesg > "$OUT/dmesg-$1.txt"
+	journalctl -b -o short-monotonic --no-pager > "$OUT/journal-$1.txt"
+	sync
+}
+
+run_test() { # $1 = test name
+	local t=$1 g="" n=""
+	case $t in
+	sae) g="sae_pwe=0"; n="key_mgmt=SAE
+	ieee80211w=2" ;;
+	sae-h2e) g="sae_pwe=2"; n="key_mgmt=SAE
+	ieee80211w=2" ;;
+	sae-authopen) n="key_mgmt=SAE
+	ieee80211w=2
+	auth_alg=OPEN" ;; # what NetworkManager sends for auth-alg=open (plasma-nm WPA3 profiles)
+	psk) n="key_mgmt=WPA-PSK
+	ieee80211w=0" ;;
+	psk-pmf) n="key_mgmt=WPA-PSK
+	ieee80211w=1" ;;
+	*) log "unknown test $t"; return ;;
+	esac
+	umask 077
+	cat > /run/l410wpa-$t.conf <<-EOF
+	ctrl_interface=DIR=/run/l410wpa
+	$g
+	network={
+	ssid="$SSID"
+	psk="$PSK"
+	$n
+	}
+	EOF
+	log "== test $t"
+	echo "== test $t" > /dev/kmsg
+	wpa_supplicant -B -i wlan0 -D nl80211 -c /run/l410wpa-$t.conf -dd -t -f "$OUT/$t.wpa.log" -P /run/l410wpa.pid
+	local s="" i
+	for i in $(seq 40); do
+		sleep 1
+		s=$(wpa_cli -p /run/l410wpa -i wlan0 status 2> /dev/null | sed -n 's/^wpa_state=//p')
+		[ "$s" = COMPLETED ] && break
+	done
+	wpa_cli -p /run/l410wpa -i wlan0 status > "$OUT/$t.status" 2>&1
+	iw dev wlan0 link >> "$OUT/$t.status" 2>&1
+	if [ "$s" = COMPLETED ]; then
+		log "RESULT $t ok after ${i}s"
+		echo "$t ok" >> "$OUT/results"
+		sleep 5 # let a delayed disconnect show up in the log
+		wpa_cli -p /run/l410wpa -i wlan0 status | grep -q wpa_state=COMPLETED || { log "RESULT $t dropped again"; echo "$t dropped" >> "$OUT/results"; }
+	else
+		log "RESULT $t fail (state $s)"
+		echo "$t fail" >> "$OUT/results"
+	fi
+	wpa_cli -p /run/l410wpa -i wlan0 terminate > /dev/null 2>&1
+	for i in $(seq 10); do [ -e /run/l410wpa.pid ] && kill -0 "$(cat /run/l410wpa.pid)" 2> /dev/null || break; sleep 1; done
+	rm -f /run/l410wpa-$t.conf
+	sleep 2
+}
+
+probe() {
+	dm 1200
+	log "probe: kernel $(uname -r), out $OUT"
+	local i
+	for i in $(seq 90); do [ -e /sys/class/net/wlan0 ] && break; sleep 1; done
+	[ -e /sys/class/net/wlan0 ] || { log "no wlan0 after 90s"; collect probe; return; }
+	[ -w $P/verbose ] && echo 1 > $P/verbose
+	iw list > "$OUT/iw-list.txt" 2>&1
+	for i in $(seq 30); do ip link set wlan0 up 2> /dev/null && break; sleep 2; done
+	log "wlan0 $(cat /sys/class/net/wlan0/address) up after $i tries"
+	iw dev wlan0 scan > "$OUT/scan.txt" 2>&1 || { sleep 3; iw dev wlan0 scan > "$OUT/scan.txt" 2>&1; }
+	grep -B3 -A40 "SSID: $SSID\$" "$OUT/scan.txt" > "$OUT/scan-ap.txt"
+	for t in $(cat $CFG/tests 2> /dev/null); do run_test "$t"; done
+	ip link set wlan0 down
+	collect probe
+	log "probe done: $(tr '\n' ' ' < "$OUT/results" 2> /dev/null)"
+}
+
+connected() { ip -4 addr show wlan0 | grep -q 'inet ' && ping -c1 -W3 -I wlan0 "$GW" > /dev/null 2>&1; }
+
+final() {
+	dm 1200
+	local i p ok=0
+	for i in $(seq 30); do busctl status fi.w1.wpa_supplicant1 > /dev/null 2>&1 && break; sleep 1; done
+	busctl set-property fi.w1.wpa_supplicant1 /fi/w1/wpa_supplicant1 fi.w1.wpa_supplicant1 DebugLevel s debug
+	busctl set-property fi.w1.wpa_supplicant1 /fi/w1/wpa_supplicant1 fi.w1.wpa_supplicant1 DebugTimestamp b true
+	log "final: supplicant debug on"
+	for p in $(cat $CFG/profiles); do
+		log "nmcli con up $p"
+		nmcli -w 60 con up "$p" > "$OUT/nm-$p.txt" 2>&1
+		for i in $(seq 20); do connected && { ok=1; break; }; sleep 2; done
+		log "profile $p: connected=$ok $(ip -4 -br addr show wlan0)"
+		echo "nm:$p $([ $ok = 1 ] && echo ok || echo fail)" >> "$OUT/results"
+		[ $ok = 1 ] && break
+	done
+	if [ $ok = 1 ]; then
+		# NetworkManager polls the AP's station info while connected; a driver dump that never
+		# ends leaves it spinning with no D-Bus answers
+		sleep 20
+		timeout 10 nmcli -t -f STATE general > "$OUT/nm-general.txt" 2>&1 && r=ok || r=fail
+		echo "nm-dbus $r $(ps -o pcpu= -p "$(pidof NetworkManager)")%cpu" >> "$OUT/results"
+		timeout 10 iw dev wlan0 station dump > "$OUT/station-dump.txt" 2>&1 && r=ok || r=fail
+		echo "station-dump $r $(grep -c '^Station' "$OUT/station-dump.txt")" >> "$OUT/results"
+		log "$(tail -2 "$OUT/results" | tr '\n' ' ')"
+	fi
+	timeout 20 nmcli -f all dev wifi list > "$OUT/nm-wifi-list.txt" 2>&1
+	iw dev wlan0 link > "$OUT/link.txt" 2>&1
+	ip addr > "$OUT/ip.txt" 2>&1
+	collect final
+	if [ $ok = 0 ]; then
+		log "not connected: rebooting"
+		sync; sleep 3; systemctl reboot
+		return
+	fi
+	touch /run/l410-keep
+	log "connected: staying up, deadman petted while $GW answers"
+	local miss=0
+	while :; do
+		if [ -e /run/l410-wifidiag-hold ] || connected; then
+			miss=0; dm 1200
+		else
+			miss=$((miss + 1))
+			[ $miss = 1 ] && log "gateway lost"
+			if [ $miss -ge 20 ]; then
+				log "gateway gone for 10 min: rebooting"
+				collect lost; systemctl reboot; return
+			fi
+		fi
+		sleep 30
+	done
+}
+
+case ${1:-} in
+probe) probe ;;
+final) final ;;
+*) echo "usage: $0 probe|final"; exit 2 ;;
+esac

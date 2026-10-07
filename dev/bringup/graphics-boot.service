@@ -1,0 +1,19 @@
+# Runs tests/graphics.sh at boot of the 6.18 test kernel's Debian, for test runs without ssh
+# (before the USB network works). Enabled only by "l410.gfxtest=1" on the kernel command line.
+# Output goes to the kernel log with a "GFXTEST: " prefix, so it survives in pstore, and to
+# /var/log/l410-gfxtest.log. Afterwards the machine reboots back to the default entry, unless
+# "l410.gfxtest_stay" is also given (when the harness can reach it over ssh).
+[Unit]
+Description=L410 T6 graphics test
+ConditionKernelCommandLine=l410.gfxtest=1
+After=multi-user.target systemd-logind.service
+
+[Service]
+Type=oneshot
+ExecStartPre=-/bin/sh -c 'echo 1800 > /sys/kernel/l410_deadman/timeout'
+ExecStart=/bin/sh -c '/bin/bash /root/l410-tests/graphics.sh 2>&1 | tee /var/log/l410-gfxtest.log | sed -u "s/^/GFXTEST: /" > /dev/kmsg'
+ExecStartPost=/bin/sh -c 'grep -q l410.gfxtest_stay /proc/cmdline || { sync; sleep 5; systemctl reboot; }'
+TimeoutStartSec=1500
+
+[Install]
+WantedBy=multi-user.target

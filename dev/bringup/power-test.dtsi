@@ -1,0 +1,16 @@
+// T2 power, TEST ONLY: userspace on/off switches for IP power domains that
+// nothing else uses yet (needs CONFIG_REGULATOR_USERSPACE_CONSUMER=y).
+// Copy into <worktree>/l410/dt/fixups.d/29-power-test.dtsi for a test build;
+// never commit it. tests/power.sh toggles every /sys/devices/platform/power-test-*.
+// Do not add vivobus/media1/dsssubsys here: switching them off kills the display.
+/ {
+	power-test-media2 {
+		compatible = "regulator-output";
+		vout-supply = <&{/regulator_ip@0xFFF05000/ip@11}>;	/* media2_subsys, ATF */
+	};
+
+	power-test-g3d {
+		compatible = "regulator-output";
+		vout-supply = <&{/regulator_ip@0xFFF05000/ip@13}>;	/* g3d, LPM3 IPC */
+	};
+};

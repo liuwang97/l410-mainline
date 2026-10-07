@@ -1,0 +1,14 @@
+# WiFi connect test, part 1: plain wpa_supplicant against the AP before NetworkManager starts.
+# See /usr/local/sbin/l410-wifidiag (repo tests/wifi-diag/). Enabled by /etc/l410-wifidiag/enable.
+[Unit]
+Description=L410 WiFi connect test (probe)
+ConditionPathExists=/etc/l410-wifidiag/enable
+Before=NetworkManager.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/l410-wifidiag probe
+TimeoutStartSec=420
+
+[Install]
+WantedBy=multi-user.target

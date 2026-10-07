@@ -1,0 +1,87 @@
+diff --git a/drivers/staging/hi110x/platform/pm/plat_pm.c b/drivers/staging/hi110x/platform/pm/plat_pm.c
+index 19f614f72..222d22f7b 100644
+--- a/drivers/staging/hi110x/platform/pm/plat_pm.c
++++ b/drivers/staging/hi110x/platform/pm/plat_pm.c
+@@ -1005,6 +1005,20 @@ static void bfg_wake_unlock(struct pm_drv_data *pm_data)
+     return;
+ }
+ 
++/* TEST ONLY */
++static int dbg_fake_wkup;
++module_param(dbg_fake_wkup, int, 0644);
++static int dbg_disallow_delay_ms;
++module_param(dbg_disallow_delay_ms, int, 0644);
++static int dbg_wkup_window_ms;
++module_param(dbg_wkup_window_ms, int, 0644);
++static int dbg_collisions;
++module_param(dbg_collisions, int, 0444);
++static int dbg_extra_wake_byte;
++module_param(dbg_extra_wake_byte, int, 0644);
++static int dbg_bad_baud;
++module_param(dbg_bad_baud, int, 0644);
++
+ #ifndef _PRE_H2D_GPIO_WKUP
+ static int32_t ps_change_baud_rate_retry(struct ps_core_s *ps_core_d, long baud_rate, uint8_t flowctl_status)
+ {
+@@ -1117,7 +1131,22 @@ static int32_t host_wkup_dev_via_uart(struct ps_core_s *ps_core_d, struct pm_drv
+         ps_print_info("[%s]bfg wakeup dev,try %u,cur gpio level:%u\n",
+                       index2name(pm_data->index), i + 1, bwkup_gpio_val);
+         /* uart write long zero to wake up device */
+-        ps_write_tty(ps_core_d, &zero_num, sizeof(uint8_t));
++        if (dbg_wkup_window_ms > 0) {
++            /* TEST ONLY: widen the window in which the chip may wake up by itself */
++            msleep(dbg_wkup_window_ms);
++            if (bfgx_dev_state_get(pm_data) == BFGX_ACTIVE) {
++                dbg_collisions++;
++                ps_print_err("dbg: chip woke up by itself before the wake byte (#%d)\n", dbg_collisions);
++            }
++        }
++        if (dbg_fake_wkup > 0) {
++            /* TEST ONLY: pretend the chip acked without waking it */
++            dbg_fake_wkup--;
++            ps_print_err("dbg: fake wake-up ack, chip left asleep\n");
++            (void)bfg_wake_host_isr(0, pm_data);
++        } else {
++            ps_write_tty(ps_core_d, &zero_num, sizeof(uint8_t));
++        }
+ 
+         timeleft = wait_for_completion_timeout(&pm_data->dev_bootok_ack_comp,
+                                                msecs_to_jiffies(WAIT_WKUP_DEVACK_TIMEOUT_MSEC));
+@@ -1126,6 +1155,22 @@ static int32_t host_wkup_dev_via_uart(struct ps_core_s *ps_core_d, struct pm_drv
+             ps_print_info("[%s]bfg wkup OK, gpio level:%d\n",
+                           index2name(pm_data->index), bwkup_gpio_val);
+ 
++            if (dbg_extra_wake_byte > 0) {
++                /* TEST ONLY: a second wake byte at 115200 while the chip is awake */
++                dbg_extra_wake_byte--;
++                msleep(5);
++                ps_print_err("dbg: extra wake byte to the awake chip, gpio %d\n",
++                             oal_gpio_get_value(pm_data->wakeup_host_gpio));
++                ps_write_tty(ps_core_d, &zero_num, sizeof(uint8_t));
++                msleep(2);
++            }
++            if (dbg_bad_baud > 0) {
++                /* TEST ONLY: host UART left at the wrong rate */
++                dbg_bad_baud--;
++                ps_print_err("dbg: BUART set to 3000000 instead of %u\n", g_uart_default_baud_rate);
++                (void)ps_change_baud_rate_retry(ps_core_d, 3000000, FLOW_CTRL_ENABLE);
++                return OAL_TRUE;
++            }
+             // set default baudrate. should not try again if failed, return succ
+             (void)ps_change_baud_rate_retry(ps_core_d, g_uart_default_baud_rate, FLOW_CTRL_ENABLE);
+             return OAL_TRUE;
+@@ -1333,6 +1378,14 @@ void host_send_disallow_msg(oal_work_stru *work)
+ 
+     ps_print_info("[%s]%s\n", index2name(pm_data->index), __func__);
+ 
++    if (dbg_disallow_delay_ms > 0) {
++        /* TEST ONLY: a host that is slow to answer the wake-up */
++        ps_print_err("dbg: DISALLOW_SLP delayed %d ms, wake gpio %d\n", dbg_disallow_delay_ms,
++                     oal_gpio_get_value(pm_data->wakeup_host_gpio));
++        msleep(dbg_disallow_delay_ms);
++        ps_print_err("dbg: DISALLOW_SLP now, wake gpio %d\n", oal_gpio_get_value(pm_data->wakeup_host_gpio));
++    }
++
+     ps_core_d = pm_get_core(pm_data);
+     if (ps_core_d == NULL) {
+         ps_print_err("ps_core has not inited\n");

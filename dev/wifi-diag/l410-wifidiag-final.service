@@ -1,0 +1,14 @@
+# WiFi connect test, part 2: NetworkManager profile, DHCP, gateway. Stays up (and pets the
+# deadman) while connected, reboots otherwise. Enabled by /etc/l410-wifidiag/enable.
+[Unit]
+Description=L410 WiFi connect test (NetworkManager)
+ConditionPathExists=/etc/l410-wifidiag/enable
+Wants=NetworkManager.service
+After=NetworkManager.service l410-wifidiag.service
+
+[Service]
+Type=simple
+ExecStart=/usr/local/sbin/l410-wifidiag final
+
+[Install]
+WantedBy=multi-user.target
