@@ -1,0 +1,15 @@
+# /etc/systemd/system/scx-bpfland.service: the bpfland sched_ext scheduler (A/B option D in
+# docs/tuning/sched-ext.md). Installed but NOT enabled.
+[Unit]
+Description=sched_ext bpfland scheduler (L410)
+ConditionPathExists=/sys/kernel/sched_ext/state
+Conflicts=scx-lavd.service
+
+[Service]
+Type=exec
+ExecStart=/usr/local/lib/l410-perf/scx-run bpfland
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

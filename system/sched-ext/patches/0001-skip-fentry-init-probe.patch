@@ -1,0 +1,37 @@
+diff --git a/rust/scx_utils/src/compat.rs b/rust/scx_utils/src/compat.rs
+index 66e557b..18bc324 100644
+--- a/rust/scx_utils/src/compat.rs
++++ b/rust/scx_utils/src/compat.rs
+@@ -524,6 +524,14 @@ pub fn cond_tracepoints_enable<T>(tracepoints: Vec<(&str, &OpenProgramImpl<T>)>)
+     Ok(true)
+ }
+ 
++/// fentry/fexit attach through BPF trampolines needs the function tracer (patchable
++/// function entries); without it the kernel has no available_filter_functions. Only
++/// tracefs is looked at: touching /sys/kernel/debug/tracing makes the kernel automount
++/// tracefs there and log "Automounting of tracing to debugfs is deprecated".
++pub fn fentry_supported() -> bool {
++    std::path::Path::new("/sys/kernel/tracing/available_filter_functions").exists()
++}
++
+ pub fn is_sched_ext_enabled() -> io::Result<bool> {
+     let content = std::fs::read_to_string("/sys/kernel/sched_ext/state")?;
+ 
+@@ -711,6 +719,17 @@ macro_rules! __scx_ops_load {
+             use ::anyhow::Context;
+             use ::libbpf_rs::skel::OpenSkel;
+ 
++            // scx_lib_init_probe is an fentry program; a kernel built without the
++            // function tracer cannot attach fentry (-ENOTSUPP), and the probe only
++            // matters before v6.18 or without PREEMPT_RCU. Skip it there.
++            if !scx_utils::compat::fentry_supported() {
++                unsafe {
++                    ::libbpf_rs::libbpf_sys::bpf_program__set_autoload(
++                        ::libbpf_rs::AsRawLibbpf::as_libbpf_object(&$skel.progs.scx_lib_init_probe).as_ptr(), false);
++                }
++                ::scx_utils::info!("kernel cannot attach fentry programs: scx_lib_init_probe skipped");
++            }
++
+             {
+                 let ops = $skel.struct_ops.[<$ops _mut>]();
+                 $crate::__scx_ops_form_fixups!($form, ops);

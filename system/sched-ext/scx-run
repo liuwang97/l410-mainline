@@ -1,0 +1,37 @@
+#!/bin/sh
+# /usr/local/lib/l410-perf/scx-run lavd|bpfland: start a sched_ext scheduler with the options
+# of the current L410 power mode (profile.sh restarts the unit when the mode changes), and
+# while it runs keep KWin's real-time threads at the mode's uclamp floor (scx-kwin-uclamp;
+# l410-perfd moves KWin's cgroup floor to 0 under sched_ext). SCX_EXTRA in the unit's
+# environment adds options (e.g. --no-use-em for a comparison).
+# Outside powersave, user tasks prefer the Cortex-A76 cores (--prefer-big-uid, our lavd patch
+# system/sched-ext/patches/; docs/tuning/launch-latency.md); a binary without the option runs without it.
+mode=$(sed -n 's/.*\[\(.*\)\].*/\1/p' /sys/kernel/l410_perf/mode 2>/dev/null)
+L=/usr/local/lib/l410-perf
+case $1 in
+lavd)
+	case $mode in
+	powersave) f=--powersave ;;
+	performance) f=--performance ;;
+	*) f=--balanced ;;
+	esac
+	if [ $mode != powersave ] && /usr/local/bin/scx_lavd --help 2>&1 | grep -q -- --prefer-big-uid; then
+		f="$f --prefer-big-uid ${SCX_BIG_UID:-1000}"
+	fi
+	set -- /usr/local/bin/scx_lavd $f $SCX_EXTRA ;;
+bpfland)
+	set -- /usr/local/bin/scx_bpfland $SCX_EXTRA ;;
+*)
+	echo "usage: $0 lavd|bpfland" >&2; exit 2 ;;
+esac
+"$@" &
+S=$!
+trap 'kill $S 2> /dev/null; wait $S; $L/scx-kwin-uclamp clear; exit 0' TERM INT
+# KWin may restart (relogin) or start new RT threads: refresh every 5 s
+while kill -0 $S 2> /dev/null; do
+	$L/scx-kwin-uclamp set
+	sleep 5 & wait $!
+done
+wait $S; rc=$?
+$L/scx-kwin-uclamp clear
+exit $rc

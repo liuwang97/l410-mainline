@@ -1,0 +1,278 @@
+From 26526f50fbf926fb1a2c81562354e7dbd61cc2a9 Mon Sep 17 00:00:00 2001
+From: liuwang97 <17954538+liuwang97@users.noreply.github.com>
+Date: Thu, 1 Oct 2026 18:50:32 +0800
+Subject: [PATCH] scx_lavd: prefer big cores for user tasks (--prefer-big-uid)
+
+On big.LITTLE parts where a LITTLE core is several times slower (Kirin 990:
+Cortex-A55 at capacity 283 against Cortex-A76 at 767/1024), anything a user
+waits on belongs on a big core. With --prefer-big-uid N, ordinary tasks of
+uid >= N (nice <= 0, not SCHED_IDLE/SCHED_BATCH, not kernel threads) take
+the previous CPU if it is an idle big one, else any idle big CPU (fastest
+first); when all big CPUs are busy they queue on the one predicted to free
+up first while that wait stays below --prefer-big-wait-pct (default 260 %)
+of their average runtime on the fastest core, clamped to 1-8 ms. Beyond
+that the normal placement, which may pick a LITTLE core, takes over.
+---
+ scheds/rust/scx_lavd/src/bpf/idle.bpf.c | 129 ++++++++++++++++++++++++
+ scheds/rust/scx_lavd/src/bpf/intf.h     |   1 +
+ scheds/rust/scx_lavd/src/bpf/lavd.bpf.h |   4 +
+ scheds/rust/scx_lavd/src/bpf/main.bpf.c |  12 +++
+ scheds/rust/scx_lavd/src/main.rs        |  31 ++++++
+ 5 files changed, 177 insertions(+)
+
+diff --git a/scheds/rust/scx_lavd/src/bpf/idle.bpf.c b/scheds/rust/scx_lavd/src/bpf/idle.bpf.c
+index ae1f98d..803cc41 100644
+--- a/scheds/rust/scx_lavd/src/bpf/idle.bpf.c
++++ b/scheds/rust/scx_lavd/src/bpf/idle.bpf.c
+@@ -633,6 +633,126 @@ s32 migrate_to_neighbor(struct pick_ctx *ctx, struct cpdom_ctx *cpdc,
+ 	return cpu;
+ }
+ 
++#ifndef SCHED_BATCH
++#define SCHED_BATCH	3
++#endif
++#ifndef SCHED_IDLE
++#define SCHED_IDLE	5
++#endif
++
++#define LAVD_PREF_BIG_WAIT_MIN_NS	(1ULL * NSEC_PER_MSEC)
++#define LAVD_PREF_BIG_WAIT_MAX_NS	(8ULL * NSEC_PER_MSEC)
++
++/*
++ * Should @p prefer the big cores? On big.LITTLE parts where a LITTLE core is
++ * several times slower (Kirin 990: Cortex-A55 at capacity 283 against
++ * Cortex-A76 at 767/1024), anything a user waits on -- application start-up,
++ * the shell's popups, rendering threads -- belongs on a big core. That is every
++ * ordinary task of a real user: uid >= pref_big_uid_min, not niced, not
++ * SCHED_IDLE/SCHED_BATCH. Kernel threads and system daemons keep the normal
++ * placement, and so does niced background work.
++ */
++static __always_inline
++bool is_big_pref_task(const struct task_struct *p)
++{
++	if (!pref_big_uid_min || !have_little_core || !nr_pref_big)
++		return false;
++	if (p->flags & PF_KTHREAD)
++		return false;
++	if (p->policy == SCHED_BATCH || p->policy == SCHED_IDLE)
++		return false;
++	if (p->static_prio > MAX_RT_PRIO + 20)	/* nice > 0 */
++		return false;
++	return BPF_CORE_READ(p, real_cred, uid.val) >= pref_big_uid_min;
++}
++
++/*
++ * Big-core placement for is_big_pref_task() tasks:
++ *  1) the previous CPU if it is a big one and idle (warm caches),
++ *  2) any idle big CPU, fastest first,
++ *  3) all big CPUs busy: the one predicted to free up first (its running
++ *     task's estimated stop, its per-CPU queue and the big domain's queue
++ *     spread over the big CPUs), if that wait is within the task's budget:
++ *     pref_big_wait_pct of
++ *     its average invariant runtime (the time it takes on the fastest core),
++ *     clamped to [1, 8] ms. 260 % fits a LITTLE core that needs 3.6x as long:
++ *     beyond that wait the LITTLE core finishes first.
++ * Returns -ENOENT when the wait is too long; the normal placement (which may
++ * choose a LITTLE core) takes over then. A chosen big CPU outside the active
++ * set joins the overflow set, as in the normal path.
++ */
++static __always_inline
++s32 pick_big_pref_cpu(struct pick_ctx *ctx, bool *is_idle)
++{
++	const struct cpumask *allowed = ctx->p->cpus_ptr;
++	u64 now, wait, best_wait = (u64)-1, budget;
++	s32 cpu, best = -ENOENT;
++	struct cpu_ctx *cpuc;
++	int i;
++
++	cpu = ctx->prev_cpu;
++	if (cpu >= 0 && cpu < LAVD_CPU_ID_MAX && cpu_big[cpu] &&
++	    bpf_cpumask_test_cpu(cpu, allowed) &&
++	    scx_bpf_test_and_clear_cpu_idle(cpu)) {
++		*is_idle = true;
++		goto found;
++	}
++
++	bpf_for(i, 0, LAVD_PREF_BIG_MAX) {
++		if (i >= nr_pref_big)
++			break;
++		cpu = pref_big_order[i];
++		if (!bpf_cpumask_test_cpu(cpu, allowed))
++			continue;
++		if (scx_bpf_test_and_clear_cpu_idle(cpu)) {
++			*is_idle = true;
++			goto found;
++		}
++	}
++
++	now = scx_bpf_now();
++	bpf_for(i, 0, LAVD_PREF_BIG_MAX) {
++		if (i >= nr_pref_big)
++			break;
++		cpu = pref_big_order[i];
++		if (!bpf_cpumask_test_cpu(cpu, allowed))
++			continue;
++		cpuc = get_cpu_ctx_id(cpu);
++		if (!cpuc)
++			continue;
++		wait = time_delta(READ_ONCE(cpuc->est_stopping_clk), now);
++		if (use_per_cpu_dsq())
++			wait += scx_bpf_dsq_nr_queued(cpu_to_dsq(cpu)) *
++				sys_stat.slice_wall;
++		if (wait < best_wait) {
++			best_wait = wait;
++			best = cpu;
++		}
++	}
++	if (best < 0 || !(cpuc = get_cpu_ctx_id(best)))
++		return -ENOENT;
++
++	best_wait += scx_bpf_dsq_nr_queued(cpdom_to_dsq(cpuc->cpdom_id)) *
++		     sys_stat.slice_wall / nr_pref_big;
++	budget = ctx->taskc->avg_runtime_invr * pref_big_wait_pct / 100;
++	budget = clamp(budget, LAVD_PREF_BIG_WAIT_MIN_NS, LAVD_PREF_BIG_WAIT_MAX_NS);
++	if (best_wait > budget)
++		return -ENOENT;
++	cpu = best;
++	/*
++	 * Wait on the chosen big CPU's own DSQ: tasks there are not stolen by
++	 * idle LITTLE CPUs (the domain DSQ is, which would undo the choice).
++	 */
++	if (use_per_cpu_dsq())
++		set_task_flag(ctx->taskc, LAVD_FLAG_WARM_CPU);
++
++found:
++	if (ctx->active && ctx->ovrflw &&
++	    !bpf_cpumask_test_cpu(cpu, cast_mask(ctx->active)))
++		bpf_cpumask_test_and_set_cpu(cpu, ctx->ovrflw);
++	return cpu;
++}
++
+ __hidden __noinline
+ s32 pick_idle_cpu(struct pick_ctx *ctx, bool *is_idle)
+ {
+@@ -716,6 +836,15 @@ s32 pick_idle_cpu(struct pick_ctx *ctx, bool *is_idle)
+ 	}
+ 	/* NOTE: Now task @p is not a per-CPU task. */
+ 
++	/*
++	 * User tasks go to the big cores first (--prefer-big-uid).
++	 */
++	if (is_big_pref_task(ctx->p)) {
++		cpu = pick_big_pref_cpu(ctx, is_idle);
++		if (cpu >= 0)
++			goto unlock_out;
++	}
++
+ 	/*
+ 	 * Warm-CPU preference: Prefer the previous CPU while its cache and TLB
+ 	 * are still warm. Take it if idle or, if it is busy but predicted to
+diff --git a/scheds/rust/scx_lavd/src/bpf/intf.h b/scheds/rust/scx_lavd/src/bpf/intf.h
+index 316f456..1757a5e 100644
+--- a/scheds/rust/scx_lavd/src/bpf/intf.h
++++ b/scheds/rust/scx_lavd/src/bpf/intf.h
+@@ -32,6 +32,7 @@ enum {
+  */
+ enum {
+ 	LAVD_CPU_ID_MAX			= 8192,
++	LAVD_PREF_BIG_MAX		= 16,
+ 
+ 	LAVD_CPDOM_MAX_NR		= 128, /* maximum number of compute domain */
+ 	LAVD_CPDOM_MAX_DIST		= 3,  /* maximum distance from one compute domain to another */
+diff --git a/scheds/rust/scx_lavd/src/bpf/lavd.bpf.h b/scheds/rust/scx_lavd/src/bpf/lavd.bpf.h
+index f9834b2..d301261 100644
+--- a/scheds/rust/scx_lavd/src/bpf/lavd.bpf.h
++++ b/scheds/rust/scx_lavd/src/bpf/lavd.bpf.h
+@@ -668,6 +668,10 @@ bool test_task_flag(task_ctx *taskc, u64 flag);
+ bool test_task_flag_mask(task_ctx __arg_arena *taskc, u64 flag);
+ 
+ extern const volatile u64	warm_cpu_ns;	/* warm-CPU wait budget (ns) */
++extern const volatile u32	pref_big_uid_min;	/* big-core preference for uid >= this; 0 = off */
++extern const volatile u32	pref_big_wait_pct;	/* its wait budget, % of avg runtime */
++extern const volatile u32	nr_pref_big;		/* number of entries in pref_big_order */
++extern const volatile s32	pref_big_order[LAVD_PREF_BIG_MAX]; /* big CPUs, fastest first */
+ 
+ /* Per-CPU warmth clock (util.bpf.c). */
+ u64 task_cpu_warmth(task_ctx __arg_arena *taskc, u32 cpu_id, u64 now);
+diff --git a/scheds/rust/scx_lavd/src/bpf/main.bpf.c b/scheds/rust/scx_lavd/src/bpf/main.bpf.c
+index fa99d39..d1077d7 100644
+--- a/scheds/rust/scx_lavd/src/bpf/main.bpf.c
++++ b/scheds/rust/scx_lavd/src/bpf/main.bpf.c
+@@ -229,6 +229,18 @@ const volatile u8	no_fast_lb = 0;
+  */
+ const volatile u64	warm_cpu_ns = 0;
+ 
++/*
++ * Big-core preference for user tasks (--prefer-big-uid, --prefer-big-wait-pct):
++ * tasks of uid >= pref_big_uid_min take an idle big CPU first and queue on a
++ * busy one while the predicted wait is shorter than pref_big_wait_pct % of
++ * their average runtime. pref_big_order lists the big CPUs, fastest first.
++ * pref_big_uid_min == 0 disables it.
++ */
++const volatile u32	pref_big_uid_min = 0;
++const volatile u32	pref_big_wait_pct = 260;
++const volatile u32	nr_pref_big = 0;
++const volatile s32	pref_big_order[LAVD_PREF_BIG_MAX];
++
+ /*
+  * Skip periodic load balancing when average system utilization is below this
+  * threshold. The value is pre-scaled by userspace. 0 = disabled.
+diff --git a/scheds/rust/scx_lavd/src/main.rs b/scheds/rust/scx_lavd/src/main.rs
+index 1a5ca47..bf108c1 100644
+--- a/scheds/rust/scx_lavd/src/main.rs
++++ b/scheds/rust/scx_lavd/src/main.rs
+@@ -153,6 +153,21 @@ struct Opts {
+     #[clap(long = "warm-cpu-us", default_value = "0")]
+     warm_cpu_us: u64,
+ 
++    /// Prefer the big (non-LITTLE) cores for user tasks: tasks of uid >= this
++    /// value (nice <= 0, not SCHED_IDLE/SCHED_BATCH) take an idle big CPU
++    /// first and, when all big CPUs are busy, queue on the one that frees up
++    /// first while that wait is shorter than --prefer-big-wait-pct of their
++    /// average runtime. Only then may they land on a LITTLE core. 0 disables
++    /// (default). No effect without LITTLE cores.
++    #[clap(long = "prefer-big-uid", default_value = "0")]
++    prefer_big_uid: u32,
++
++    /// Wait budget of --prefer-big-uid in percent of a task's average runtime
++    /// on the fastest core, clamped to 1-8 ms. The default 260 fits LITTLE
++    /// cores that need 3.6x as long as the big ones.
++    #[clap(long = "prefer-big-wait-pct", default_value = "260")]
++    prefer_big_wait_pct: u32,
++
+     /// Low utilization threshold percentage (0-100) for periodic load balancing.
+     /// When set to a non-zero value, periodic load balancing is skipped when
+     /// the maximum per-domain utilization is below this percentage.
+@@ -606,6 +621,20 @@ impl<'a> Scheduler<'a> {
+                 cpu.cpu_sibling as u32;
+         }
+ 
++        // Big CPUs for --prefer-big-uid, fastest first
++        let mut big: Vec<_> = order.cpuids.iter().filter(|c| c.big_core).collect();
++        big.sort_by(|a, b| {
++            b.turbo_core
++                .cmp(&a.turbo_core)
++                .then(b.cpu_cap.cmp(&a.cpu_cap))
++                .then(a.cpu_adx.cmp(&b.cpu_adx))
++        });
++        big.truncate(bpf_intf::LAVD_PREF_BIG_MAX as usize);
++        for (i, cpu) in big.iter().enumerate() {
++            skel.maps.rodata_data.as_mut().unwrap().pref_big_order[i] = cpu.cpu_adx as i32;
++        }
++        skel.maps.rodata_data.as_mut().unwrap().nr_pref_big = big.len() as u32;
++
+         // Initialize performance vs. CPU order table.
+         let nr_pco_states: u8 = order.perf_cpu_order.len() as u8;
+         if nr_pco_states > LAVD_PCO_STATE_MAX as u8 {
+@@ -698,6 +727,8 @@ impl<'a> Scheduler<'a> {
+         rodata.lat_load_target_pct = opts.lat_load_target_pct;
+         rodata.mig_delta_pct = opts.mig_delta_pct;
+         rodata.warm_cpu_ns = opts.warm_cpu_us * 1000;
++        rodata.pref_big_uid_min = opts.prefer_big_uid;
++        rodata.pref_big_wait_pct = opts.prefer_big_wait_pct;
+         rodata.lb_low_util_wall = ((opts.lb_low_util_pct as u64) << 10) / 100;
+         rodata.lb_local_dsq_util_wall = ((opts.lb_local_dsq_util_pct as u64) << 10) / 100;
+         rodata.no_use_em = opts.no_use_em as u8;
+-- 
+2.47.3
+

@@ -1,0 +1,16 @@
+# /etc/systemd/system/scx-lavd.service: the LAVD sched_ext scheduler (docs/tuning/sched-ext.md).
+# Enabled at boot in every power mode (install.sh; 2026-10-01). Stopping it (or a crash, or
+# the kernel's 30 s watchdog) puts every task back on EEVDF/EAS.
+[Unit]
+Description=sched_ext LAVD scheduler (L410, follows the power mode)
+ConditionPathExists=/sys/kernel/sched_ext/state
+Conflicts=scx-bpfland.service
+
+[Service]
+Type=exec
+ExecStart=/usr/local/lib/l410-perf/scx-run lavd
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

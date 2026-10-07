@@ -1,0 +1,55 @@
+#!/usr/bin/python3
+"""/usr/local/lib/l410-perf/scx-kwin-uclamp set|clear: uclamp_min of KWin's real-time
+threads while a sched_ext scheduler runs (docs/tuning/sched-ext.md).
+
+Under sched_ext l410-perfd drops KWin's cgroup floor to 0 (it would also pin Xwayland and
+KWin's normal threads, wherever lavd puts them); this puts the floor on KWin's SCHED_RR
+threads alone, which lavd does not schedule (RT keeps choosing cores by uclamp). It runs as
+root from scx-run: kwin_wayland carries CAP_SYS_NICE, so a plain user process may not
+change its threads' scheduling attributes. Mode floors as l410-perfd's KWIN_MIN.
+"""
+import ctypes
+import os
+import re
+import struct
+import sys
+
+NR_SCHED_SETATTR = 274	# arm64
+FLAGS = 0x08 | 0x10 | 0x20	# KEEP_POLICY | KEEP_PARAMS | UTIL_CLAMP_MIN
+KWIN_MIN = {"powersave": 283, "balanced": 1024, "performance": 1024}
+libc = ctypes.CDLL(None, use_errno=True)
+
+
+def mode():
+    try:
+        m = re.search(r"\[(\w+)\]", open("/sys/kernel/l410_perf/mode").read())
+        return m.group(1) if m else "balanced"
+    except OSError:
+        return "balanced"
+
+
+def kwin_rt_threads():
+    for d in os.listdir("/proc"):
+        if not d.isdigit():
+            continue
+        try:
+            if open(f"/proc/{d}/comm").read().strip() != "kwin_wayland":
+                continue
+            for t in os.listdir(f"/proc/{d}/task"):
+                st = open(f"/proc/{d}/task/{t}/stat").read()
+                if int(st.rsplit(")", 1)[1].split()[38]) in (1, 2):
+                    yield int(t)
+        except (OSError, ValueError, IndexError):
+            continue
+
+
+def set_min(tid, util):
+    attr = struct.pack("IIQiIQQQII", 56, 0, FLAGS, 0, 0, 0, 0, 0, util, 1024)
+    buf = ctypes.create_string_buffer(attr, len(attr))
+    if libc.syscall(NR_SCHED_SETATTR, tid, buf, 0) != 0 and ctypes.get_errno() != 3:
+        print(f"sched_setattr({tid}, uclamp_min {util}): {os.strerror(ctypes.get_errno())}", file=sys.stderr)
+
+
+util = KWIN_MIN.get(mode(), 1024) if sys.argv[1:] == ["set"] else 0
+for tid in kwin_rt_threads():
+    set_min(tid, util)
