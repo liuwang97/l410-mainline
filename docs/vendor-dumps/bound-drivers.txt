@@ -1,0 +1,199 @@
+platform  alarmtimer  alarmtimer  
+platform  amba:hw_usb_hub  hw_usb_hub  huawei,hw_usb_hub 
+platform  asp_dmac@FA54B000  pcm-codec  hisilicon,pcm-codec 
+platform  caf_memory_manager  physical-memory-group-manager  arm,physical-memory-group-manager 
+platform  combophy_regcfg  combophy_regcfg  hisilicon,combophy_regcfg 
+platform  cpufreq-dt  cpufreq-dt  
+platform  dp_audio@0  dp-audio  hisilicon,dp-audio 
+platform  dp_i2s  hisi-dp-i2s  hisilicon,hisi-dp-i2s 
+platform  dsu-pmu-0  arm_dsu_pmu  arm,dsu-pmu 
+platform  e5e01000.ipc  HiIPCV230-mailbox  hisilicon,HiIPCV230 
+platform  e5f00000.arm_smmu_ai  arm-smmu-v3  arm,smmu-v3-ai 
+platform  e5f80000.arm_smmu_sdma  arm-smmu-v3  arm,smmu-v3-sdma 
+platform  e8400000.dpe  hisi-dpe  hisilicon,kunpeng902-dpe 
+platform  e8400000.drm_dp  hisi-drm-dp  hisilicon,drm_hisi_dp 
+platform  e8400000.dsi  hisi-mipi-dsi  hisilicon,kunpeng902-dsi 
+platform  e8601000.ip_freq_autodown  freq-autodown  hisilicon,hisi-freq-autodown 
+platform  e8601000.regulator_ip  regulator_ip_core  hisilicon,hisi_regulator_ip_atf_core 
+platform  e8601000.regulator_ip:ip@0  regulator_ip  ip-regulator-atf 
+platform  e8601000.regulator_ip:ip@1  regulator_ip  ip-regulator-atf 
+platform  e8601000.regulator_ip:ip@10  regulator_ip  ip-regulator-atf 
+platform  e8601000.regulator_ip:ip@11  regulator_ip  ip-regulator-atf 
+platform  e8601000.regulator_ip:ip@12  regulator_ip  ip-regulator-atf 
+platform  e8601000.regulator_ip:ip@13  regulator_ip  ip-regulator-lpm 
+platform  e8601000.regulator_ip:ip@14  regulator_ip  ip-regulator-atf 
+platform  e8601000.regulator_ip:ip@15  regulator_ip  ip-regulator-atf 
+platform  e8601000.regulator_ip:ip@16  regulator_ip  ip-regulator-atf 
+platform  e8601000.regulator_ip:ip@17  regulator_ip  ip-regulator-lpm 
+platform  e8601000.regulator_ip:ip@18  regulator_ip  ip-regulator-atf 
+platform  e8601000.regulator_ip:ip@2  regulator_ip  ip-regulator-atf 
+platform  e8601000.regulator_ip:ip@3  regulator_ip  ip-regulator-atf 
+platform  e8601000.regulator_ip:ip@4  regulator_ip  ip-regulator-atf 
+platform  e8601000.regulator_ip:ip@5  regulator_ip  ip-regulator-atf 
+platform  e8601000.regulator_ip:ip@6  regulator_ip  ip-regulator-atf 
+platform  e8601000.regulator_ip:ip@7  regulator_ip  ip-regulator-atf 
+platform  e8601000.regulator_ip:ip@8  regulator_ip  ip-regulator-atf 
+platform  e8601000.regulator_ip:ip@9  regulator_ip  ip-regulator-atf 
+platform  e9200000.vdec  hi_vdec  hisilicon,HiVCodecV500-vdec 
+platform  echub_battery  huawei,echub_battery  huawei,echub_battery 
+platform  echub-keyboard  echub-keyboard  huawei,echub-keyboard 
+platform  echub_lid  hw_gpio_key  huawei,echub-lid 
+platform  echub-power  echub-power  huawei,echub-power 
+platform  echub_state  huawei,ec_state_sync  huawei,ec_state_sync 
+platform  f0000000.pcie_kport_rc  pcie-kport-rc  pcie-kport,rc 
+platform  f4000000.pcie_kport_rc  pcie-kport-rc  pcie-kport,rc 
+platform  f8105000.pinmux  pinctrl-single  pinctrl-single pinctrl-single2 
+platform  f8105800.pinmux  pinctrl-single  pinconf-single pinctrl-single3 
+platform  f8200000.ufs  ufshcd  hisilicon,kirin-ufs 
+platform  f8400000.dwc3  dwc3  snps,dwc3 
+platform  f8480000.usb_phy  usb3-apr  hisilicon,apr-dwc3 
+platform  f8580000.pinmux  pinctrl-single  pinctrl-single pinctrl-single4 
+platform  f8580800.pinmux  pinctrl-single  pinconf-single pinctrl-single5 
+platform  fa000000.dma  hisi-dma64  hisilicon,hisi-dma64-1.0 
+platform  fa04c000.i2c  i2c_designware-hs  hisilicon,designware-i2c 
+platform  fa04d000.i2c  i2c_designware-hs  hisilicon,designware-i2c 
+platform  fa04e000.i2c  i2c_designware-hs  hisilicon,designware-i2c 
+platform  fa04f000.i2c  i2c_designware-hs  hisilicon,designware-i2c 
+platform  fa54b000.hi64xx_asp_dmac  hi64xx_asp_dma_drv  hisilicon,hi64xx-asp-dma 
+platform  fa54e000.asp_cfg  asp_cfg_drv  hisilicon,asp-cfg 
+platform  fa54e400.asp_hdmi_dmac  asp_hdmi_dma_drv  hisilicon,asp-hdmi-dma 
+platform  fa550000.slimbusmisc  hisilicon,slimbus  candance,slimbus 
+platform  fa875000.panel_blpwm  hisi_blpwm  hisilicon,hisiblpwm 
+platform  fa890000.spmi  spmi_controller  hisilicon,spmi-controller 
+platform  fa896000.syscounter  hisi-syscounter  hisilicon,syscounter-driver 
+platform  fa899000.ipc  HiIPCV230-mailbox  hisilicon,HiIPCV230 
+platform  fa89c000.pinmux  pinctrl-single  pinctrl-single pinctrl-single6 
+platform  fa89c800.pinmux  pinctrl-single  pinconf-single pinctrl-single7 
+platform  fe101000.ipc  HiIPCV230-mailbox  hisilicon,HiIPCV230 
+platform  fe102000.pinmux  pinctrl-single  pinctrl-single pinctrl-single0 
+platform  fe102800.pinmux  pinctrl-single  pinconf-single pinctrl-single1 
+platform  fe104000.codec_controller  codec_controller  hisilicon,codec-controller 
+platform  fe104000.codec_controller:hi64xx_irq@0  hi64xx_irq  hisilicon,hi64xx-irq 
+platform  fe104000.codec_controller:hi64xx_irq@0:hi6405_codec@0  DA_combine_v5  hisilicon,hi6405-codec 
+platform  fe104000.codecssi  hisilicon,codecssi  hisilicon,codecssi 
+platform  fe140000.mali  mali  arm,malit6xx arm,mali-midgard 
+platform  fe400000.hisi_mmu  hisi-mmu-v8  hisi,mmu-v8 
+platform  fff01000.hisi,l3-memlat-cpu0  devbw  hisi,l3-devbw 
+platform  fff01000.hisi,l3-memlat-cpu4  devbw  hisi,l3-devbw 
+platform  fff01000.hisi,l3-memlat-cpu6  devbw  hisi,l3-devbw 
+platform  fff01000.hisi,memlat-cpu0  devbw  hisi,devbw 
+platform  fff01000.hisi,memlat-cpu4  devbw  hisi,devbw 
+platform  fff01000.hisi,memlat-cpu6  devbw  hisi,devbw 
+platform  fff01000.hw_vote  HISI-Hardware-Vote  hisi,freq-hw-vote 
+platform  fff01000.peri_dvfs  hisi_perivolt  hisilicon,soc-peri-dvfs 
+platform  fffc0000.ddr  ddr_secprotect  hisilicon,ddr_secprotect 
+platform  fffc0000.ddr_devfreq  ddr_devfreq  hisilicon,ddr_devfreq 
+platform  fffc0000.ddr_devfreq_latency  ddr_devfreq  hisilicon,ddr_devfreq_latency 
+platform  fffc0000.ddr_devfreq_up_threshold  ddr_devfreq  hisilicon,ddr_devfreq 
+platform  fingerprint  fingerprint  fpc,fingerprint 
+bash: 第 0 行：[: 参数太多
+platform  hi110x  hi110x_board  hisilicon,hi110x hisilicon,hi1102 
+platform  hisi,arm-memlat-mon-0  arm-memlat-mon  hisi,arm-memlat-mon 
+platform  hisi,arm-memlat-mon-4  arm-memlat-mon  hisi,arm-memlat-mon 
+platform  hisi,arm-memlat-mon-6  arm-memlat-mon  hisi,arm-memlat-mon 
+platform  hisi_bfgx  hisi_bfgx  hisilicon,hisi_bfgx 
+platform  hisi_dp_machine  hisi-dp-audio  hisilicon,hisi-dp-audio-machine 
+platform  hisi-drg  hisi-drg  hisilicon,hisi-drg 
+platform  hisi-drm  hisi-drm  
+platform  hisi,heaps-drm  drm-heaps-hisi  hisilicon, hisi-drm-heaps 
+platform  hisi,l3-arm-memlat-mon-0  arm-memlat-mon  hisi,arm-memlat-mon 
+platform  hisi,l3-arm-memlat-mon-4  arm-memlat-mon  hisi,arm-memlat-mon 
+platform  hisi,l3-arm-memlat-mon-6  arm-memlat-mon  hisi,arm-memlat-mon 
+platform  hisi-l3cache-ecc  hisi-l3cache-ecc  hisilicon,hisi-l3cache-ecc 
+platform  hisi_noc@0  HISI_NOC  hisilicon,noc 
+platform  hisi-pcm-dp  hisi-pcm-dp  hisilicon,hisi-pcm-dp 
+platform  hisi_reset  hi3xxx-reset  hisilicon,hi3xxx-reset 
+platform  hisi_svm  hisi-smmu-group  hisi,smmu-group 
+platform  hisi_usb@f8480000  hisi-dwc3-usb  hisilicon,dwc3-usb 
+platform  hwspinlock  hisi_hwspinlock  hisilicon,hwspinlock 
+platform  ipa-sensor@0  ipa-thermal  arm,ipa-thermal0 
+platform  ipa-sensor@1  ipa-thermal  arm,ipa-thermal1 
+platform  l3c_devfreq  l3c_devfreq  hisi,l3c_devfreq 
+platform  pcm_armpc_custom  armpc-custom  hisilicon,armpc-custom 
+platform  pddevice  hisi-pd  hisilicon,pd 
+platform  pm_clk  hisi_pmclk  hisilicon,pm-clk-monitor 
+platform  pmu  armv8-pmu  arm,armv8-pmuv3 
+platform  ramoops  ramoops  ramoops 
+platform  reg-dummy  reg-dummy  
+platform  secs_power_ctrl  hisi-secs-power-ctrl  hisilicon,secs_power_ctrl 
+platform  sensorhub_io_power  Sensorhub_io_driver  huawei,sensorhub_io 
+platform  slimbus_dai@0  slimbus-dai  hisilicon,slimbus-dai 
+platform  smartpakit  smartpakit  huawei,smartpakit 
+platform  smart-plt  contexthub-platform  hisilicon,smart-plt 
+platform  smmu_cam  hisi-smmu-lpae  hisi,hisi-smmu-lpae 
+platform  smmu_dss  hisi-smmu-lpae  hisi,hisi-smmu-lpae 
+platform  smmu_lpae  hisi-smmu-lpae  hisi,hisi-smmu-lpae 
+platform  smmu_vcodec  hisi-smmu-lpae  hisi,hisi-smmu-lpae 
+platform  snd-soc-dummy  snd-soc-dummy  
+platform  sound_hi6405  hi3xxx_DA_combine_v5  hisilicon,hi3xxx-hi6405 
+platform  trusted_core  trusted_core  trusted_core 
+platform  tsens@0  hisi-tsens  hisi,tsens 
+platform  xhci-hcd.0.auto  xhci-hcd  
+amba  fa041000.uart  uart-pl011  arm,pl011 arm,primecell 
+amba  fa044000.uart  uart-pl011  arm,pl011 arm,primecell 
+amba  fa054000.uart  uart-pl011  arm,pl011 arm,primecell 
+amba  fa89f000.spi  ssp-pl022  arm,pl022 arm,primecell 
+amba  fa8a8000.gpio  pl061_gpio  arm,pl061 arm,primecell arm,primecell20 
+amba  fa8a9000.gpio  pl061_gpio  arm,pl061 arm,primecell arm,primecell21 
+amba  fa8aa000.gpio  pl061_gpio  arm,pl061 arm,primecell arm,primecell22 
+amba  fa8ab000.gpio  pl061_gpio  arm,pl061 arm,primecell arm,primecell23 
+amba  fa8ac000.gpio  pl061_gpio  arm,pl061 arm,primecell hisi,poweroff arm,primecell24 
+amba  fa8ad000.gpio  pl061_gpio  arm,pl061 arm,primecell arm,primecell25 
+amba  fa8ae000.gpio  pl061_gpio  arm,pl061 arm,primecell arm,primecell26 
+amba  fa8af000.gpio  pl061_gpio  arm,pl061 arm,primecell arm,primecell27 
+amba  fa8b0000.gpio  pl061_gpio  arm,pl061 arm,primecell arm,primecell28 
+amba  fa8b1000.gpio  pl061_gpio  arm,pl061 arm,primecell arm,primecell29 
+amba  fa8b2000.gpio  pl061_gpio  arm,pl061 arm,primecell arm,primecell30 
+amba  fa8b3000.gpio  pl061_gpio  arm,pl061 arm,primecell arm,primecell31 
+amba  fa8b4000.gpio  pl061_gpio  arm,pl061 arm,primecell arm,primecell32 
+amba  fa8b5000.gpio  pl061_gpio  arm,pl061 arm,primecell arm,primecell33 
+amba  fa8b6000.gpio  pl061_gpio  arm,pl061 arm,primecell arm,primecell34 
+amba  fa8b7000.gpio  pl061_gpio  arm,pl061 arm,primecell arm,primecell35 
+amba  fa8b8000.gpio  pl061_gpio  arm,pl061 arm,primecell arm,primecell36 
+amba  fe002000.gpio  pl061_gpio  arm,pl061 arm,primecell arm,primecell0 
+amba  fe003000.gpio  pl061_gpio  arm,pl061 arm,primecell arm,primecell1 
+amba  fe004000.gpio  pl061_gpio  arm,pl061 arm,primecell arm,primecell2 
+amba  fe005000.gpio  pl061_gpio  arm,pl061 arm,primecell arm,primecell3 
+amba  fe006000.gpio  pl061_gpio  arm,pl061 arm,primecell arm,primecell4 
+amba  fe007000.gpio  pl061_gpio  arm,pl061 arm,primecell arm,primecell5 
+amba  fe008000.gpio  pl061_gpio  arm,pl061 arm,primecell arm,primecell6 
+amba  fe009000.gpio  pl061_gpio  arm,pl061 arm,primecell arm,primecell7 
+amba  fe00a000.gpio  pl061_gpio  arm,pl061 arm,primecell arm,primecell8 
+amba  fe00b000.gpio  pl061_gpio  arm,pl061 arm,primecell arm,primecell9 
+amba  fe00c000.gpio  pl061_gpio  arm,pl061 arm,primecell arm,primecell10 
+amba  fe00d000.gpio  pl061_gpio  arm,pl061 arm,primecell arm,primecell11 
+amba  fe00e000.gpio  pl061_gpio  arm,pl061 arm,primecell arm,primecell12 
+amba  fe00f000.gpio  pl061_gpio  arm,pl061 arm,primecell arm,primecell13 
+amba  fe010000.gpio  pl061_gpio  arm,pl061 arm,primecell arm,primecell14 
+amba  fe011000.gpio  pl061_gpio  arm,pl061 arm,primecell arm,primecell15 
+amba  fe012000.gpio  pl061_gpio  arm,pl061 arm,primecell arm,primecell16 
+amba  fe013000.gpio  pl061_gpio  arm,pl061 arm,primecell arm,primecell17 
+amba  fe014000.gpio  pl061_gpio  arm,pl061 arm,primecell arm,primecell18 
+amba  fe015000.gpio  pl061_gpio  arm,pl061 arm,primecell arm,primecell19 
+amba  fe026000.watchdog0  sp805-wdt  arm,sp805 arm,primecell 
+amba  fff02000.uart  uart-pl011  arm,pl011 arm,primecell 
+i2c  3-004c  smartpakit_i2c  huawei,smartpakit_i2c 
+i2c  3-004e  smartpakit_i2c  huawei,smartpakit_i2c 
+i2c  4-002c  mipi2edp  ti,sn65dsix6 
+i2c  4-0048  dp2hdmi  dp2hdmi,ps176 
+i2c  6-005d  i2c_hid  huawei,goodix-clickpad 
+i2c  7-0038  echub_i2c  huawei,echub_i2c 
+i2c  7-003a  i2c_hid  huawei-keyboard 
+spmi  hisilicon-hisi-ldo-buck10  hisi_regulator  hisilicon-hisi-ldo 
+spmi  hisilicon-hisi-ldo-ldo15  hisi_regulator  hisilicon-hisi-ldo 
+spmi  hisilicon-hisi-ldo-ldo16  hisi_regulator  hisilicon-hisi-ldo 
+spmi  hisilicon-hisi-ldo-ldo17  hisi_regulator  hisilicon-hisi-ldo 
+spmi  hisilicon-hisi-ldo-ldo21  hisi_regulator  hisilicon-hisi-ldo 
+spmi  hisilicon-hisi-ldo-ldo23  hisi_regulator  hisilicon-hisi-ldo 
+spmi  hisilicon-hisi-ldo-ldo24  hisi_regulator  hisilicon-hisi-ldo 
+spmi  hisilicon-hisi-ldo-ldo25  hisi_regulator  hisilicon-hisi-ldo 
+spmi  hisilicon-hisi-ldo-ldo29  hisi_regulator  hisilicon-hisi-ldo 
+spmi  hisilicon-hisi-ldo-ldo32  hisi_regulator  hisilicon-hisi-ldo 
+spmi  hisilicon-hisi-ldo-ldo38  hisi_regulator  hisilicon-hisi-ldo 
+spmi  hisilicon-hisi-ldo-ldo4  hisi_regulator  hisilicon-hisi-ldo 
+spmi  hisilicon-hisi-ldo-ldo9  hisi_regulator  hisilicon-hisi-ldo 
+spmi  hisilicon-hisi-pmic-mntn-spmi-pmic_mntn  hisilicon-hisi-spmi-pmic-mntn  hisilicon-hisi-pmic-mntn-spmi 
+spmi  hisilicon-hisi-pmic-spmi-pmic  hisi_pmic  hisilicon-hisi-pmic-spmi 
+spmi  hisilicon-hisi-powerkey-ponkey  powerkey  hisilicon-hisi-powerkey 
+spmi  hisilicon-hisi-rtc-spmi-pmic_rtc  hisi-rtc  hisilicon-hisi-rtc-spmi 
+spmi  hisilicon-hisi-sub-pmic-ldo-buck01  hisi-sub-pmic  hisilicon-hisi-sub-pmic-ldo 

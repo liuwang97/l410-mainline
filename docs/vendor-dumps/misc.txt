@@ -1,0 +1,178 @@
+acpi.mod adler32.mod affs.mod afs.mod all_video.mod archelp.mod bfs.mod bitmap.mod bitmap_scale.mod blocklist.mod boot.mod bswap_test.mod btrfs.mod bufio.mod cat.mod cbfs.mod chain.mod cmdline_cat_test.mod cmp.mod cmp_test.mod command.lst configfile.mod core.efi cpio_be.mod cpio.mod crc64.mod cryptodisk.mod crypto.lst crypto.mod ctz_test.mod datehook.mod date.mod datetime.mod diskfilter.mod disk.mod div.mod div_test.mod dm_nv.mod echo.mod efifwsetup.mod efi_gop.mod efinet.mod elf.mod eval.mod exfat.mod exfctest.mod ext2.mod extcmd.mod f2fs.mod fat.mod fdt.mod file.mod font.mod fshelp.mod fs.lst functional_test.mod gcry_arcfour.mod gcry_blowfish.mod gcry_camellia.mod gcry_cast5.mod gcry_crc.mod gcry_des.mod gcry_dsa.mod gcry_idea.mod gcry_md4.mod gcry_md5.mod gcry_rfc2268.mod gcry_rijndael.mod gcry_rmd160.mod gcry_rsa.mod gcry_seed.mod gcry_serpent.mod gcry_sha1.mod gcry_sha256.mod gcry_sha512.mod gcry_tiger.mod gcry_twofish.mod gcry_whirlpool.mod geli.mod gettext.mod gfxmenu.mod gfxterm_background.mod gfxterm_menu.mod gfxterm.mod gptsync.mod gzio.mod halt.mod hashsum.mod hello.mod help.mod hexdump.mod hfs.mod hfspluscomp.mod hfsplus.mod http.mod iso9660.mod jfs.mod jpeg.mod keystatus.mod ldm.mod linux.mod load.cfg loadenv.mod loopback.mod lsacpi.mod lsefimmap.mod lsefi.mod lsefisystab.mod lsmmap.mod ls.mod lssal.mod luks.mod lvm.mod lzopio.mod macbless.mod macho.mod mdraid09_be.mod mdraid09.mod mdraid1x.mod memdisk.mod memrw.mod minicmd.mod minix2_be.mod minix2.mod minix3_be.mod minix3.mod minix_be.mod minix.mod mmap.mod moddep.lst modinfo.sh mpi.mod msdospart.mod mul_test.mod net.mod newc.mod nilfs2.mod normal.mod ntfscomp.mod ntfs.mod odc.mod offsetio.mod part_acorn.mod part_amiga.mod part_apple.mod part_bsd.mod part_dfly.mod part_dvh.mod part_gpt.mod partmap.lst part_msdos.mod part_plan.mod part_sun.mod part_sunpc.mod parttool.lst parttool.mod password.mod password_pbkdf2.mod pbkdf2.mod pbkdf2_test.mod pgp.mod png.mod priority_queue.mod probe.mod procfs.mod progress.mod raid5rec.mod raid6rec.mod read.mod reboot.mod regexp.mod reiserfs.mod romfs.mod scsi.mod search_fs_file.mod search_fs_uuid.mod search_label.mod search.mod serial.mod setjmp.mod setjmp_test.mod sfs.mod shift_test.mod signature_test.mod sleep.mod sleep_test.mod smbios.mod squash4.mod strtoull_test.mod syslinuxcfg.mod tar.mod terminal.lst terminal.mod terminfo.mod test_blockarg.mod testload.mod test.mod testspeed.mod tftp.mod tga.mod time.mod trig.mod tr.mod true.mod udf.mod ufs1_be.mod ufs1.mod ufs2.mod verifiers.mod video_colors.mod video_fb.mod videoinfo.mod video.lst video.mod videotest_checksum.mod videotest.mod xen_boot.mod xfs.mod xnu_uuid.mod xnu_uuid_test.mod xzio.mod zfscrypt.mod zfsinfo.mod zfs.mod zstd.mod 
+00001000-1fffffff : System RAM
+  00080000-01c6ffff : Kernel code
+  01c70000-01d6ffff : reserved
+  01d70000-02405fff : Kernel data
+20600000-20bfffff : System RAM
+21d00000-21ffffff : System RAM
+26e00000-26e1ffff : persistent_ram
+26e20000-26e3ffff : persistent_ram
+26e40000-26e5ffff : persistent_ram
+26e60000-26edffff : persistent_ram
+26ee0000-26efffff : persistent_ram
+27760000-5fffffff : System RAM
+  27760000-2785ffff : reserved
+60000000-63ffffff : reserved
+64000000-75ffffff : System RAM
+  72ad2000-73f38fff : reserved
+  75e46000-75e46fff : reserved
+76000000-767fffff : reserved
+76810000-dfffffff : System RAM
+  78000000-7fffffff : reserved
+  dbff7000-dfffefff : reserved
+  dffff000-dfffffff : reserved
+e5f00000-e5f7ffff : arm_smmu_ai
+e5f80000-e5ffffff : arm_smmu_sdma
+e8601000-e8601fff : e8601000.regulator_ip
+f0000000-f0ffffff : dbi
+f1000000-f2ffffff : MEM
+  f1000000-f1ffffff : 0000:00:00.0
+  f2000000-f20fffff : PCI Bus 0000:01
+    f2000000-f2003fff : 0000:01:00.0
+      f2000000-f2003fff : r8168
+    f2004000-f2004fff : 0000:01:00.0
+      f2004000-f2004fff : r8168
+f4000000-f4ffffff : dbi
+f5000000-f6ffffff : MEM
+  f5000000-f5ffffff : 0001:00:00.0
+  f6000000-f6bfffff : PCI Bus 0001:01
+    f6000000-f67fffff : 0001:01:00.0
+      f6000000-f60a7fff : HI1103_REGION_WCPU_ITCM
+      f60a8000-f610ffff : HI1103_REGION_WCPU_DTCM
+      f6110000-f618ffff : HI1103_REGION_W_PKTRAM
+      f6190000-f6297fff : HI1103_REGION_W_PERP_AHB
+      f6298000-f6367fff : HI1103_REGION_BCPU_ITCM
+      f6368000-f6477fff : HI1103_REGION_BCPU_DTCM
+      f6478000-f659afff : HI1103_REGION_B_PERP_AHB
+      f659b000-f65a9dff : HI1103_REGION_AON_APB
+    f6800000-f6803fff : 0001:01:00.0
+      f6800000-f6803fff : iatu_bar1
+f8000000-f807ffff : phy
+f8080000-f80fffff : phy
+f8102000-f8102fff : apb
+f8103000-f8103fff : apb
+f8105000-f8105017 : pinctrl-single
+f8105800-f8105817 : pinctrl-single
+f8181000-f8181fff : hsdt_sysctrl@f8181000
+f81ff000-f81fffff : ufs@F8200000
+f8200000-f821ffff : ufs@F8200000
+f8400000-f8407fff : dwc3@f8400000
+  f8400000-f8407fff : dwc3@f8400000
+f840c100-f847ffff : dwc3@f8400000
+f8481000-f8481fff : hisi_usb_dp_ctrl@f8481000
+f8580000-f858002f : pinctrl-single
+f8580800-f858082f : pinctrl-single
+fa000000-fa000fff : dma@fa000000
+fa041000-fa041fff : uart@fa041000
+  fa041000-fa041fff : uart@fa041000
+fa044000-fa044fff : uart@fa044000
+  fa044000-fa044fff : uart@fa044000
+fa054000-fa054fff : uart@fa054000
+  fa054000-fa054fff : uart@fa054000
+fa54b000-fa54bfff : asp dma
+fa880000-fa880fff : timer@fa880000
+fa89b000-fa89bfff : sysctrl@fa89b000
+fa89c000-fa89c77f : pinctrl-single
+fa89c800-fa89cf7f : pinctrl-single
+fa89f000-fa89ffff : spi@fa89f000
+  fa89f000-fa89ffff : ssp-pl022
+fa8a8000-fa8a8fff : gpio@fa8a8000
+  fa8a8000-fa8a8fff : gpio@fa8a8000
+fa8a9000-fa8a9fff : gpio@fa8a9000
+  fa8a9000-fa8a9fff : gpio@fa8a9000
+fa8aa000-fa8aafff : gpio@fa8aa000
+  fa8aa000-fa8aafff : gpio@fa8aa000
+fa8ab000-fa8abfff : gpio@fa8ab000
+  fa8ab000-fa8abfff : gpio@fa8ab000
+fa8ac000-fa8acfff : gpio@fa8ac000
+  fa8ac000-fa8acfff : gpio@fa8ac000
+fa8ad000-fa8adfff : gpio@fa8ad000
+  fa8ad000-fa8adfff : gpio@fa8ad000
+fa8ae000-fa8aefff : gpio@fa8ae000
+  fa8ae000-fa8aefff : gpio@fa8ae000
+fa8af000-fa8affff : gpio@fa8af000
+  fa8af000-fa8affff : gpio@fa8af000
+fa8b0000-fa8b0fff : gpio@fa8b0000
+  fa8b0000-fa8b0fff : gpio@fa8b0000
+fa8b1000-fa8b1fff : gpio@fa8b1000
+  fa8b1000-fa8b1fff : gpio@fa8b1000
+fa8b2000-fa8b2fff : gpio@fa8b2000
+  fa8b2000-fa8b2fff : gpio@fa8b2000
+fa8b3000-fa8b3fff : gpio@fa8b3000
+  fa8b3000-fa8b3fff : gpio@fa8b3000
+fa8b4000-fa8b4fff : gpio@fa8b4000
+  fa8b4000-fa8b4fff : gpio@fa8b4000
+fa8b5000-fa8b5fff : gpio@fa8b5000
+  fa8b5000-fa8b5fff : gpio@fa8b5000
+fa8b6000-fa8b6fff : gpio@fa8b6000
+  fa8b6000-fa8b6fff : gpio@fa8b6000
+fa8b7000-fa8b7fff : gpio@fa8b7000
+  fa8b7000-fa8b7fff : gpio@fa8b7000
+fa8b8000-fa8b8fff : gpio@fa8b8000
+  fa8b8000-fa8b8fff : gpio@fa8b8000
+fc031000-fc031fff : funnel@2,fc031000
+fc033000-fc033fff : etr@0,fc033000
+fc035000-fc035fff : stm-base
+fc036000-fc036fff : etb@2,fc036000
+fd001000-fd001fff : funnel@1,fd001000
+fd002000-fd002fff : etb@1,fd002000
+fd840000-fd840fff : etm@0,fd840000
+fe002000-fe002fff : gpio@fe002000
+  fe002000-fe002fff : gpio@fe002000
+fe003000-fe003fff : gpio@fe003000
+  fe003000-fe003fff : gpio@fe003000
+fe004000-fe004fff : gpio@fe004000
+  fe004000-fe004fff : gpio@fe004000
+fe005000-fe005fff : gpio@fe005000
+  fe005000-fe005fff : gpio@fe005000
+fe006000-fe006fff : gpio@fe006000
+  fe006000-fe006fff : gpio@fe006000
+fe007000-fe007fff : gpio@fe007000
+  fe007000-fe007fff : gpio@fe007000
+fe008000-fe008fff : gpio@fe008000
+  fe008000-fe008fff : gpio@fe008000
+fe009000-fe009fff : gpio@fe009000
+  fe009000-fe009fff : gpio@fe009000
+fe00a000-fe00afff : gpio@fe00a000
+  fe00a000-fe00afff : gpio@fe00a000
+fe00b000-fe00bfff : gpio@fe00b000
+  fe00b000-fe00bfff : gpio@fe00b000
+fe00c000-fe00cfff : gpio@fe00c000
+  fe00c000-fe00cfff : gpio@fe00c000
+fe00d000-fe00dfff : gpio@fe00d000
+  fe00d000-fe00dfff : gpio@fe00d000
+fe00e000-fe00efff : gpio@fe00e000
+  fe00e000-fe00efff : gpio@fe00e000
+fe00f000-fe00ffff : gpio@fe00f000
+  fe00f000-fe00ffff : gpio@fe00f000
+fe010000-fe010fff : gpio@fe010000
+  fe010000-fe010fff : gpio@fe010000
+fe011000-fe011fff : gpio@fe011000
+  fe011000-fe011fff : gpio@fe011000
+fe012000-fe012fff : gpio@fe012000
+  fe012000-fe012fff : gpio@fe012000
+fe013000-fe013fff : gpio@fe013000
+  fe013000-fe013fff : gpio@fe013000
+fe014000-fe014fff : gpio@fe014000
+  fe014000-fe014fff : gpio@fe014000
+fe015000-fe015fff : gpio@fe015000
+  fe015000-fe015fff : gpio@fe015000
+fe026000-fe026fff : watchdog0
+  fe026000-fe026fff : watchdog0
+fe02e000-fe02efff : pctrl@fe02e000
+fe102000-fe10273b : pinctrl-single
+fe102800-fe102f3b : pinctrl-single
+fe140000-fe143fff : mali
+fff02000-fff02fff : uart@fff02000
+  fff02000-fff02fff : uart@fff02000
+fff05000-fff05fff : crgctrl@fff05000
+100000000-1ffffffff : System RAM
+800000000-81fffffff : System RAM
+  815fa0000-81fcb2fff : reserved
+  81fccc000-81fcccfff : reserved
+  81fccd000-81fd94fff : reserved
+  81fd97000-81fd97fff : reserved
+  81fd98000-81fd98fff : reserved
+  81fd99000-81fd9bfff : reserved
+  81fd9c000-81fff0fff : reserved
+  81fff1000-81fffffff : reserved

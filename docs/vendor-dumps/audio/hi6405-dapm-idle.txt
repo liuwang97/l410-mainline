@@ -1,0 +1,142 @@
+== 44K1_CLK_SUPPLY: 44K1_CLK_SUPPLY: Off  in 0 out 0
+== ADCL0: ADCL0: On  in 2 out 1
+== ADCL0_MUX: ADCL0_MUX: Off  in 1 out 0
+== ADCL1: ADCL1: On  in 2 out 1
+== ADCL1_MUX: ADCL1_MUX: Off  in 0 out 0
+== ADCR0: ADCR0: On  in 2 out 1
+== ADCR0_MUX: ADCR0_MUX: Off  in 0 out 0
+== ADCR1: ADCR1: On  in 2 out 1
+== ADCR1_MUX: ADCR1_MUX: Off  in 1 out 0
+== AUDIOUP_INPUT: AUDIOUP_INPUT: Off  in 1 out 0
+== AUDIOUP_OUTPUT: AUDIOUP_OUTPUT: Off  in 0 out 1
+== AUDIO_CAPTURE_DRV: AUDIO_CAPTURE_DRV: On  in 2 out 4
+== AUDIO_CAPTURE_PGA: AUDIO_CAPTURE_PGA: On  in 2 out 4
+== AUDIO_DOWN_INPUT: AUDIO_DOWN_INPUT: Off  in 1 out 0
+== AUDIO_DOWN_OUTPUT: AUDIO_DOWN_OUTPUT: Off  in 0 out 1
+== AUDIO_PLAY_DRV: AUDIO_PLAY_DRV: On  in 4 out 2
+== AUDIO_PLAY_PGA: AUDIO_PLAY_PGA: On  in 2 out 4
+== AUXMIC_INPUT: AUXMIC_INPUT: Off  in 1 out 0
+== AUXMIC_PGA: AUXMIC_PGA: Off  in 0 out 0
+== AUXMIC_ULTRASONIC_UP_OUTPUT: AUXMIC_ULTRASONIC_UP_OUTPUT: Off  in 0 out 1
+== BT_CAPTURE_DRV: BT_CAPTURE_DRV: Off  in 0 out 2
+== BT_I2S2_NB_PGA: BT_I2S2_NB_PGA: Off  in 4 out 0
+== BT_I2S2_WB_PGA: BT_I2S2_WB_PGA: Off  in 6 out 0
+== BT_PLAY_DRV: BT_PLAY_DRV: Off  in 0 out 1
+== BT_PLAY_PGA: BT_PLAY_PGA: Off  in 0 out 1
+== Bt Playback: Bt Playback: Off  in 0 out 1
+== Bt Playback Wb: Bt Playback Wb: Off  in 0 out 1
+== Bt Uplink: Bt Uplink: Off  in 0 out 2
+== Bt Uplink Wb: Bt Uplink Wb: Off  in 0 out 2
+== CP1_SUPPLY: CP1_SUPPLY: Off  in 0 out 0
+== CP2_SUPPLY: CP2_SUPPLY: Off  in 0 out 0
+== Capture: Capture: Off  in 0 out 0
+== D1_D2_INPUT: D1_D2_INPUT: On  in 1 out 4
+== D3_D4_INPUT: D3_D4_INPUT: Off  in 1 out 0
+== D5_D6_INPUT: D5_D6_INPUT: On  in 1 out 4
+== DMIC1_INPUT: DMIC1_INPUT: Off  in 1 out 0
+== DMIC2_INPUT: DMIC2_INPUT: Off  in 1 out 0
+== DP_CLK_SUPPLY: DP_CLK_SUPPLY: On  in 0 out 0
+== DSD_L_INPUT: DSD_L_INPUT: Off  in 1 out 0
+== DSD_L_OUTPUT: DSD_L_OUTPUT: Off  in 0 out 1
+== DSD_R_INPUT: DSD_R_INPUT: Off  in 1 out 0
+== DSD_R_OUTPUT: DSD_R_OUTPUT: Off  in 0 out 1
+== Down: Down: Off  in 0 out 0
+== EC_DRV: EC_DRV: On  in 2 out 1
+== EP_DRV: EP_DRV: Off  in 0 out 0
+== EP_OUTPUT: EP_OUTPUT: Off  in 0 out 1
+== EP_ULTRASONIC_DOWN_INPUT: EP_ULTRASONIC_DOWN_INPUT: Off  in 1 out 0
+== FM_INPUT: FM_INPUT: Off  in 1 out 0
+== FM_OUTPUT: FM_OUTPUT: Off  in 0 out 1
+== HP_CONCURRENCY_INPUT: HP_CONCURRENCY_INPUT: Off  in 1 out 0
+== HP_CONCURRENCY_OUTPUT: HP_CONCURRENCY_OUTPUT: Off  in 0 out 1
+== HP_HIGHLEVEL_INPUT: HP_HIGHLEVEL_INPUT: Off  in 1 out 0
+== HP_HIGHLEVEL_OUTPUT: HP_HIGHLEVEL_OUTPUT: Off  in 0 out 1
+== HP_L_DRV: HP_L_DRV: Off  in 0 out 1
+== HP_L_OUTPUT: HP_L_OUTPUT: Off  in 0 out 1
+== HP_R_DRV: HP_R_DRV: Off  in 0 out 1
+== HP_R_OUTPUT: HP_R_OUTPUT: Off  in 0 out 1
+== HSMICBIAS: HSMICBIAS: Off  in 1 out 0
+== HSMIC_INPUT: HSMIC_INPUT: Off  in 1 out 0
+== HSMIC_PGA: HSMIC_PGA: Off  in 1 out 0
+== Headset Mic Capture: Headset Mic Capture: Off  in 0 out 5
+== Headset Playback: Headset Playback: Off  in 0 out 2
+== I2S2_BLUETOOTH_LOOP_INPUT: I2S2_BLUETOOTH_LOOP_INPUT: Off  in 1 out 0
+== I2S2_BLUETOOTH_LOOP_OUTPUT: I2S2_BLUETOOTH_LOOP_OUTPUT: Off  in 0 out 1
+== I2S2_BLUETOOTH_LOOP_SWITCH: I2S2_BLUETOOTH_LOOP_SWITCH: Off  in 0 out 1
+== IR_DRV: IR_DRV: Off  in 0 out 0
+== IR_LED_OUTPUT: IR_LED_OUTPUT: Off  in 0 out 1
+== IR_STUDY_INPUT: IR_STUDY_INPUT: Off  in 1 out 0
+== IR_STUDY_OUTPUT: IR_STUDY_OUTPUT: Off  in 0 out 1
+== IR_TX_INPUT: IR_TX_INPUT: Off  in 1 out 0
+== IV_DSPIF_OUTPUT: IV_DSPIF_OUTPUT: On  in 5 out 1
+== LineIn Capture: LineIn Capture: Off  in 0 out 0
+== MAD_CLK_SUPPLY: MAD_CLK_SUPPLY: Off  in 0 out 0
+== MAD_OUTPUT: MAD_OUTPUT: Off  in 0 out 1
+== MAINMIC_INPUT: MAINMIC_INPUT: Off  in 1 out 0
+== MIC3_INPUT: MIC3_INPUT: Off  in 1 out 0
+== MIC4_INPUT: MIC4_INPUT: Off  in 1 out 0
+== MIC5_INPUT: MIC5_INPUT: Off  in 1 out 0
+== MICBIAS1_MIC: MICBIAS1_MIC: Off  in 1 out 0
+== MICBIAS2_MIC: MICBIAS2_MIC: Off  in 1 out 0
+== MIC_INPUT: MIC_INPUT: On  in 1 out 5
+== Mic Capture: Mic Capture: On  in 2 out 5
+== PLL_CLK_SUPPLY: PLL_CLK_SUPPLY: On  in 0 out 0
+== PLL_TEST_INPUT: PLL_TEST_INPUT: Off  in 1 out 0
+== PLL_TEST_OUTPUT: PLL_TEST_OUTPUT: Off  in 0 out 1
+== Playback: Playback: Off  in 0 out 0
+== Rear Headphone Playback: Rear Headphone Playback: Off  in 0 out 0
+== Rear Mic Capture: Rear Mic Capture: Off  in 0 out 0
+== S1_IF_CLK_SUPPLY: S1_IF_CLK_SUPPLY: Off  in 0 out 0
+== S1_IL_MUX: S1_IL_MUX: Off  in 1 out 0
+== S1_IL_PGA: S1_IL_PGA: On  in 2 out 2 - R28737(0x7041) mask 0x1
+== S1_IR_MUX: S1_IR_MUX: Off  in 1 out 0
+== S1_IR_PGA: S1_IR_PGA: On  in 2 out 2 - R28737(0x7041) mask 0x2
+== S1_RX_INPUT: S1_RX_INPUT: Off  in 1 out 0
+== S1_TX_OUTPUT: S1_TX_OUTPUT: Off  in 0 out 1
+== S2L_OUTPUT: S2L_OUTPUT: Off  in 0 out 1
+== S2R_OUTPUT: S2R_OUTPUT: Off  in 0 out 1
+== S2_IF_CLK_SUPPLY: S2_IF_CLK_SUPPLY: Off  in 0 out 0
+== S2_IL_PGA: S2_IL_PGA: Off  in 1 out 0
+== S2_IR_PGA: S2_IR_PGA: Off  in 1 out 0
+== S2_RX_INPUT: S2_RX_INPUT: Off  in 1 out 0
+== S2_RX_SUPPLY: S2_RX_SUPPLY: Off  in 0 out 0
+== S2_TX_DRV: S2_TX_DRV: Off  in 0 out 1 - R29187(0x7203) mask 0x1
+== S2_TX_OUTPUT: S2_TX_OUTPUT: Off  in 0 out 1
+== S4L_OUTPUT: S4L_OUTPUT: Off  in 0 out 1
+== S4R_OUTPUT: S4R_OUTPUT: Off  in 0 out 1
+== S4_IF_CLK_SUPPLY: S4_IF_CLK_SUPPLY: On  in 0 out 0
+== S4_RX_INPUT: S4_RX_INPUT: On  in 1 out 2
+== S4_RX_SUPPLY: S4_RX_SUPPLY: On  in 0 out 0
+== S4_TX_DRV: S4_TX_DRV: On  in 5 out 1 - R29197(0x720d) mask 0x1
+== S4_TX_OUTPUT: S4_TX_OUTPUT: On  in 5 out 1
+== Speaker Playback: Speaker Playback: On  in 5 out 2
+== TDM_AUDIO_PA_DOWN_INPUT: TDM_AUDIO_PA_DOWN_INPUT: Off  in 1 out 0
+== TDM_AUDIO_PA_DOWN_OUTPUT: TDM_AUDIO_PA_DOWN_OUTPUT: Off  in 0 out 1
+== U10_DRV: U10_DRV: Off  in 0 out 0 - R30238(0x761e) mask 0x80
+== U10_OUTPUT: U10_OUTPUT: Off  in 0 out 1
+== U1_DRV: U1_DRV: On  in 2 out 1 - R30237(0x761d) mask 0x1
+== U1_OUTPUT: U1_OUTPUT: On  in 2 out 1
+== U2_DRV: U2_DRV: On  in 2 out 1 - R30237(0x761d) mask 0x2
+== U2_OUTPUT: U2_OUTPUT: On  in 2 out 1
+== U3_DRV: U3_DRV: On  in 2 out 1 - R30237(0x761d) mask 0x4
+== U3_OUTPUT: U3_OUTPUT: On  in 2 out 1
+== U4_DRV: U4_DRV: On  in 2 out 1 - R30237(0x761d) mask 0x8
+== U4_OUTPUT: U4_OUTPUT: On  in 2 out 1
+== U5_DRV: U5_DRV: Off  in 0 out 1 - R30237(0x761d) mask 0x10
+== U5_OUTPUT: U5_OUTPUT: Off  in 0 out 1
+== U6_DRV: U6_DRV: Off  in 0 out 1 - R30237(0x761d) mask 0x20
+== U6_OUTPUT: U6_OUTPUT: Off  in 0 out 1
+== U7_DRV: U7_DRV: On  in 2 out 1 - R30237(0x761d) mask 0x40
+== U7_EC_INPUT: U7_EC_INPUT: On  in 1 out 5
+== U7_EC_OUTPUT: U7_EC_OUTPUT: On  in 2 out 1
+== U7_OUTPUT: U7_OUTPUT: Off  in 0 out 1
+== U8_DRV: U8_DRV: Off  in 0 out 0 - R30237(0x761d) mask 0x80
+== U8_OUTPUT: U8_OUTPUT: Off  in 0 out 1
+== U9_DRV: U9_DRV: Off  in 0 out 0 - R30238(0x761e) mask 0x40
+== U9_OUTPUT: U9_OUTPUT: Off  in 0 out 1
+== Up: Up: Off  in 0 out 0
+== VIRTUAL_BTN_ACTIVE_OUTPUT: VIRTUAL_BTN_ACTIVE_OUTPUT: Off  in 0 out 1
+== VIRTUAL_BTN_PASSIVE_OUTPUT: VIRTUAL_BTN_PASSIVE_OUTPUT: Off  in 0 out 1
+== VOICE_INPUT: VOICE_INPUT: Off  in 1 out 0
+== VOICE_OUTPUT: VOICE_OUTPUT: Off  in 0 out 1
+== bias_level: On

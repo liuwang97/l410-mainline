@@ -1,0 +1,322 @@
+4.19.71-23-kr990
+gpiochip0: GPIOs 0-7, parent: amba/fe002000.gpio, fe002000.gpio:
+
+gpiochip1: GPIOs 8-15, parent: amba/fe003000.gpio, fe003000.gpio:
+
+gpiochip2: GPIOs 16-23, parent: amba/fe004000.gpio, fe004000.gpio:
+ gpio-22  (                    |hi64xx headset type ) out lo    
+
+gpiochip3: GPIOs 24-31, parent: amba/fe005000.gpio, fe005000.gpio:
+ gpio-24  (                    |hi64xx headset type ) out lo    
+ gpio-27  (                    |bl_config_enable_gpi) out hi    
+ gpio-28  (                    |lcd_vdd_enable_gpio ) out hi    
+
+gpiochip4: GPIOs 32-39, parent: amba/fe006000.gpio, fe006000.gpio:
+
+gpiochip5: GPIOs 40-47, parent: amba/fe007000.gpio, fe007000.gpio:
+ gpio-43  (                    |power-gpio-1        ) out hi    
+ gpio-47  (                    |soc_gpio_1v8_en     ) out hi    
+
+gpiochip6: GPIOs 48-55, parent: amba/fe008000.gpio, fe008000.gpio:
+ gpio-48  (                    |cam_pwr_en_gpio     ) out hi    
+
+gpiochip7: GPIOs 56-63, parent: amba/fe009000.gpio, fe009000.gpio:
+
+gpiochip8: GPIOs 64-71, parent: amba/fe00a000.gpio, fe00a000.gpio:
+
+gpiochip9: GPIOs 72-79, parent: amba/fe00b000.gpio, fe00b000.gpio:
+
+gpiochip10: GPIOs 80-87, parent: amba/fe00c000.gpio, fe00c000.gpio:
+
+gpiochip11: GPIOs 88-95, parent: amba/fe00d000.gpio, fe00d000.gpio:
+
+gpiochip12: GPIOs 96-103, parent: amba/fe00e000.gpio, fe00e000.gpio:
+
+gpiochip13: GPIOs 104-111, parent: amba/fe00f000.gpio, fe00f000.gpio:
+ gpio-104 (                    |power-gpio-0        ) out hi    
+ gpio-105 (                    |soc_gpio_1v2_en     ) out hi    
+
+gpiochip14: GPIOs 112-119, parent: amba/fe010000.gpio, fe010000.gpio:
+ gpio-114 (                    |hub_bpwr_gpio       ) out lo    
+ gpio-115 (                    |usbhub_vdd_on_gpio  ) out hi    
+
+gpiochip15: GPIOs 120-127, parent: amba/fe011000.gpio, fe011000.gpio:
+
+gpiochip16: GPIOs 128-135, parent: amba/fe012000.gpio, fe012000.gpio:
+
+gpiochip17: GPIOs 136-143, parent: amba/fe013000.gpio, fe013000.gpio:
+
+gpiochip18: GPIOs 144-151, parent: amba/fe014000.gpio, fe014000.gpio:
+
+gpiochip19: GPIOs 152-159, parent: amba/fe015000.gpio, fe015000.gpio:
+
+gpiochip20: GPIOs 160-167, parent: amba/fa8a8000.gpio, fa8a8000.gpio:
+ gpio-165 (                    |power-gpio-2        ) out lo    
+
+gpiochip21: GPIOs 168-175, parent: amba/fa8a9000.gpio, fa8a9000.gpio:
+
+gpiochip22: GPIOs 176-183, parent: amba/fa8aa000.gpio, fa8aa000.gpio:
+ gpio-182 (                    |ssp-pl022           ) out hi    
+
+gpiochip23: GPIOs 184-191, parent: amba/fa8ab000.gpio, fa8ab000.gpio:
+
+gpiochip24: GPIOs 192-199, parent: amba/fa8ac000.gpio, fa8ac000.gpio:
+ gpio-195 (                    |gpio_lid            ) in  hi IRQ
+ gpio-199 (                    |fingerprint,reset_gp) out lo    
+
+gpiochip25: GPIOs 200-207, parent: amba/fa8ad000.gpio, fa8ad000.gpio:
+ gpio-200 (                    |codec_interrupt     ) in  hi IRQ
+ gpio-202 (                    |host_wakeup_wlan    ) out lo    
+ gpio-203 (                    |wlan_power_on_enable) out lo    
+ gpio-204 (                    |bfgx_power_on_enable) out lo    
+ gpio-206 (                    |chip_reset          ) out hi    
+
+gpiochip26: GPIOs 208-215, parent: amba/fa8ae000.gpio, fa8ae000.gpio:
+
+gpiochip27: GPIOs 216-223, parent: amba/fa8af000.gpio, fa8af000.gpio:
+
+gpiochip28: GPIOs 224-231, parent: amba/fa8b0000.gpio, fa8b0000.gpio:
+ gpio-230 (                    |pmic-sid9-irq       ) in  hi IRQ
+
+gpiochip29: GPIOs 232-239, parent: amba/fa8b1000.gpio, fa8b1000.gpio:
+ gpio-232 (                    |i2c-hid-irq         ) in  hi IRQ
+ gpio-236 (                    |i2c-hid-irq         ) in  hi IRQ
+
+gpiochip30: GPIOs 240-247, parent: amba/fa8b2000.gpio, fa8b2000.gpio:
+ gpio-240 (                    |echub_suspend       ) out hi    
+ gpio-241 (                    |tas2562_gpio_reset_0) out hi    
+
+gpiochip31: GPIOs 248-255, parent: amba/fa8b3000.gpio, fa8b3000.gpio:
+ gpio-255 (                    |hi110x ssi clk      ) out lo    
+gpiochip32: GPIOs 256-263, parent: amba/fa8b4000.gpio, fa8b4000.gpio:
+ gpio-256 (                    |hi110x ssi data     ) out lo    
+ gpio-258 (                    |pcie_reset          ) out hi    
+ gpio-261 (                    |wlan_wake_host      ) in  hi IRQ
+
+gpiochip33: GPIOs 264-271, parent: amba/fa8b5000.gpio, fa8b5000.gpio:
+
+gpiochip34: GPIOs 272-279, parent: amba/fa8b6000.gpio, fa8b6000.gpio:
+ gpio-272 (                    |bfgx_wake_host      ) in  lo IRQ
+ gpio-273 (                    |power_on_enable     ) out lo    
+ gpio-274 (                    |tas2562_gpio_irq_0  ) in  lo IRQ
+ gpio-275 (                    |tas2562_gpio_irq_1  ) in  lo IRQ
+
+gpiochip35: GPIOs 280-287, parent: amba/fa8b7000.gpio, fa8b7000.gpio:
+ gpio-282 (                    |gpio_hpd            ) in  lo IRQ
+
+gpiochip36: GPIOs 288-295, parent: amba/fa8b8000.gpio, fa8b8000.gpio:
+===CLK
+                                 enable  prepare  protect                                duty
+   clock                          count    count    count        rate   accuracy phase  cycle
+    clk_asp_backup                    0        0        0    49146757          0     0  50000
+    clk_asp_pll_sel                   1        1        0  1572864000          0     0  50000
+       clk_asp_subsys                 1        1        0  1572864000          0     0  50000
+       clkgt_asp_codec                0        0        0  1572864000          0     0  50000
+          clkdiv_asp_codec            0        0        0    49152000          0     0  50000
+             sel_asp_codec            0        0        0    49152000          0     0  50000
+                clk_asp_codec         0        0        0    49152000          0     0  50000
+       clk_dp_audio_pll_ao_gt         0        0        0   393216000          0     0  50000
+          clk_dp_audio_pll_ao_div       0        0        0    24576000          0     0  50000
+             clk_dp_audio_pll_ao       0        0        0    24576000          0     0  50000
+                clk_dp_audio_pll       0        0        0    24576000          0     0  50000
+       clkmux_ao_asp                  0        0        0  1660000000          0     0  50000
+          clk_ao_asp_gt               0        0        0  1660000000          0     0  50000
+             clk_ao_asp_div           0        0        0   276666666          0     0  50000
+                clk_ao_asp            0        0        0   276666666          0     0  50000
+                   sel_ao_asp         0        0        0   276666666          0     0  50000
+                      pclk_i2c3       0        0        0   110666666          0     0  50000
+                      clk_i2c3        1        1        0   110666666          0     0  50000
+                clk_vcodecbus2        0        0        0   237142857          0     0  50000
+                clk_vcodecbus         0        0        0   237142857          0     0  50000
+             pclk_codecssi            0        0        0   118571428          0     0  50000
+    clk_pmu32kc                       0        0        0       32764          0     0  50000
+    clk_pmu32kb                       0        0        0       32764          0     0  50000
+    clk_pmu32ka                       0        0        0       32764          0     0  50000
+       clk_asp_tcxo                   0        0        0    19200000          0     0  50000
+       clk_pmuaudioclk                2        2        0    19200000          0     0  50000
+       sel_codeccssi                  1        1        0    19200000          0     0  50000
+          clk_codecssi                1        1        0    19200000          0     0  50000
+       abb_audio_en1                  0        0        0    38400000          0     0  50000
+          abb_audio_gt1               0        0        0    38400000          0     0  50000
+       abb_audio_en0                  0        0        0    38400000          0     0  50000
+          abb_audio_gt0               0        0        0    38400000          0     0  50000
+===REG
+ regulator                      use open bypass voltage current     min     max
+-------------------------------------------------------------------------------
+ regulator-dummy                  0    9      0     0mV     0mA     0mV     0mV 
+    sensorhub_io_power                                              0mV     0mV
+    fa54e000.asp_cfg                                                0mV     0mV
+    7-003a                                                          0mV     0mV
+    7-003a                                                          0mV     0mV
+    6-005d                                                          0mV     0mV
+    6-005d                                                          0mV     0mV
+    fe104000.codec_controller                                       0mV     0mV
+    fe104000.codec_controller                                       0mV     0mV
+    fe104000.codec_controller                                       0mV     0mV
+ buck10                           0    0      0   700mV     0mA   400mV  1440mV 
+ ldo4                             0    0      0  1800mV     0mA  1725mV  1900mV 
+ ldo9                             0    0      0  1800mV     0mA  1625mV  3300mV 
+ ldo15                            0    0      0  2550mV     0mA  1800mV  3000mV 
+ ldo16                            0    0      0  1800mV     0mA  1800mV  3000mV 
+ ldo17                            0    0      0  2500mV     0mA  2500mV  3300mV 
+ ldo21                            0    0      0  1500mV     0mA  1500mV  2000mV 
+ ldo23                            1    1      0  3200mV     0mA  2500mV  3300mV 
+    f8480000.usb_phy                                                0mV     0mV
+ ldo24                            0    0      0  2800mV     0mA  2500mV  3300mV 
+ ldo25                            0    0      0  1100mV     0mA  1100mV  1300mV 
+ ldo29                            0    0      0  1100mV     0mA  1100mV  1325mV 
+ ldo32                            0    0      0  1000mV     0mA  1000mV  1310mV 
+ ldo38                            0    0      0  1220mV     0mA  1000mV  1310mV 
+ buck01                           0    0      0   300mV     0mA   300mV  1250mV 
+ media1_subsys                    2    2      0     0mV     0mA     0mV     0mV 
+    e8400000.dpe                                                    0mV     0mV
+    vivobus                       1    3      0     0mV     0mA     0mV     0mV 
+       dsssubsys                  1    1      0     0mV     0mA     0mV     0mV 
+          e8400000.dpe                                              0mV     0mV
+       ispsubsys                  0    1      0     0mV     0mA     0mV     0mV 
+          isp_r8                  0    0      0     0mV     0mA     0mV     0mV 
+       fp_csi_fake                0    0      0     0mV     0mA     0mV     0mV 
+ media2_subsys                    0    3      0     0mV     0mA     0mV     0mV 
+    vcodecsubsys                  0    5      0     0mV     0mA     0mV     0mV 
+       ivp                        0    0      0     0mV     0mA     0mV     0mV 
+       vdec                       0    1      0     0mV     0mA     0mV     0mV 
+          e9200000.vdec                                             0mV     0mV
+       venc                       0    0      0     0mV     0mA     0mV     0mV 
+       venc2                      0    0      0     0mV     0mA     0mV     0mV 
+       hiface                     0    0      0     0mV     0mA     0mV     0mV 
+    vdec_fake                     0    1      0     0mV     0mA     0mV     0mV 
+       e9200000.vdec                                                0mV     0mV
+    venc_fake                     0    0      0     0mV     0mA     0mV     0mV 
+ npu                              0    0      0     0mV     0mA     0mV     0mV 
+ g3d                              0    1      0     0mV     0mA     0mV     0mV 
+    gpu                                                             0mV     0mV
+ asp                              1    3      0     0mV     0mA     0mV     0mV 
+    pcm-codec                                                       0mV     0mV
+    hisi-pcm-dp                                                     0mV     0mV
+    fa550000.slimbusmisc                                            0mV     0mV
+ mmbuf                            0    1      0     0mV     0mA     0mV     0mV 
+    e8400000.dpe                                                    0mV     0mV
+ EC_1V2_EN                        0    0      0     0mV     0mA     0mV     0mV 
+ EC_DSI_VCCIO_ON                  0    0      0     0mV     0mA     0mV     0mV 
+ EC_HDMI_VDD_ON                   0    0      0     0mV     0mA     0mV     0mV 
+ EC_1V8_EN                        0    0      0     0mV     0mA     0mV     0mV 
+ EC_1V1_EN                        0    0      0     0mV     0mA     0mV     0mV 
+ EC_3V3_EN                        0    0      0     0mV     0mA     0mV     0mV 
+ EC_CAM_PWR_EN                    0    0      0     0mV     0mA     0mV     0mV 
+===IRQ
+ 94:          3          0          0          0          0          0          0          0     GICv3 448 Level     hisi_edma_intx
+117:         75          0          0          0          0          0          0          0     GICv3 182 Level     asp_irq_slimbus
+138:          1          0          0          0          0          0          0          0     GICv3 175 Level     hisi-dma64
+153:          0          0          0          0          0          0          0          0     GICv3 248 Level     asp_dma_irq
+155:          0          0          0          0          0          0          0          0  fa8b0000.gpio   6 Level     pmic-sid9-irq
+196:          0          0          0          0          0          0          0          0  fa8ad000.gpio   0 Level     fe104000.codec_controller:hi64xx_irq@0
+197:          0          0          0          0          0          0          0          0  fa8b7000.gpio   2 Edge      hpd_gpio
+202:          1          0          0          0          0          0          0          0  fa8b1000.gpio   4 Level     goodix-clickpad
+203:          1          0          0          0          0          0          0          0  fa8b1000.gpio   0 Edge      huawei-keyboard
+204:          0          0          0          0          0          0          0          0  fa8ac000.gpio   3 Edge      echub_lid
+205:         98          0          0          0          0          0          0          0  fa8b1000.gpio   2 Edge      fingerprint
+206:          0          0          0          0          0          0          0          0  hi64xx_irq   0 Edge      btnup_comp1
+207:          0          0          0          0          0          0          0          0  hi64xx_irq   1 Edge      btndown_comp1
+208:          0          0          0          0          0          0          0          0  hi64xx_irq   2 Edge      btndown_comp2
+209:          0          0          0          0          0          0          0          0  hi64xx_irq   3 Edge      btnup_comp2
+210:          0          0          0          0          0          0          0          0  hi64xx_irq   4 Edge      btnup_eco
+211:          0          0          0          0          0          0          0          0  hi64xx_irq   5 Edge      btndown_eco
+212:          0          0          0          0          0          0          0          0  hi64xx_irq   6 Edge      plugin
+213:          0          0          0          0          0          0          0          0  hi64xx_irq   7 Edge      plugout
+219:          0          0          0          0          0          0          0          0  hi64xx_irq  13 Edge      wd_irq
+222:          0          0          0          0          0          0          0          0  hi64xx_irq  16 Edge      cmd_valid
+226:          0          0          0          0          0          0          0          0  hi64xx_irq  20 Edge      pll_unlock
+240:          0          0          0          0          0          0          0          0  hi64xx_irq  34 Edge      pll44k1_unlock
+242:          0          0          0          0          0          0          0          0  hi64xx_irq  36 Edge      pllmad_unlock
+246:          0          0          0          0          0          0          0          0  hi64xx_irq  40 Edge      bunk1_ocp
+247:          0          0          0          0          0          0          0          0  hi64xx_irq  41 Edge      bunk1_scp
+248:          0          0          0          0          0          0          0          0  hi64xx_irq  42 Edge      cp1_short
+249:          0          0          0          0          0          0          0          0  hi64xx_irq  43 Edge      cp2_short
+250:          0          0          0          0          0          0          0          0  hi64xx_irq  44 Edge      ldo_avdd18_ocp
+251:          0          0          0          0          0          0          0          0  hi64xx_irq  45 Edge      ldop_ocp
+252:          0          0          0          0          0          0          0          0  hi64xx_irq  46 Edge      ldon_ocp
+262:          0          0          0          0          0          0          0          0  fa8b6000.gpio   2 Edge      tas2562_irq_0
+263:          0          0          0          0          0          0          0          0  fa8b6000.gpio   3 Edge      tas2562_irq_1
+264:          4          0          0          0          0          0          0          0  fa8b4000.gpio   5 Edge      wifi_gpio_intr
+265:          5          0          0          0          0          0          0          0  fa8b6000.gpio   0 Edge      bfgx_wake_host
+===ASOC
+/sys/kernel/debug/asoc:
+components
+da_combine_v5_machine_card
+dais
+hisi-hdmi
+
+/sys/kernel/debug/asoc/da_combine_v5_machine_card:
+DA_combine_v5
+dapm
+dapm_pop_time
+pcm-codec
+slimbus-dai
+
+/sys/kernel/debug/asoc/da_combine_v5_machine_card/DA_combine_v5:
+dapm
+
+/sys/kernel/debug/asoc/da_combine_v5_machine_card/DA_combine_v5/dapm:
+44K1_CLK_SUPPLY
+ADCL0
+ADCL0_MUX
+ADCL1
+ADCL1_MUX
+ADCR0
+ADCR0_MUX
+ADCR1
+ADCR1_MUX
+AUDIO_CAPTURE_DRV
+AUDIO_CAPTURE_PGA
+AUDIO_DOWN_INPUT
+AUDIO_DOWN_OUTPUT
+AUDIO_PLAY_DRV
+AUDIO_PLAY_PGA
+AUDIOUP_INPUT
+AUDIOUP_OUTPUT
+AUXMIC_INPUT
+AUXMIC_PGA
+AUXMIC_ULTRASONIC_UP_OUTPUT
+bias_level
+BT_CAPTURE_DRV
+BT_I2S2_NB_PGA
+BT_I2S2_WB_PGA
+Bt Playback
+Bt Playback Wb
+BT_PLAY_DRV
+BT_PLAY_PGA
+Bt Uplink
+Bt Uplink Wb
+Capture
+CP1_SUPPLY
+CP2_SUPPLY
+D1_D2_INPUT
+D3_D4_INPUT
+D5_D6_INPUT
+DMIC1_INPUT
+DMIC2_INPUT
+Down
+DP_CLK_SUPPLY
+DSD_L_INPUT
+DSD_L_OUTPUT
+DSD_R_INPUT
+DSD_R_OUTPUT
+EC_DRV
+EP_DRV
+EP_OUTPUT
+EP_ULTRASONIC_DOWN_INPUT
+FM_INPUT
+FM_OUTPUT
+Headset Mic Capture
+Headset Playback
+HP_CONCURRENCY_INPUT
+HP_CONCURRENCY_OUTPUT
+HP_HIGHLEVEL_INPUT
+HP_HIGHLEVEL_OUTPUT
+HP_L_DRV
+HP_L_OUTPUT
+HP_R_DRV
+HP_R_OUTPUT
+HSMICBIAS
+HSMIC_INPUT
+HSMIC_PGA

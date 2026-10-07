@@ -1,0 +1,1337 @@
+[    0.000000] [pid:0,cpu0,swapper,0]Linux version 4.19.71-23-kr990 (buildd@78035fe431f3) (clang version 9.0.3 (based on LLVM 9.0.3svn)) #20-KYLINOS SMP PREEMPT Mon Dec 5 03:58:04 UTC 2022
+[    0.000000] [pid:0,cpu0,swapper,1] SMBIOS 3.0=0x762a0000  MEMATTR=0x7ce01018 
+[    0.000000] [pid:0,cpu0,swapper,2][memory_dump]:kdump_reserved_addr_save: base:78000000, size:8000000
+[    0.000000] [pid:0,cpu0,swapper,3]random: get_random_bytes called from start_kernel+0x98/0x46c with crng_init=0
+[    0.000000] [pid:0,cpu0,swapper,4][0] 0 [0] 1 [0] 2 [0] 3 [0] 4 [0] 5 [0] 6 [0] 7 
+[    0.000000] [pid:0,cpu0,swapper,5]Kernel command line: hhee_enable=false last_bootup_keypoint=70 reboot_reason=AP_S_PRESS6S exception_subtype=no himntn=0111111111111010001011000000000000000010100000 normal_reset_type=COLDBOOT BOOT_IMAGE=/vmlinuz-4.19.71-23-kr990 root=UUID=22506f36-102e-47c5-b849-34294352c73a ro resume=/dev/sdd3 systemd.kylin_force_hibernate=true resume_offset=788480 quiet splash loglevel=0 audit=0 security=
+[    0.000000] [pid:0,cpu0,swapper/0,6][hisi_bootup_keypoint]:<bbox fail>value[99] is invalid
+[    0.000000] [pid:0,cpu0,swapper/0,7]3.84 BogoMIPS (lpj=7680)
+[    0.000000] [pid:0,cpu0,swapper/0,8][hisi_bootup_keypoint]:<bbox fail>value[101] is invalid
+[    0.000000] [pid:1,cpu0,swapper/0,9][hisi_bootup_keypoint]:<bbox fail>value[75] is invalid
+[   16.333343] [pid:1,cpu6,swapper/0,0][memory_dump]:kdump_reserved_flag_set: para:(____ptrval____), 78000000
+               ]
+[   16.333343] [pid:1,cpu6,swapper/0,1][hisi_bootup_keypoint]:<bbox fail>value[77] is invalid
+[   16.333526] [pid:1,cpu7,swapper/0,2]Registered cp15_barrier emulation handler
+[   16.333526] [pid:1,cpu7,swapper/0,3]Registered setend emulation handler
+[   16.492095] [pid:1,cpu5,swapper/0,4][ap_ipc]:hisi_mdev_init init!
+[   16.492095] [pid:1,cpu5,swapper/0,5][hisi_bootup_keypoint]:<bbox fail>value[79] is invalid
+[   16.499633] [pid:1,cpu4,swapper/0,6][hisi_bootup_keypoint]:<bbox fail>value[81] is invalid
+[   16.500122] [pid:1,cpu6,swapper/0,7][hisi_bootup_keypoint]:<bbox fail>value[83] is invalid
+[   16.500122] [pid:1,cpu6,swapper/0,8][hisi_bootup_keypoint]:<bbox fail>value[85] is invalid
+[   16.500885] [pid:1,cpu6,swapper/0,9][hisi_bootup_keypoint]:<bbox fail>value[87] is invalid
+[   16.511688] [pid:1,cpu4,swapper/0,0]spmi_controller fa890000.spmi: can not get nr
+[   16.511688] [pid:1,cpu4,swapper/0,1]spmi_controller fa890000.spmi: spmi-always-sec enable!
+[   16.511688] [pid:1,cpu4,swapper/0,2][spmi]:adding controller for bus 2 (0x(____ptrval____))
+[   16.511718] [pid:1,cpu4,swapper/0,3]spmi spmi-2: Bus spmi-2 registered: dev:0x(____ptrval____)
+[   16.512145] [pid:1,cpu4,swapper/0,4]hisi_hwspinlock hwspinlock: no find 'hwlock,ao-groups' property!
+[   16.512817] [pid:1,cpu4,swapper/0,5][ap_ipc]:prop "ipc_version" error -22
+[   16.513641] [pid:1,cpu7,swapper/0,6][ap_ipc]:prop "ipc_version" error -22
+[   16.513946] [pid:1,cpu6,swapper/0,7][hw vote]hisi_hv_probe: g_hv_channel_size 7
+[   16.515472] [pid:1,cpu4,swapper/0,8]hisi-tsens tsens@0: no hisi,pvtsensor_adc_start_value!
+[   16.515472] [pid:1,cpu4,swapper/0,9]hisi-tsens tsens@0: no hisi,pvtsensor_adc_end_value!
+[   16.517608] [pid:1,cpu4,swapper/0,0][ap_ipc]:prop "ipc_version" error -22
+[   16.518798] [pid:1,cpu7,swapper/0,1][hisi_bootup_keypoint]:<bbox fail>value[89] is invalid
+[   17.611724] [1970:01:01 00:00:01][pid:1,cpu7,swapper/0,2]SCSI subsystem initialized
+[   17.612518] [pid:1,cpu5,swapper/0,3]i2c_designware-hs fa04c000.i2c: no TX DMA channel!
+[   17.612670] [pid:1,cpu5,swapper/0,4]i2c_designware-hs fa04d000.i2c: no TX DMA channel!
+[   17.612762] [pid:1,cpu5,swapper/0,5]i2c_designware-hs fa04e000.i2c: no TX DMA channel!
+[   17.612854] [pid:1,cpu5,swapper/0,6]i2c_designware-hs fa04f000.i2c: no TX DMA channel!
+[   17.613342] [pid:1,cpu7,swapper/0,7][hisi_bootup_keypoint]:<bbox fail>value[81] is invalid
+[   17.613739] [pid:1,cpu6,swapper/0,8][pmic]:no hisilicon,hisi-pmic-vbus-mask-addr property
+[   17.613739] [pid:1,cpu6,swapper/0,9][pmic]:no hisilicon,hisi-pmic-clear-vbus-irq-addr proprety
+[   17.614074] [pid:1,cpu7,swapper/0,0][hisi_bootup_keypoint]:<bbox fail>value[83] is invalid
+[   17.639007] [pid:1,cpu4,swapper/0,1]VFS: Disk quotas dquot_6.6.0
+[   17.639282] [pid:1,cpu4,swapper/0,2]pm clk monitor setup!
+[   17.645538] [pid:1,cpu7,swapper/0,3][pmic]:g_pmic is NULL
+[   17.645538] [pid:1,cpu7,swapper/0,4]buck01: Operation of current configuration missing
+[   17.645538] [pid:1,cpu7,swapper/0,5][pmic]:g_pmic is NULL
+[   17.645538] [pid:1,cpu7,swapper/0,6][pmic]:g_pmic is NULL
+[   17.652038] [pid:1,cpu4,swapper/0,7]of_parse_ipa_sensor_index_table, cluster0, g_ipa_cpufreq_table_index:0 
+[   17.652038] [pid:1,cpu4,swapper/0,8]of_parse_ipa_sensor_index_table, cluster1, g_ipa_cpufreq_table_index:4 
+[   17.652038] [pid:1,cpu4,swapper/0,9]of_parse_ipa_sensor_index_table, cluster2, g_ipa_cpufreq_table_index:6 
+[   17.652282] [pid:1,cpu4,swapper/0,0][hisi_bootup_keypoint]:<bbox fail>value[85] is invalid
+[   17.663574] [pid:1,cpu6,swapper/0,1][usb_hub]: product type = 5
+[   17.663574] [pid:1,cpu6,swapper/0,2][usb_hub]: pinctrl get error ++
+[   17.663574] [pid:1,cpu6,swapper/0,3][usb_hub]: can't back_hub_reset_gpio
+[   17.663604] [pid:1,cpu6,swapper/0,4][usb_hub]: can't get usbhub_1v05_gpio
+[   17.663604] [pid:1,cpu6,swapper/0,5][usb_hub]: request cam_pwr_en_gpio = 48 succ
+[   17.663604] [pid:1,cpu6,swapper/0,6][usb_hub]: hw_usb_hub_power_off ++
+[   17.889587] [pid:1,cpu4,swapper/0,7][usb_hub]: hw_usb_hub_power_off --
+[   17.891418] [pid:1,cpu6,swapper/0,8][hisi_bootup_keypoint]:<bbox fail>value[87] is invalid
+[   17.892333] [pid:1,cpu6,swapper/0,9]([tzdriver] 1, swapper/0)mailbox_mempool_init: in this RE, mailbox max order is: 10
+[   17.892547] [pid:1,cpu6,swapper/0,0]([tzdriver] 1, swapper/0)tee_agent_kernel_init: agent id 1253990808 has no init function
+[   17.892700] [pid:1,cpu6,swapper/0,1]codec_controller fe104000.codec_controller: fe104000.codec_controller supply codec-main not found, using dummy regulator
+[   17.892730] [pid:1,cpu6,swapper/0,2]codec_controller fe104000.codec_controller: fe104000.codec_controller supply codec-anlg not found, using dummy regulator
+[   17.895080] [pid:1,cpu4,swapper/0,3]codec_controller fe104000.codec_controller: fe104000.codec_controller supply codec_ldo8 not found, using dummy regulator
+[   18.268890] [pid:1,cpu4,swapper/0,4][hisi_bootup_keypoint]:<bbox fail>value[89] is invalid
+[   18.271881] [pid:1,cpu7,swapper/0,5]Initialise system trusted keyrings
+[   18.273223] [pid:1,cpu7,swapper/0,6]NFS: Registering the id_resolver key type
+[   18.273223] [pid:1,cpu7,swapper/0,7]Key type id_resolver registered
+[   18.273223] [pid:1,cpu7,swapper/0,8]Key type id_legacy registered
+[   18.275756] [pid:1,cpu7,swapper/0,9]Key type asymmetric registered
+[   18.275756] [pid:1,cpu7,swapper/0,0]Asymmetric key parser 'x509' registered
+[   18.279693] [pid:1,cpu7,swapper/0,1]of_get_iova_info:start_addr 0x10000, size 0x100000000 align 0x10000
+[   18.280059] [pid:1,cpu7,swapper/0,2][HISI_DRM E]:hisi_dsi_probe: find no bridge
+[   18.281707] [pid:1,cpu7,swapper/0,3]i2c_designware-hs fa04d000.i2c: error info -121, slave addr 0x41.
+[   18.281829] [pid:1,cpu7,swapper/0,4]i2c_designware-hs fa04d000.i2c: error info -121, slave addr 0x41.
+[   18.281982] [pid:1,cpu7,swapper/0,5]i2c_designware-hs fa04d000.i2c: error info -121, slave addr 0x41.
+[   18.281982] [pid:1,cpu7,swapper/0,6][HISI_DRM E]:is_lt9711a_onboard: lt9711a isn't onboard!
+[   18.281982] [pid:1,cpu7,swapper/0,7][HISI_DRM E]:check_mipi2edp_onboard: failed to find the bridge chip!
+[   18.281982] [pid:1,cpu7,swapper/0,8]mipi2edp: probe of 4-0041 failed with error -121
+[   18.282043] [pid:1,cpu4,swapper/0,9][HISI_DRM E]:dp2hdmi_init_video_stream_data_from_dts: is_enable_video_stream default value:0
+[   18.294891] [pid:1,cpu4,swapper/0,0]mali fe140000.mali: Failed to get fpga gpu exist setting, assume that always exist
+[   18.294891] [pid:1,cpu4,swapper/0,1]mali fe140000.mali: Failed to get gpu chip type setting, default means cs
+[   18.294891] [pid:1,cpu4,swapper/0,2]mali fe140000.mali: Failed to get shader present configuration!
+[   18.299438] [pid:15,cpu0,cpuhp/0,3]cacheinfo: Unable to detect cache hierarchy for CPU 0
+[   18.303894] [pid:1,cpu7,swapper/0,4]hisilicon-hisi-spmi-pmic-mntn hisilicon-hisi-pmic-mntn-spmi-pmic_mntn: [hisi_pmic_mntn_spmi_probe] +
+[   18.304718] [pid:1,cpu6,swapper/0,5]hisilicon-hisi-spmi-pmic-mntn hisilicon-hisi-pmic-mntn-spmi-pmic_mntn: [hisi_pmic_ocp_mntn_irq_initial] of_irq_get_byname ocp_irq 164
+[   18.304992] [pid:1,cpu7,swapper/0,6][pmic_mntn]:
+               PMIC REGISTER DUMP
+                 addr     data
+                 0x2c4    0x0
+                 0x2c5    0x0
+                 0x2c6    0x0
+                 0x2c7    0x0
+                 0x2c8    0x0
+                 0x2c9    0x0
+                 0x2ca    0x0
+                 0x2cb    0x0
+                 0x2cc    0x0
+                 0x2cd    0x40
+                 0x2ce    0x3
+                 0x2cf    0x0
+                 0x2d0    0x0
+                 0x2d1    0x0
+                 0x2d2    0x0
+[   18.304992] [pid:1,cpu7,swapper/0,7]hisilicon-hisi-spmi-pmic-mntn hisilicon-hisi-pmic-mntn-spmi-pmic_mntn: [hisi_pmic_mntn_spmi_probe] succ
+[   18.320007] [pid:1,cpu7,swapper/0,8][BLK-IO]depth = 64, reserved = 64, high prio = 64 
+[   18.320861] [pid:1,cpu7,swapper/0,9]rtl8168 init ++
+[   18.403869] [pid:7,cpu6,kworker/u16:0,0]ufshcd f8200000.ufs: ufshcd_print_pwr_info:[RX, TX]: gear=[1, 1], lane[1, 1], pwr[SLOWAUTO_MODE, SLOWAUTO_MODE], rate = 0
+[   18.435180] [pid:7,cpu6,kworker/u16:0,1]ufshcd f8200000.ufs: ufs spec version: 0x310
+[   18.435180] [pid:7,cpu6,kworker/u16:0,2]ufshcd f8200000.ufs: write shared alloc units = 0x0
+[   18.435180] [pid:7,cpu6,kworker/u16:0,3]ufshcd f8200000.ufs: d_ext_ufs_feature_sup = 0x3b1
+[   18.440399] [pid:0,cpu0,in irq,4]random: fast init done
+[   18.445495] [pid:7,cpu6,kworker/u16:0,5]ufshcd f8200000.ufs: ---------ufs rpmb info----------
+[   18.445495] [pid:7,cpu6,kworker/u16:0,6]ufshcd f8200000.ufs: rpmb_region_enable:0xf
+[   18.445495] [pid:7,cpu6,kworker/u16:0,7]ufshcd f8200000.ufs: rpmb_total_blks:65536
+[   18.446289] [pid:7,cpu6,kworker/u16:0,8]ufshcd :ufs final power mode: gear = 4, lane = 2, pwr = 1, rate = 2
+[   18.449401] [pid:7,cpu6,kworker/u16:0,9]ufshcd f8200000.ufs: ufshcd_print_pwr_info:[RX, TX]: gear=[4, 4], lane[2, 2], pwr[FAST MODE, FAST MODE], rate = 2
+[   18.458587] [pid:7,cpu7,kworker/u16:0,0]ufshcd f8200000.ufs: set LU protect sucess
+[   18.458648] [pid:7,cpu7,kworker/u16:0,1]ufshcd f8200000.ufs: ufshcd_find_max_sup_active_icc_level: Regulator capability was not set, actvIccLevel=0
+[   18.460021] [pid:7,cpu7,kworker/u16:0,2]scsi 0:0:0:49488: Well-known LUN    WDC      SDINFDO4-512G    1304 PQ: 0 ANSI: 6
+[   18.460113] [pid:7,cpu7,kworker/u16:0,3]scsi 0:0:0:49488: Attached scsi generic sg0 type 30
+[   18.460510] [pid:7,cpu7,kworker/u16:0,4]scsi 0:0:0:49456: Well-known LUN    WDC      SDINFDO4-512G    1304 PQ: 0 ANSI: 6
+[   18.460571] [pid:7,cpu7,kworker/u16:0,5]scsi 0:0:0:49456: Attached scsi generic sg1 type 30
+[   18.460968] [pid:7,cpu7,kworker/u16:0,6]scsi 0:0:0:49476: Well-known LUN    WDC      SDINFDO4-512G    1304 PQ: 0 ANSI: 6
+[   18.461029] [pid:7,cpu7,kworker/u16:0,7]scsi 0:0:0:49476: Attached scsi generic sg2 type 30
+[   18.461456] [pid:7,cpu7,kworker/u16:0,8]scsi 0:0:0:0: Direct-Access     WDC      SDINFDO4-512G    1304 PQ: 0 ANSI: 6
+[   18.461547] [pid:7,cpu7,kworker/u16:0,9]sd 0:0:0:0: Attached scsi generic sg3 type 0
+[   18.461578] [pid:0,cpu4,swapper/4,0]sd 0:0:0:0: Power-on or device reset occurred
+[   18.462005] [pid:94,cpu7,kworker/u16:1,1]sd 0:0:0:0: [sda] 1024 4096-byte logical blocks: (4.19 MB/4.00 MiB)
+[   18.462463] [pid:7,cpu7,kworker/u16:0,2]scsi 0:0:0:1: Direct-Access     WDC      SDINFDO4-512G    1304 PQ: 0 ANSI: 6
+[   18.462554] [pid:7,cpu6,kworker/u16:0,3]sd 0:0:0:1: Attached scsi generic sg4 type 0
+[   18.462615] [pid:1,cpu4,swapper/0,4]sd 0:0:0:1: Power-on or device reset occurred
+[   18.462707] [pid:94,cpu7,kworker/u16:1,5]sd 0:0:0:0: [sda] Write Protect is on
+[   18.462982] [pid:7,cpu6,kworker/u16:0,6]scsi 0:0:0:2: Direct-Access     WDC      SDINFDO4-512G    1304 PQ: 0 ANSI: 6
+[   18.463043] [pid:7,cpu6,kworker/u16:0,7]sd 0:0:0:2: Attached scsi generic sg5 type 0
+[   18.463104] [pid:208,cpu7,kworker/u16:2,8]sd 0:0:0:1: [sdb] 16384 4096-byte logical blocks: (67.1 MB/64.0 MiB)
+[   18.463287] [pid:48,cpu7,ksoftirqd/7,9]sd 0:0:0:2: Power-on or device reset occurred
+[   18.463317] [pid:94,cpu7,kworker/u16:1,0]sd 0:0:0:0: [sda] Write cache: disabled, read cache: enabled, supports DPO and FUA
+[   18.463470] [pid:208,cpu6,kworker/u16:2,1]sd 0:0:0:1: [sdb] Write Protect is on
+[   18.463623] [pid:7,cpu6,kworker/u16:0,2]scsi 0:0:0:3: Direct-Access     WDC      SDINFDO4-512G    1304 PQ: 0 ANSI: 6
+[   18.463653] [pid:208,cpu7,kworker/u16:2,3]sd 0:0:0:1: [sdb] Write cache: disabled, read cache: enabled, supports DPO and FUA
+[   18.463714] [pid:7,cpu7,kworker/u16:0,4]sd 0:0:0:3: Attached scsi generic sg6 type 0
+[   18.463806] [pid:210,cpu6,kworker/u16:3,5]sd 0:0:0:3: Power-on or device reset occurred
+[   18.463806] [pid:210,cpu6,kworker/u16:3,6]sd 0:0:0:2: [sdc] 327680 4096-byte logical blocks: (1.34 GB/1.25 GiB)
+[   18.464385] [pid:212,cpu4,kworker/u16:4,7]sd 0:0:0:3: [sdd] 124679168 4096-byte logical blocks: (511 GB/476 GiB)
+[   18.464385] [pid:210,cpu7,kworker/u16:3,8]sd 0:0:0:2: [sdc] Write Protect is on
+[   18.464935] [pid:212,cpu7,kworker/u16:4,9]sd 0:0:0:3: [sdd] Write Protect is off
+[   18.464935] [pid:210,cpu7,kworker/u16:3,0]sd 0:0:0:2: [sdc] Write cache: disabled, read cache: enabled, supports DPO and FUA
+[   18.465057] [pid:212,cpu4,kworker/u16:4,1]sd 0:0:0:3: [sdd] Write cache: enabled, read cache: enabled, supports DPO and FUA
+[   18.466125] [pid:94,cpu6,kworker/u16:1,2]sd 0:0:0:0: [sda] Attached SCSI disk
+[   18.466247] [pid:208,cpu7,kworker/u16:2,3]sd 0:0:0:1: [sdb] Attached SCSI disk
+[   18.469268] [pid:212,cpu7,kworker/u16:4,4]sd 0:0:0:3: [sdd] Attached SCSI disk
+[   18.469268] [pid:210,cpu6,kworker/u16:3,5]sd 0:0:0:2: [sdc] Attached SCSI disk
+[   18.475952] [pid:1,cpu7,swapper/0,6]genirq: irq_chip PCI-MSI did not update eff. affinity mask of irq 198
+[   18.492523] [pid:1,cpu4,swapper/0,7]r8168  Copyright (C) 2017  Realtek NIC software team <nicfae@realtek.com> 
+                This program comes with ABSOLUTELY NO WARRANTY; for details, please see <http://www.gnu.org/licenses/>. 
+                This is free software, and you are welcome to redistribute it under certain conditions; see <http://www.gnu.org/licenses/>. 
+[   18.493103] [pid:1,cpu7,swapper/0,8]phy_reset_cfg:get phandle failed -2
+[   18.494415] [pid:1,cpu4,swapper/0,9][USB3][usb3_phy_tcxo_ldo_085v_dts]get usb3 phy tcxo buffer ldo 0.85v, maybe cs2
+[   18.494415] [pid:1,cpu4,swapper/0,0][USB3][usb3_phy_tcxo_ldo_18v_dts]get usb3 phy tcxo buffer ldo 1.8v, maybe cs2
+[   18.494598] [pid:1,cpu4,swapper/0,1][USB3][get_resource]usb driver not support check voltage
+[   18.494598] [pid:1,cpu4,swapper/0,2][USB3][get_resource]usb driver not support set_hi_impedance
+[   18.494842] [pid:1,cpu4,swapper/0,3][USB3][dwc3_phy_release]usb3_misc_ctrl_is_unreset && usb3_clk_is_open
+[   18.494842] [pid:1,cpu4,swapper/0,4][USB3][usb3_phy_tcxo_buffer_poweron]usb3 phy tcxo 0.85v ldo NULL!
+[   18.494842] [pid:1,cpu4,swapper/0,5][USB3][set_combophy_clk]usb3_phy_tcxo_buffer_poweron, maybe cs2 -19
+[   18.511016] [pid:1,cpu4,swapper/0,6][USB3][combophy_is_highspeed_only]probe not init fin pls wait
+[   18.521820] [pid:1,cpu4,swapper/0,7]dwc3 f8400000.dwc3: Failed to get clk 'ref': -2
+[   18.574371] [pid:1,cpu7,swapper/0,8][USB3][usb3_phy_tcxo_buffer_poweroff]usb3 phy tcxo 0.85v ldo NULL!
+[   18.574371] [pid:1,cpu7,swapper/0,9][USB3][close_combophy_clk]usb3_phy_tcxo_buffer_poweroff, maybe cs2 -19
+[   18.574371] [pid:1,cpu7,swapper/0,0][USB3][dwc3_reset]reset controller
+[   18.575378] [pid:215,cpu7,long_powerkey,1][hisi_powerkey]:powerkey long press hanppend
+[   18.575408] [pid:1,cpu6,swapper/0,2]powerkey hisilicon-hisi-powerkey-ponkey: failed to get up irq id
+[   18.575408] [pid:1,cpu6,swapper/0,3]powerkey hisilicon-hisi-powerkey-ponkey: failed to get hold 1s irq id
+[   18.575439] [pid:1,cpu6,swapper/0,4]powerkey hisilicon-hisi-powerkey-ponkey: failed to get hold 8s irq id
+[   18.575439] [pid:1,cpu6,swapper/0,5]powerkey hisilicon-hisi-powerkey-ponkey: failed to get hold 10s irq id
+[   18.575622] [pid:1,cpu6,swapper/0,6]HISI PMU RTC Init Start----------------
+[   18.575744] [pid:1,cpu6,swapper/0,7]HISI PMU RTC Init End----------------
+[   18.575836] [pid:1,cpu6,swapper/0,8]hisi-tsens tsens@0: hisi,detect_cluster0_sensortype node not found, use default type!
+[   18.575897] [pid:1,cpu6,swapper/0,9]hisi-tsens tsens@0: hisi,detect_cluster1_sensortype node not found, use default type!
+[   18.575897] [pid:1,cpu6,swapper/0,0]hisi-tsens tsens@0: hisi,detect_cluster2_sensortype node not found, use default type!
+[   18.575927] [pid:1,cpu6,swapper/0,1]hisi-tsens tsens@0: hisi,detect_gpu_sensortype node not found, use default type!
+[   18.575958] [pid:1,cpu6,swapper/0,2]hisi-tsens tsens@0: hisi,detect_modem_sensortype node not found, use default type!
+[   18.575988] [pid:1,cpu6,swapper/0,3]hisi-tsens tsens@0: hisi,detect_npu_sensortype node not found, use default type!
+[   18.575988] [pid:1,cpu6,swapper/0,4]hisi-tsens tsens@0: hisi,detect_peri_sensortype node not found, use default type!
+[   18.576019] [pid:1,cpu6,swapper/0,5]hisi-tsens tsens@0: hisi,detect_ddr_sensortype node not found, use default type!
+[   18.576049] [pid:1,cpu6,swapper/0,6]hisi-tsens tsens@0: hisi,detect_hisec_sensortype node not found, use default type!
+[   18.578918] [pid:1,cpu6,swapper/0,7]i2c_hid 6-0015: 6-0015 supply vdd not found, using dummy regulator
+[   18.578918] [pid:1,cpu6,swapper/0,8]i2c_hid 6-0015: 6-0015 supply vddl not found, using dummy regulator
+[   18.586669] [pid:1,cpu6,swapper/0,9]i2c_designware-hs fa04e000.i2c: error info -121, slave addr 0x15.
+[   18.586700] [pid:1,cpu6,swapper/0,0]i2c_hid 6-005d: 6-005d supply vdd not found, using dummy regulator
+[   18.586730] [pid:1,cpu6,swapper/0,1]i2c_hid 6-005d: 6-005d supply vddl not found, using dummy regulator
+[   18.647399] [1970:01:01 00:00:02][pid:1,cpu6,swapper/0,2]i2c_hid 7-003a: 7-003a supply vdd not found, using dummy regulator
+[   18.647399] [pid:1,cpu6,swapper/0,3]i2c_hid 7-003a: 7-003a supply vddl not found, using dummy regulator
+[   18.676391] [pid:1,cpu6,swapper/0,4]DDR_DEVFREQ: ddr_set_devfreq_property 564, per_hz 16  utilization 60
+[   18.676452] [pid:1,cpu6,swapper/0,5]DDR_DEVFREQ: ddr_set_devfreq_property 564, per_hz 16  utilization 60
+[   18.676513] [pid:1,cpu6,swapper/0,6]DDR_DEVFREQ: ddr_set_devfreq_property 564, per_hz 16  utilization 60
+[   18.682373] [pid:1,cpu6,swapper/0,7][hisi_bootup_keypoint]:<bbox fail>value[91] is invalid
+[   18.683258] [pid:1,cpu6,swapper/0,8][blackbox]:<bbox fail>[hook_percpu_buffer_init], buffer_info [0x(____ptrval____)] buffer_addr [0x(____ptrval____)], buffer_size [0x0]
+[   18.683288] [pid:1,cpu6,swapper/0,9][blackbox]:<bbox fail>[hook_percpu_buffer_init], buffer_info [0x(____ptrval____)] buffer_addr [0x(____ptrval____)], buffer_size [0x0]
+[   18.683288] [pid:1,cpu6,swapper/0,0][blackbox]:<bbox fail>[single_buffer_init], argument size [0x0] is invalid!
+[   18.683929] [pid:229,cpu6,modemddrc_emit,1]modemddrc happen start
+[   18.684326] [pid:1,cpu6,swapper/0,2]([tzdriver] 1, swapper/0)register_tloger: tlogcat verison 1.0.0
+[   18.684753] [pid:1,cpu7,swapper/0,3]find_uart_device_node:uart default:-1
+[   18.684753] [pid:1,cpu7,swapper/0,4]map_sysregs[282]: fail!
+[   18.684753] [pid:1,cpu7,swapper/0,5]lowpm_func_probe: 493 map_sysregs failed.
+[   18.684753] [pid:1,cpu7,swapper/0,6]lowpm_func_probe: fail!
+[   18.686126] [pid:1,cpu6,swapper/0,7]echub-keyboard echub-keyboard: DMA mask not set
+[   18.686309] [pid:1,cpu6,swapper/0,8]echub-power echub-power: DMA mask not set
+[   18.690124] [pid:1,cpu7,swapper/0,9][hw_echub]capacity_dec_para is invaild, please check capacity_dec_para number!!
+[   18.690582] [pid:210,cpu6,kworker/u16:3,0][E/log_to_exception] logbuf_to_exception: access '/dev/hwlog_exception' failed
+[   18.691955] [pid:1,cpu6,swapper/0,1]of_get_iova_info:start_addr 0x10000, size 0x100000000 align 0x10000
+[   18.691955] [pid:1,cpu6,swapper/0,2]VDEC : not vdec fpga platform, return succ as normal mode
+[   18.692260] [pid:1,cpu6,swapper/0,3]VDEC : current is not fpga
+[   18.692260] [pid:1,cpu6,swapper/0,4]VDEC : vdec probe success
+[   18.692504] [pid:1,cpu6,swapper/0,5][E/fingerprint] fingerprint_get_gpio_rst_cs get reset gpio from device tree fp_data->rst_gpio = 199 
+[   18.692535] [pid:1,cpu6,swapper/0,6][E/fingerprint] fingerprint_get_gpio_rst_cs gpio_get_value: ret = 0
+[   18.692535] [pid:1,cpu6,swapper/0,7][E/fingerprint] fingerprint_get_gpio_rst_cs failed to get rst1_gpio from device tree
+[   18.692535] [pid:1,cpu6,swapper/0,8][E/fingerprint] fingerprint_get_gpio_rst_cs failed to get cs gpio ud from device tree
+[   18.692535] [pid:1,cpu6,swapper/0,9]fp_get_device_info over reset_pin is 199, irq_pin is 234, spi_cs is 10, spi_num is 1
+[   18.692535] [pid:1,cpu6,swapper/0,0][E/fingerprint] fingerprint_get_gpio_ldo_product failed to get dvdd_ldo_name
+[   18.692565] [pid:1,cpu6,swapper/0,1][E/fingerprint] fingerprint_reset_gpio_init gpio_request (reset_gpio)
+[   18.692871] [pid:1,cpu7,swapper/0,2]Firmware Upgrade end of init!
+[   18.699584] [pid:1,cpu6,swapper/0,3]asp_cfg_drv fa54e000.asp_cfg: fa54e000.asp_cfg supply asp-supply not found, using dummy regulator
+[   18.701202] [pid:1,cpu7,swapper/0,4]Bridge firewalling registered
+[   18.701293] [pid:1,cpu6,swapper/0,5]Key type dns_resolver registered
+[   18.701293] [pid:1,cpu6,swapper/0,6][hisi_bootup_keypoint]:<bbox fail>value[93] is invalid
+[   18.701660] [pid:1,cpu7,swapper/0,7]Loading compiled-in X.509 certificates
+[   18.703765] [pid:1,cpu6,swapper/0,8]Key type encrypted registered
+[   18.708038] [pid:1,cpu6,swapper/0,9]svm:into hisi_smmu_group_init
+[   18.708221] [pid:1,cpu6,swapper/0,0]svm:into hisi_smmu_group_dt_probe,pdevname:hisi_svm
+[   18.708343] [pid:1,cpu6,swapper/0,1]svm:out hisi_smmu_group_dt_probe ok!
+[   18.708465] [pid:1,cpu6,swapper/0,2]svm:hisi_svm_dt_get_bypass_sid smmu1 miss sid_bypass_wr_sdma
+[   18.708465] [pid:1,cpu6,swapper/0,3]svm:hisi_svm_dt_get_bypass_sid ,smmu1 has no sid_bypass_rd_sdma
+[   18.708526] [pid:1,cpu6,swapper/0,4]svm:hisi_svm_dt_get_bypass_sid smmu0 miss sid_bypass_wr_ai
+[   18.708526] [pid:1,cpu6,swapper/0,5]svm:hisi_svm_dt_get_bypass_sid smmu0 miss sid_bypass_rd_ai
+[   18.708679] [pid:1,cpu7,swapper/0,6]svm:into hisi_mmu_device_dt_probe
+[   18.708679] [pid:1,cpu7,swapper/0,7]hisi-mmu-v8 fe400000.hisi_mmu: hisi_mmu->gerr_irq 144
+[   18.708679] [pid:1,cpu7,swapper/0,8]svm:into hisi_aicpu_intr_addr_remap!
+[   18.708709] [pid:1,cpu7,swapper/0,9]svm:out hisi_aicpu_intr_addr_remap!
+[   18.708709] [pid:1,cpu7,swapper/0,0]svm:out hisi_mmu_device_dt_probe
+[   18.708709] [pid:1,cpu7,swapper/0,1]svm:out hisi_smmu_group_init
+[   18.709014] [pid:1,cpu7,swapper/0,2]i2c_designware-hs fa04d000.i2c: error info -121, slave addr 0x36.
+[   18.709167] [pid:1,cpu7,swapper/0,3]i2c_designware-hs fa04d000.i2c: error info -121, slave addr 0x36.
+[   18.709167] [pid:1,cpu7,swapper/0,4](NULL device *): i2c failed to access register
+[   18.709167] [pid:1,cpu7,swapper/0,5]lm36923 4-0036: fail : chip init
+[   18.709167] [pid:1,cpu7,swapper/0,6]lm36923: probe of 4-0036 failed with error -1
+[   18.709808] [pid:213,cpu7,kworker/7:2,7][AOD] vote = 1, cur vote ip = media1_subsys, c_f = 1, ret = 0!
+[   18.710052] [pid:213,cpu7,kworker/7:2,8][AOD] vote = 5, cur vote ip = vivobus, c_f = 1, ret = 0!
+[   18.710052] [pid:213,cpu7,kworker/7:2,9][get_softreset_state]AOD DSS vote val = 0x15 !
+[   18.742462] [pid:212,cpu6,kworker/u16:4,0][HISI_DRM E]:hisi_fbdev_output_poll_changed: priv->fb_helper is NULL
+[   18.898498] [pid:212,cpu6,kworker/u16:4,1]([tzdriver] 212, kworker/u16:4)cmd_monitor_tick: [cmd_monitor_tick] pid=1,pname=swapper/0,tid=1, tname=swapper/0,lastcmdid=15,count=4,agent call count=0, timetotal=0 us returned, remained command(s)=0
+[   19.034912] [pid:213,cpu7,kworker/7:2,2]to colour frame buffer device 270x90
+[   19.053649] [pid:213,cpu7,kworker/7:2,3][USB3][pd_event_notify]tca wq is doing
+[   19.053771] [pid:213,cpu7,kworker/7:2,4]  1863 MHz @ 900 mV :  137 + 25 = 162 mW
+[   19.053771] [pid:213,cpu7,kworker/7:2,5]  1786 MHz @ 900 mV :  131 + 25 = 156 mW
+[   19.053771] [pid:213,cpu7,kworker/7:2,6]  1700 MHz @ 820 mV :  104 + 19 = 123 mW
+[   19.053771] [pid:213,cpu7,kworker/7:2,7]  1565 MHz @ 820 mV :  95 + 19 = 114 mW
+[   19.053802] [pid:213,cpu7,kworker/7:2,8]  1460 MHz @ 820 mV :  89 + 19 = 108 mW
+[   19.053802] [pid:213,cpu7,kworker/7:2,9]  1344 MHz @ 735 mV :  66 + 14 = 80 mW
+[   19.053802] [pid:213,cpu7,kworker/7:2,0]  1268 MHz @ 735 mV :  62 + 14 = 76 mW
+[   19.053802] [pid:213,cpu7,kworker/7:2,1]  1172 MHz @ 735 mV :  57 + 14 = 71 mW
+[   19.053802] [pid:213,cpu7,kworker/7:2,2]  1076 MHz @ 735 mV :  52 + 14 = 66 mW
+[   19.053802] [pid:213,cpu7,kworker/7:2,3]  999 MHz @ 735 mV :  49 + 14 = 63 mW
+[   19.053802] [pid:213,cpu7,kworker/7:2,4]  903 MHz @ 735 mV :  44 + 14 = 58 mW
+[   19.053802] [pid:213,cpu7,kworker/7:2,5]  807 MHz @ 640 mV :  30 + 9 = 39 mW
+[   19.053802] [pid:213,cpu7,kworker/7:2,6]  554 MHz @ 640 mV :  20 + 9 = 29 mW
+[   19.053833] [pid:213,cpu7,kworker/7:2,7]  2088 MHz @ 950 mV :  554 + 75 = 629 mW
+[   19.053863] [pid:213,cpu7,kworker/7:2,8]  2007 MHz @ 900 mV :  477 + 63 = 540 mW
+[   19.053863] [pid:213,cpu7,kworker/7:2,9]  1901 MHz @ 900 mV :  452 + 63 = 515 mW
+[   19.053863] [pid:213,cpu7,kworker/7:2,0]  1786 MHz @ 820 mV :  353 + 48 = 401 mW
+[   19.053863] [pid:213,cpu7,kworker/7:2,1]  1700 MHz @ 820 mV :  336 + 48 = 384 mW
+[   19.053863] [pid:213,cpu7,kworker/7:2,2]  1584 MHz @ 820 mV :  313 + 48 = 361 mW
+[   19.053863] [pid:213,cpu7,kworker/7:2,3]  1488 MHz @ 820 mV :  294 + 48 = 342 mW
+[   19.053863] [pid:212,cpu6,kworker/u16:4,4][USB3][usb3_phy_tcxo_buffer_poweron]usb3 phy tcxo 0.85v ldo NULL!
+[   19.053863] [pid:212,cpu6,kworker/u16:4,5][USB3][set_combophy_clk]usb3_phy_tcxo_buffer_poweron, maybe cs2 -19
+[   19.053863] [pid:213,cpu7,kworker/7:2,6]  1392 MHz @ 740 mV :  224 + 35 = 259 mW
+[   19.053894] [pid:213,cpu7,kworker/7:2,7]  1287 MHz @ 740 mV :  207 + 35 = 242 mW
+[   19.053894] [pid:213,cpu7,kworker/7:2,8]  1172 MHz @ 740 mV :  188 + 35 = 223 mW
+[   19.053894] [pid:213,cpu7,kworker/7:2,9]  1056 MHz @ 740 mV :  170 + 35 = 205 mW
+[   19.053894] [pid:213,cpu7,kworker/7:2,0]  941 MHz @ 740 mV :  151 + 35 = 186 mW
+[   19.053894] [pid:213,cpu7,kworker/7:2,1]  826 MHz @ 640 mV :  99 + 22 = 121 mW
+[   19.053924] [pid:213,cpu7,kworker/7:2,2]  2861 MHz @ 1050 mV :  1372 + 218 = 1590 mW
+[   19.053924] [pid:213,cpu7,kworker/7:2,3]  2736 MHz @ 1000 mV :  1190 + 189 = 1379 mW
+[   19.053924] [pid:213,cpu7,kworker/7:2,4]  2621 MHz @ 1000 mV :  1140 + 189 = 1329 mW
+[   19.053924] [pid:213,cpu7,kworker/7:2,5]  2525 MHz @ 1000 mV :  1098 + 189 = 1287 mW
+[   19.053924] [pid:213,cpu7,kworker/7:2,6]  2429 MHz @ 920 mV :  894 + 147 = 1041 mW
+[   19.053924] [pid:213,cpu7,kworker/7:2,7]  2324 MHz @ 920 mV :  855 + 147 = 1002 mW
+[   19.053924] [pid:213,cpu7,kworker/7:2,8]  2218 MHz @ 920 mV :  816 + 147 = 963 mW
+[   19.053924] [pid:213,cpu7,kworker/7:2,9]  2112 MHz @ 840 mV :  648 + 112 = 760 mW
+[   19.053924] [pid:213,cpu7,kworker/7:2,0]  1997 MHz @ 840 mV :  612 + 112 = 724 mW
+[   19.053924] [pid:213,cpu7,kworker/7:2,1]  1882 MHz @ 840 mV :  577 + 112 = 689 mW
+[   19.053955] [pid:213,cpu7,kworker/7:2,2]  1767 MHz @ 840 mV :  542 + 112 = 654 mW
+[   19.053955] [pid:213,cpu7,kworker/7:2,3]  1652 MHz @ 840 mV :  507 + 112 = 619 mW
+[   19.053955] [pid:213,cpu7,kworker/7:2,4]  1536 MHz @ 740 mV :  365 + 76 = 441 mW
+[   19.054107] [pid:213,cpu7,kworker/7:2,5]ipa-thermal ipa-sensor@1: Board map node not found
+[   19.055572] [pid:1,cpu7,swapper/0,6]hisi_thermal_critical_cpu_hotplug_dts_parse hotplug mask:c0, critical mask:f0
+[   19.056182] [pid:1,cpu7,swapper/0,7]l3c_devfreq l3c_devfreq: registering l3c devfreq.
+[   19.056304] [pid:1,cpu7,swapper/0,8]l3c_devfreq l3c_devfreq: hv_supported = 1
+[   19.056701] [pid:1,cpu7,swapper/0,9]l3c_devfreq l3c_devfreq: probe success
+[   19.056762] [pid:1,cpu7,swapper/0,0][hisi_bootup_keypoint]:<bbox fail>value[95] is invalid
+[   19.056884] [pid:1,cpu7,swapper/0,1][mntn_l3cache_ecc]:[hisi_l3cache_ecc_probe]end
+[   19.056976] [pid:1,cpu7,swapper/0,2][hisi_noc]:[hisi_noc_get_property]: Platform id is [1024], from DTS.
+[   19.057891] [pid:1,cpu7,swapper/0,3][hisi_noc]:[noc_set_buses_info]: info index is [10], platform is:[PHOE].
+[   19.058227] [pid:1,cpu7,swapper/0,4][hisi_noc]:hisi noc no need to set ptrl modem bandwith
+[   19.058227] [pid:1,cpu7,swapper/0,5][hisi_noc]:hisi noc no need to set ptrl modem bandwith
+[   19.058685] [pid:1,cpu6,swapper/0,6][hisi_noc]:[noc_get_bus_nod_info]: nodes_array addr: ffffff800a2ce500.
+[   19.059661] [pid:1,cpu6,swapper/0,7][iomcu_log][warn]get_power_node_info failed to find property need-reset.
+[   19.059661] [pid:1,cpu6,swapper/0,8][iomcu_log][warn]get_power_node_info failed to find property set-3v.
+[   19.059661] [pid:1,cpu6,swapper/0,9][iomcu_log][warn]get_power_node_info failed to find property set-3_1v.
+[   19.059661] [pid:1,cpu6,swapper/0,0][iomcu_log][warn]get_power_node_info failed to find property set-3_2v.
+[   19.059692] [pid:1,cpu6,swapper/0,1]Sensorhub_io_driver sensorhub_io_power: sensorhub_io_power supply sensor-io not found, using dummy regulator
+[   19.060058] [pid:1,cpu6,swapper/0,2]get_dump_config_from_dts failed to find dts node sensorhub_dump
+[   19.060119] [pid:255,cpu7,rdr_sh_thread,3]rdr_sh_thread start!
+[   19.060516] [pid:256,cpu6,rdr_exce_thread,4]rdr_exce_thread start!
+[   19.060699] [pid:1,cpu6,swapper/0,5]OF: /amba/i2c@FA04C000/smartpa@4C/hw_reset: could not get #gpio-cells for /ipa-sensor@0
+[   19.060729] [pid:1,cpu6,swapper/0,6]OF: /amba/i2c@FA04C000/smartpa@4C/irq_handler: could not get #gpio-cells for /clocks@0/sctrl@0xFA89B000/clk_spll_vote
+[   19.072662] [pid:1,cpu7,swapper/0,7]OF: /amba/i2c@FA04C000/smartpa@4E/hw_reset: could not get #gpio-cells for /ipa-sensor@0
+[   19.072692] [pid:1,cpu7,swapper/0,8]OF: /amba/i2c@FA04C000/smartpa@4E/irq_handler: could not get #gpio-cells for /clocks@0/sctrl@0xFA89B000/clkgt_asp_codec
+[   19.084472] [pid:1,cpu6,swapper/0,9]smartpakit_i2c: probe of 3-0050 failed with error -22
+[   19.084472] [pid:1,cpu6,swapper/0,0]smartpakit_i2c: probe of 3-0052 failed with error -22
+[   19.084472] [pid:1,cpu6,swapper/0,1]smartpakit_i2c: probe of 3-0032 failed with error -22
+[   19.084472] [pid:1,cpu6,swapper/0,2]smartpakit_i2c: probe of 3-0030 failed with error -22
+[   19.084503] [pid:1,cpu6,swapper/0,3]smartpakit_i2c: probe of 3-0034 failed with error -22
+[   19.084503] [pid:1,cpu6,swapper/0,4]smartpakit_i2c: probe of 3-0036 failed with error -22
+[   19.084533] [pid:1,cpu6,swapper/0,5][E/power_genl] invalid total_ops=0,0,255
+[   19.085174] [pid:0,cpu0,swapper/0,6][iomcu_log][warn]inputhub_pm_callback MINI ready
+[   19.085510] [pid:208,cpu6,kworker/u16:2,7][iomcu_log][warn]For als, not regitser callback for detect
+[   19.085510] [pid:208,cpu6,kworker/u16:2,8][iomcu_log][warn]For ps, not regitser callback for detect
+[   19.085540] [pid:208,cpu6,kworker/u16:2,9][iomcu_log][warn]For gyro, not regitser callback for detect
+[   19.085540] [pid:208,cpu6,kworker/u16:2,0][iomcu_log][warn]For mag, not regitser callback for detect
+[   19.085540] [pid:208,cpu6,kworker/u16:2,1][iomcu_log][warn]For vibrator, not regitser callback for detect
+[   19.085784] [pid:208,cpu6,kworker/u16:2,2][iomcu_log][error]get_adapt_file_id_for_dyn_load, can't find node sensorhub
+[   19.085784] [pid:208,cpu6,kworker/u16:2,3][iomcu_log][error]get adapt file id for dyn load failed!
+[   19.085784] [pid:208,cpu6,kworker/u16:2,4][iomcu_log][warn]send_fileid_to_mcu file_count = 0, not send file_id to mcu
+[   19.085784] [pid:208,cpu6,kworker/u16:2,5][iomcu_log][warn]send_fileid_to_mcu aux count=0,not send file_id to mcu
+[   19.086425] [pid:0,cpu0,swapper/0,6][iomcu_log][warn]inputhub_pm_callback ALL ready
+[   19.115661] [pid:1,cpu6,swapper/0,7]hi3xxx_DA_combine_v5 sound_hi6405: ASoC: DAPM unknown pin Mic Jack
+[   19.115661] [pid:1,cpu6,swapper/0,8]hi3xxx_DA_combine_v5 sound_hi6405: ASoC: DAPM unknown pin Speaker Jack
+[   19.115661] [pid:1,cpu6,swapper/0,9]hi3xxx_DA_combine_v5 sound_hi6405: ASoC: DAPM unknown pin Headphone Jack
+[   19.115692] [pid:1,cpu6,swapper/0,0]hi3xxx_DA_combine_v5 sound_hi6405: ASoC: DAPM unknown pin Headset Mic Jack
+[   19.115692] [pid:1,cpu6,swapper/0,1]hi3xxx_DA_combine_v5 sound_hi6405: ASoC: DAPM unknown pin Mic Jack
+[   19.115692] [pid:1,cpu6,swapper/0,2]hi3xxx_DA_combine_v5 sound_hi6405: ASoC: DAPM unknown pin Speaker Jack
+[   19.115692] [pid:1,cpu6,swapper/0,3]hi3xxx_DA_combine_v5 sound_hi6405: ASoC: DAPM unknown pin Headphone Jack
+[   19.115692] [pid:1,cpu6,swapper/0,4]hi3xxx_DA_combine_v5 sound_hi6405: ASoC: DAPM unknown pin Headset Mic Jack
+[   19.116668] [pid:266,cpu6,hi64xxdumplog,5][blackbox]:<bbox fail>[bbox_check_edition]: open /proc/log-usertype failed, return [-2]
+[   19.116668] [pid:266,cpu6,hi64xxdumplog,6]DA_combine_om audio[E]:364: not beta, do not dump hifi
+[   19.147491] [pid:218,cpu6,kworker/6:2,7]platform regulatory.0: Direct firmware load for regulatory.db failed with error -2
+[   19.147888] [pid:1,cpu7,swapper/0,8][pmic]:g_pmic is NULL
+[   19.147888] [pid:1,cpu7,swapper/0,9]<[ec_regulator_is_enabled]:regulator_id=1>
+[   19.147888] [pid:1,cpu7,swapper/0,0]<[ec_regulator_is_enabled]:regulator_id=2>
+[   19.147888] [pid:1,cpu7,swapper/0,1]<[ec_regulator_is_enabled]:regulator_id=3>
+[   19.147918] [pid:1,cpu7,swapper/0,2]<[ec_regulator_is_enabled]:regulator_id=4>
+[   19.147918] [pid:1,cpu7,swapper/0,3]<[ec_regulator_is_enabled]:regulator_id=5>
+[   19.147918] [pid:1,cpu7,swapper/0,4]<[ec_regulator_is_enabled]:regulator_id=6>
+[   19.147918] [pid:1,cpu7,swapper/0,5]<[ec_regulator_is_enabled]:regulator_id=7>
+[   19.148162] [pid:1,cpu7,swapper/0,6][hisi_bootup_keypoint]:<bbox fail>value[97] is invalid
+[   19.148651] [pid:1,cpu7,swapper/0,7][iomcu_log][error]get_status_from_dts, can't find node sensorhub
+[   19.148651] [pid:1,cpu7,swapper/0,8][iomcu_log][error]get_status_from_dts() failed!
+[   19.148651] [pid:1,cpu7,swapper/0,9][iomcu_log][warn]is_customized_tag, tag is valid 0
+[   19.148651] [pid:1,cpu7,swapper/0,0][iomcu_log][warn]is_customized_tag, tag is valid 0
+[   19.148651] [pid:1,cpu7,swapper/0,1][iomcu_log][warn]is_customized_tag, tag is valid 0
+[   19.148681] [pid:1,cpu7,swapper/0,2][iomcu_log][warn]is_customized_tag, tag is valid 0
+[   19.148681] [pid:1,cpu7,swapper/0,3][iomcu_log][warn]is_customized_tag, tag is valid 0
+[   19.148681] [pid:1,cpu7,swapper/0,4][iomcu_log][warn]is_customized_tag, tag is valid 0
+[   19.148681] [pid:1,cpu7,swapper/0,5][iomcu_log][warn]is_customized_tag, tag is valid 0
+[   19.148681] [pid:1,cpu7,swapper/0,6][iomcu_log][warn]is_customized_tag, tag is valid 0
+[   19.148681] [pid:1,cpu7,swapper/0,7][iomcu_log][warn]is_customized_tag, tag is valid 0
+[   19.148681] [pid:1,cpu7,swapper/0,8][iomcu_log][warn]is_customized_tag, tag is valid 0
+[   19.148681] [pid:1,cpu7,swapper/0,9][iomcu_log][warn]is_customized_tag, tag is valid 0
+[   19.148681] [pid:1,cpu7,swapper/0,0][iomcu_log][warn]is_customized_tag, tag is valid 0
+[   19.148681] [pid:1,cpu7,swapper/0,1][iomcu_log][warn]is_customized_tag, tag is valid 0
+[   19.148681] [pid:1,cpu7,swapper/0,2][iomcu_log][warn]is_customized_tag, tag is valid 0
+[   19.148681] [pid:1,cpu7,swapper/0,3][iomcu_log][warn]is_customized_tag, tag is valid 0
+[   19.148712] [pid:1,cpu7,swapper/0,4][iomcu_log][warn]is_customized_tag, tag is valid 0
+[   19.148712] [pid:1,cpu7,swapper/0,5][iomcu_log][warn]is_customized_tag, tag is valid 0
+[   19.148712] [pid:1,cpu7,swapper/0,6][iomcu_log][warn]is_customized_tag, tag is valid 0
+[   19.148712] [pid:1,cpu7,swapper/0,7][iomcu_log][warn]is_customized_tag, tag is valid 0
+[   19.148712] [pid:1,cpu7,swapper/0,8][iomcu_log][warn]is_customized_tag, tag is valid 0
+[   19.148712] [pid:1,cpu7,swapper/0,9][iomcu_log][warn]is_customized_tag, tag is valid 0
+[   19.148712] [pid:1,cpu7,swapper/0,0][iomcu_log][warn]is_customized_tag, tag is valid 0
+[   19.148712] [pid:1,cpu7,swapper/0,1][iomcu_log][warn]is_customized_tag, tag is valid 0
+[   19.148712] [pid:1,cpu7,swapper/0,2][iomcu_log][warn]is_customized_tag, tag is valid 0
+[   19.148712] [pid:1,cpu7,swapper/0,3][iomcu_log][warn]is_customized_tag, tag is valid 0
+[   19.148712] [pid:1,cpu7,swapper/0,4][iomcu_log][warn]is_customized_tag, tag is valid 0
+[   19.148742] [pid:1,cpu7,swapper/0,5][iomcu_log][warn]is_customized_tag, tag is valid 0
+[   19.148742] [pid:1,cpu7,swapper/0,6][iomcu_log][warn]is_customized_tag, tag is valid 0
+[   19.148742] [pid:1,cpu7,swapper/0,7][iomcu_log][warn]is_customized_tag, tag is valid 0
+[   19.148742] [pid:1,cpu7,swapper/0,8][iomcu_log][warn]is_customized_tag, tag is valid 0
+[   19.148742] [pid:1,cpu7,swapper/0,9][iomcu_log][warn]is_customized_tag, tag is valid 0
+[   19.148742] [pid:1,cpu7,swapper/0,0][iomcu_log][warn]is_customized_tag, tag is valid 0
+[   19.148742] [pid:1,cpu7,swapper/0,1][iomcu_log][warn]is_customized_tag, tag is valid 0
+[   19.148742] [pid:1,cpu7,swapper/0,2][iomcu_log][warn]is_customized_tag, tag is valid 0
+[   19.148742] [pid:1,cpu7,swapper/0,3][iomcu_log][warn]is_customized_tag, tag is valid 0
+[   19.148742] [pid:1,cpu7,swapper/0,4][iomcu_log][warn]is_customized_tag, tag is valid 0
+[   19.148742] [pid:1,cpu7,swapper/0,5][iomcu_log][warn]is_customized_tag, tag is valid 0
+[   19.148773] [pid:1,cpu7,swapper/0,6][iomcu_log][warn]is_customized_tag, tag is valid 0
+[   19.148773] [pid:1,cpu7,swapper/0,7][iomcu_log][warn]is_customized_tag, tag is valid 0
+[   19.148773] [pid:1,cpu7,swapper/0,8][iomcu_log][warn]is_customized_tag, tag is valid 0
+[   19.148773] [pid:1,cpu7,swapper/0,9][iomcu_log][warn]is_customized_tag, tag is valid 0
+[   19.148773] [pid:1,cpu7,swapper/0,0][iomcu_log][warn]is_customized_tag, tag is valid 0
+[   19.148773] [pid:1,cpu7,swapper/0,1][iomcu_log][warn]is_customized_tag, tag is valid 0
+[   19.148773] [pid:1,cpu7,swapper/0,2][iomcu_log][warn]is_customized_tag, tag is valid 0
+[   19.148773] [pid:1,cpu7,swapper/0,3][iomcu_log][warn]is_customized_tag, tag is valid 0
+[   19.148773] [pid:1,cpu7,swapper/0,4][iomcu_log][warn]is_customized_tag, tag is valid 0
+[   19.148773] [pid:1,cpu7,swapper/0,5][iomcu_log][warn]is_customized_tag, tag is valid 0
+[   19.148773] [pid:1,cpu7,swapper/0,6][iomcu_log][warn]is_customized_tag, tag is valid 0
+[   19.148773] [pid:1,cpu7,swapper/0,7][iomcu_log][warn]is_customized_tag, tag is valid 0
+[   19.148803] [pid:1,cpu7,swapper/0,8][iomcu_log][warn]is_customized_tag, tag is valid 0
+[   19.178924] [pid:94,cpu3,kworker/u16:1,9][USB3][event_work]+
+[   19.178924] [pid:94,cpu3,kworker/u16:1,0][USB3][handle_event]type: OTG_CONNECT
+[   19.190460] [pid:94,cpu5,kworker/u16:1,1]xhci-hcd xhci-hcd.0.auto: no parent or not match "snps,dwc3"
+[   19.190460] [pid:94,cpu5,kworker/u16:1,2]xhci-hcd xhci-hcd.0.auto: no parent or not match "snps,dwc3"
+[   19.190490] [pid:94,cpu5,kworker/u16:1,3]xhci-hcd xhci-hcd.0.auto: no parent or not match "snps,dwc3"
+[   19.190490] [pid:94,cpu5,kworker/u16:1,4][usb_hub]: hw_usb_hub_power_on ++
+[   19.203216] [pid:94,cpu5,kworker/u16:1,5][usb_hub]: hw_usb_hub_power_on --
+[   19.204895] [pid:94,cpu7,kworker/u16:1,6][usb_hub]: hw_usb_hub_power_on ++
+[   19.217681] [pid:94,cpu7,kworker/u16:1,7][usb_hub]: hw_usb_hub_power_on --
+[   19.218658] [pid:94,cpu7,kworker/u16:1,8][USB3][event_work]-
+[   19.252960] [pid:296,cpu4,systemd-udevd,9]ufshcd_ioctl: sdev or buffer is NULL!
+[   19.253387] [pid:305,cpu4,systemd-udevd,0]ufshcd_ioctl: sdev or buffer is NULL!
+[   19.253417] [pid:306,cpu6,systemd-udevd,1]ufshcd_ioctl: sdev or buffer is NULL!
+[   19.253906] [pid:295,cpu0,systemd-udevd,2]ufshcd_ioctl: sdev or buffer is NULL!
+[   19.262817] [pid:306,cpu4,systemd-udevd,3]ufshcd_ioctl: sdev or buffer is NULL!
+[   19.265563] [pid:320,cpu7,systemd-udevd,4]ufshcd_ioctl: sdev or buffer is NULL!
+[   19.265899] [pid:300,cpu1,systemd-udevd,5]ufshcd_ioctl: sdev or buffer is NULL!
+[   19.266052] [pid:292,cpu7,systemd-udevd,6]ufshcd_ioctl: sdev or buffer is NULL!
+[   19.266479] [pid:298,cpu6,systemd-udevd,7]ufshcd_ioctl: sdev or buffer is NULL!
+[   19.267028] [pid:316,cpu1,systemd-udevd,8]ufshcd_ioctl: sdev or buffer is NULL!
+[   19.267089] [pid:310,cpu7,systemd-udevd,9]ufshcd_ioctl: sdev or buffer is NULL!
+[   19.267608] [pid:297,cpu7,systemd-udevd,0]ufshcd_ioctl: sdev or buffer is NULL!
+[   19.268249] [pid:302,cpu6,systemd-udevd,1]ufshcd_ioctl: sdev or buffer is NULL!
+[   19.269622] [pid:319,cpu7,systemd-udevd,2]ufshcd_ioctl: sdev or buffer is NULL!
+[   19.269927] [pid:308,cpu7,systemd-udevd,3]ufshcd_ioctl: sdev or buffer is NULL!
+[   19.271362] [pid:307,cpu7,systemd-udevd,4]ufshcd_ioctl: sdev or buffer is NULL!
+[   19.271697] [pid:294,cpu7,systemd-udevd,5]ufshcd_ioctl: sdev or buffer is NULL!
+[   19.272491] [pid:309,cpu7,systemd-udevd,6]ufshcd_ioctl: sdev or buffer is NULL!
+[   19.272705] [pid:329,cpu1,systemd-udevd,7]ufshcd_ioctl: sdev or buffer is NULL!
+[   19.274108] [pid:312,cpu6,systemd-udevd,8]ufshcd_ioctl: sdev or buffer is NULL!
+[   19.274688] [pid:301,cpu7,systemd-udevd,9]ufshcd_ioctl: sdev or buffer is NULL!
+[   19.275207] [pid:304,cpu7,systemd-udevd,0]ufshcd_ioctl: sdev or buffer is NULL!
+[   19.276306] [pid:315,cpu7,systemd-udevd,1]ufshcd_ioctl: sdev or buffer is NULL!
+[   19.276550] [pid:311,cpu1,systemd-udevd,2]ufshcd_ioctl: sdev or buffer is NULL!
+[   19.276641] [pid:293,cpu0,systemd-udevd,3]ufshcd_ioctl: sdev or buffer is NULL!
+[   19.276855] [pid:295,cpu4,systemd-udevd,4]ufshcd_ioctl: sdev or buffer is NULL!
+[   19.276916] [pid:332,cpu6,systemd-udevd,5]ufshcd_ioctl: sdev or buffer is NULL!
+[   19.277252] [pid:330,cpu3,systemd-udevd,6]ufshcd_ioctl: sdev or buffer is NULL!
+[   19.278045] [pid:296,cpu7,systemd-udevd,7]ufshcd_ioctl: sdev or buffer is NULL!
+[   19.279052] [pid:331,cpu4,systemd-udevd,8]ufshcd_ioctl: sdev or buffer is NULL!
+[   19.327484] [pid:342,cpu7,plymouthd,9]random: plymouthd: uninitialized urandom read (8 bytes read)
+[   19.327575] [pid:342,cpu7,plymouthd,0]random: plymouthd: uninitialized urandom read (8 bytes read)
+[   20.344177] [2026:09:29 09:28:55][pid:342,cpu7,plymouthd,1][HISI_DRM W]:get_rdma_addr: failed to get iova from gem, plz check
+[   20.344177] [pid:342,cpu7,plymouthd,2][HISI_DRM W]:get_rdma_addr: we will map iova to it
+[   20.360015] [pid:353,cpu7,btrfs,3]ufshcd_ioctl: sdev or buffer is NULL!
+[   20.364776] [pid:353,cpu7,btrfs,4]ufshcd_ioctl: sdev or buffer is NULL!
+[   20.368682] [pid:353,cpu7,btrfs,5]ufshcd_ioctl: sdev or buffer is NULL!
+[   20.415344] [pid:353,cpu6,btrfs,6]ufshcd_ioctl: sdev or buffer is NULL!
+[   20.491729] [pid:374,cpu7,fsck,7]ufshcd_ioctl: sdev or buffer is NULL!
+[   20.650756] [pid:1,cpu7,systemd,8]systemd[1]: Failed to find module 'autofs4'
+[   20.654449] [pid:1,cpu6,systemd,9]systemd[1]: Configuration file /usr/lib/systemd/system.conf.d/01system.conf is marked executable. Please remove executable permission bits. Proceeding anyway.
+[   20.670349] [pid:408,cpu7,systemd-gpt-aut,0]ufshcd_ioctl: sdev or buffer is NULL!
+[   20.689086] [pid:415,cpu7,lvmconfig,1]random: lvmconfig: uninitialized urandom read (4 bytes read)
+[   20.706604] [pid:0,cpu2,in irq,2]random: crng init done
+[   20.721435] [pid:1,cpu7,systemd,3]systemd[1]: Configuration file /lib/systemd/system/usmartupdate.service is marked executable. Please remove executable permission bits. Proceeding anyway.
+[   20.722595] [pid:1,cpu7,systemd,4]systemd[1]: Configuration file /lib/systemd/system/qoe.service is marked executable. Please remove executable permission bits. Proceeding anyway.
+[   20.722900] [pid:1,cpu7,systemd,5]systemd[1]: Configuration file /lib/systemd/system/processsvcguard.service is marked executable. Please remove executable permission bits. Proceeding anyway.
+[   20.729461] [pid:1,cpu7,systemd,6]systemd[1]: Configuration file /lib/systemd/system/teecd.service is marked world-inaccessible. This has no effect as configuration data is accessible via APIs without restrictions. Proceeding anyway.
+[   20.729675] [pid:1,cpu7,systemd,7]systemd[1]: /lib/systemd/system/teecd.service:9: Failed to parse kill mode, ignoring: progress
+[   20.735626] [pid:1,cpu7,systemd,8]systemd[1]: Configuration file /etc/systemd/system/sdm_agent.service is marked executable. Please remove executable permission bits. Proceeding anyway.
+[   20.735626] [pid:1,cpu7,systemd,9]systemd[1]: Configuration file /etc/systemd/system/sdm_agent.service is marked world-writable. Please remove world writability permission bits. Proceeding anyway.
+[   20.736145] [pid:1,cpu7,systemd,0]systemd[1]: /etc/systemd/system/scwmi.service:9: Failed to parse service restart specifier, ignoring: 3s
+[   20.736389] [pid:1,cpu7,systemd,1]systemd[1]: /etc/systemd/system/scsafed.service:9: Failed to parse service restart specifier, ignoring: 3s
+[   20.736663] [pid:1,cpu7,systemd,2]systemd[1]: /etc/systemd/system/scrpcserver.service:9: Failed to parse service restart specifier, ignoring: 3s
+[   20.736907] [pid:1,cpu7,systemd,3]systemd[1]: /etc/systemd/system/scdech.service:9: Failed to parse service restart specifier, ignoring: 3s
+[   20.737182] [pid:1,cpu7,systemd,4]systemd[1]: /etc/systemd/system/sccheck.service:8: Failed to parse service restart specifier, ignoring: 3s
+[   20.740509] [pid:1,cpu7,systemd,5]systemd[1]: Configuration file /lib/systemd/system/oam_hisi.service is marked executable. Please remove executable permission bits. Proceeding anyway.
+[   20.741821] [pid:1,cpu7,systemd,6]systemd[1]: /etc/systemd/system/linuxctl.service:7: PIDFile= references a path below legacy directory /var/run/, updating /var/run/linuxctld.pid → /run/linuxctld.pid; please update the unit file accordingly.
+[   20.745056] [pid:1,cpu7,systemd,7]systemd[1]: Configuration file /lib/systemd/system/ikare.service is marked world-inaccessible. This has no effect as configuration data is accessible via APIs without restrictions. Proceeding anyway.
+[   20.745330] [pid:1,cpu7,systemd,8]systemd[1]: Configuration file /lib/systemd/system/hwgovconfig.service is marked executable. Please remove executable permission bits. Proceeding anyway.
+[   20.745330] [pid:1,cpu7,systemd,9]systemd[1]: Configuration file /lib/systemd/system/hwgovconfig.service is marked world-inaccessible. This has no effect as configuration data is accessible via APIs without restrictions. Proceeding anyway.
+[   20.746002] [pid:1,cpu7,systemd,0]systemd[1]: Configuration file /lib/systemd/system/hciattach.service is marked executable. Please remove executable permission bits. Proceeding anyway.
+[   20.748657] [pid:1,cpu7,systemd,1]systemd[1]: Configuration file /lib/systemd/system/dvc-core.service is marked executable. Please remove executable permission bits. Proceeding anyway.
+[   20.748657] [pid:1,cpu7,systemd,2]systemd[1]: Configuration file /lib/systemd/system/dvc-core.service is marked world-writable. Please remove world writability permission bits. Proceeding anyway.
+[   20.752471] [pid:1,cpu7,systemd,3]systemd[1]: Configuration file /lib/systemd/system/110x.service is marked executable. Please remove executable permission bits. Proceeding anyway.
+[   20.778259] [pid:1,cpu7,systemd,4]systemd[1]: Starting of Arbitrary Executable File Formats File System Automount Point not supported.
+[   21.490417] [2026:09:29 09:28:56][pid:213,cpu7,kworker/7:2,5]uvcvideo 1-1.4:1.0: Entity type for entity Extension 4 was not initialized!
+[   21.490417] [pid:213,cpu7,kworker/7:2,6]uvcvideo 1-1.4:1.0: Entity type for entity Processing 2 was not initialized!
+[   21.490417] [pid:213,cpu7,kworker/7:2,7]uvcvideo 1-1.4:1.0: Entity type for entity Camera 1 was not initialized!
+[   21.490783] [pid:44,cpu6,kworker/6:0,8]NOT FOUND device node 'trans,bios_wol_variable 
+[   21.490783] [pid:44,cpu6,kworker/6:0,9]failed to get 'value' resource
+[   21.701202] [pid:472,cpu4,systemd-udevd,0]ufshcd_ioctl: sdev or buffer is NULL!
+[   21.703918] [pid:469,cpu4,systemd-udevd,1]ufshcd_ioctl: sdev or buffer is NULL!
+[   21.704528] [pid:470,cpu4,systemd-udevd,2]ufshcd_ioctl: sdev or buffer is NULL!
+[   21.715393] [pid:463,cpu0,systemd-udevd,3]ufshcd_ioctl: sdev or buffer is NULL!
+[   21.758880] [pid:473,cpu1,systemd-udevd,4]ufshcd_ioctl: sdev or buffer is NULL!
+[   21.759063] [pid:476,cpu5,systemd-udevd,5]ufshcd_ioctl: sdev or buffer is NULL!
+[   21.763061] [pid:445,cpu5,systemd-udevd,6]ufshcd_ioctl: sdev or buffer is NULL!
+[   21.768341] [pid:464,cpu0,systemd-udevd,7]ufshcd_ioctl: sdev or buffer is NULL!
+[   21.775115] [pid:472,cpu4,systemd-udevd,8]ufshcd_ioctl: sdev or buffer is NULL!
+[   21.776519] [pid:446,cpu2,systemd-udevd,9]ufshcd_ioctl: sdev or buffer is NULL!
+[   21.782775] [pid:454,cpu0,systemd-udevd,0]ufshcd_ioctl: sdev or buffer is NULL!
+[   21.783477] [pid:457,cpu5,systemd-udevd,1]ufshcd_ioctl: sdev or buffer is NULL!
+[   21.789337] [pid:458,cpu4,systemd-udevd,2]ufshcd_ioctl: sdev or buffer is NULL!
+[   21.796661] [pid:475,cpu2,systemd-udevd,3]ufshcd_ioctl: sdev or buffer is NULL!
+[   21.797851] [pid:447,cpu3,systemd-udevd,4]ufshcd_ioctl: sdev or buffer is NULL!
+[   21.798217] [pid:461,cpu4,systemd-udevd,5]ufshcd_ioctl: sdev or buffer is NULL!
+[   21.800781] [pid:450,cpu0,systemd-udevd,6]ufshcd_ioctl: sdev or buffer is NULL!
+[   21.806579] [pid:474,cpu3,systemd-udevd,7]ufshcd_ioctl: sdev or buffer is NULL!
+[   21.811889] [pid:445,cpu2,systemd-udevd,8]ufshcd_ioctl: sdev or buffer is NULL!
+[   21.812866] [pid:467,cpu5,systemd-udevd,9]ufshcd_ioctl: sdev or buffer is NULL!
+[   21.813964] [pid:470,cpu5,systemd-udevd,0]ufshcd_ioctl: sdev or buffer is NULL!
+[   21.814270] [pid:459,cpu5,systemd-udevd,1]ufshcd_ioctl: sdev or buffer is NULL!
+[   21.814880] [pid:476,cpu2,systemd-udevd,2]ufshcd_ioctl: sdev or buffer is NULL!
+[   21.817321] [pid:471,cpu5,systemd-udevd,3]ufshcd_ioctl: sdev or buffer is NULL!
+[   21.819366] [pid:452,cpu5,systemd-udevd,4]ufshcd_ioctl: sdev or buffer is NULL!
+[   21.822265] [pid:449,cpu5,systemd-udevd,5]ufshcd_ioctl: sdev or buffer is NULL!
+[   21.823303] [pid:473,cpu4,systemd-udevd,6]ufshcd_ioctl: sdev or buffer is NULL!
+[   21.827331] [pid:460,cpu5,systemd-udevd,7]ufshcd_ioctl: sdev or buffer is NULL!
+[   21.829193] [pid:466,cpu2,systemd-udevd,8]ufshcd_ioctl: sdev or buffer is NULL!
+[   21.833435] [pid:455,cpu2,systemd-udevd,9]ufshcd_ioctl: sdev or buffer is NULL!
+[   22.212799] [pid:785,cpu7,1103start.sh,0]process hisi build-in step
+[   22.240325] [pid:785,cpu7,1103start.sh,1]plat_1105:E]get_board_dts_node_hi1105]No compatible node hisi,ccibypass found.
+[   22.242218] [pid:785,cpu7,1103start.sh,2]plat_1105:E]get_board_dts_gpio_prop_hi1105]can't get dts_prop value: dts_prop=hi110x,gpio_pcie0_rst, ret=-2
+[   22.242584] [pid:785,cpu7,1103start.sh,3]plat_1105:E]get_board_dts_gpio_prop_hi1105]can't get dts_prop value: dts_prop=hi110x,gpio_pcie1_rst, ret=-2
+[   22.243927] [pid:785,cpu7,1103start.sh,4]plat_1105:E]hi1103_wlan_wakeup_host_property_init]get wlan_wakeup_host_have_reverser failed
+[   22.244354] [pid:785,cpu7,1103start.sh,5]plat_1105:E]buck_param_init]buck_param_init fail,get from ini
+[   22.244659] [pid:785,cpu7,1103start.sh,6]plat_1105:E]buck_param_init_by_ini]get_ssi_dump_cfg: fail to get ini, keep disable
+[   22.247222] [pid:785,cpu6,1103start.sh,7][HI11XX][E][SDIO]sdio driver don't support[oal_wifi_platform_load_sdio_hi1105:3196]
+[   22.249328] [pid:785,cpu6,1103start.sh,8]plat_1105:E]ps_get_core_reference_hi1105]ps_get_core_reference_hi1105 pdev is NULL
+[   22.325164] [pid:809,cpu0,fingerprint_dae,9][E/fingerprint] fingerprint_ioctl enter cmd = 26118
+[   22.325195] [pid:809,cpu0,fingerprint_dae,0][E/fingerprint] fingerprint_get_module_name failed to get fingerprint,moduleid_low from device tree
+[   22.325195] [pid:809,cpu0,fingerprint_dae,1][E/fingerprint] sensor_name not found, sensor_id = 255
+[   22.325195] [pid:809,cpu0,fingerprint_dae,2][E/fingerprint] fingerprint_ioctl exit errcode = 0
+[   22.411315] [pid:785,cpu6,1103start.sh,3][HI11XX][E][HCC_BUS]pci_rx_normal_task sched_setscheduler failed! ret =-22, prio=-20[oal_thread_create_hi1105:2578]
+[   22.421386] [pid:785,cpu2,1103start.sh,4][HI11XX][W][HCC]hcc is null[hcc_disable_hi1105:1402]
+[   22.421417] [pid:785,cpu2,1103start.sh,5]plat_1105:E]ps_get_core_reference_hi1105]ps_get_core_reference_hi1105 pdev is NULL
+[   22.421539] [pid:785,cpu2,1103start.sh,6]plat_1105:E]ps_get_core_reference_hi1105]ps_get_core_reference_hi1105 pdev is NULL
+[   22.484069] [pid:785,cpu7,1103start.sh,7]plat_1105:E]firmware_read_cfg_hi1105]open file /vendor/firmware/hi1103/readme.txt fail, fp=0000000003d612c7, error -2
+[   22.484069] [pid:785,cpu7,1103start.sh,8]plat_1105:E]plat_parse_readme]read file fail
+[   22.484100] [pid:785,cpu7,1103start.sh,9]plat_1105:E]plat_read_changid_hi1105]plat cust get changid fail!
+[   22.484100] [pid:785,cpu7,1103start.sh,0]plat_1105:E]ps_probe]plat_cust_init failed
+[   22.492309] [pid:809,cpu1,fingerprint_dae,1][E/fingerprint] fingerprint_ioctl enter cmd = 1074030095
+[   22.492340] [pid:809,cpu1,fingerprint_dae,2][E/fingerprint] fingerprint_ioctl FP_IOC_CMD_GET_DEVICE_INFO
+[   22.492340] [pid:809,cpu1,fingerprint_dae,3]fp_ioc_get_device_info over reset_pin is 199, irq_pin is 234, spi_cs is 10, spi_num is 1
+[   22.492340] [pid:809,cpu1,fingerprint_dae,4][E/fingerprint] fingerprint_ioctl exit errcode = 0
+[   22.675354] [2026:09:29 09:28:58][pid:785,cpu2,1103start.sh,5]plat_1105:E]firmware_read_cfg_hi1105]open file /vendor/firmware/hi1103/pilot/ram_reg_test_cfg fail, fp=0000000003d612c7, error -2
+[   22.675354] [pid:785,cpu2,1103start.sh,6]plat_1105:E]firmware_get_cfg_hi1105]read cfg error!
+[   22.675415] [pid:785,cpu2,1103start.sh,7]plat_1105:W]firmware_cfg_init_hi1105]ram_reg_test_cfg maybe not exist, please check
+[   22.795043] [pid:785,cpu5,1103start.sh,8]plat_1105:W]firmware_download_function_priv_hi1105]download firmware, count [1], current time [122414]us, max time [122414]us
+[   22.806884] [pid:1518,cpu0,in irq,9]plat_1105:W]bfgx_dev_state_set][BUART]bfgx_dev_state_set:0 --> 1
+[   22.806976] [pid:7,cpu1,kworker/u16:0,0]plat_1105:W]bfgx_uart_state_set][BUART]bfgx_uart_state_set:0-->1
+[   22.862396] [pid:7,cpu1,kworker/u16:0,1]plat_1105:W]bfgx_uart_state_set][BUART]bfgx_uart_state_set:1-->0
+[   22.862396] [pid:7,cpu1,kworker/u16:0,2]plat_1105:W]bfgx_dev_state_set][BUART]bfgx_dev_state_set:1 --> 0
+[   22.866333] [pid:785,cpu4,1103start.sh,3]plat_1105:W]bfgx_power_on][BUART]power on, count [1], current time [381430]us, max time [381430]us
+[   22.886901] [pid:1623,cpu0,in irq,4]plat_1105:W]bfgx_dev_state_set][BUART]bfgx_dev_state_set:0 --> 1
+[   22.886993] [pid:208,cpu1,kworker/u16:2,5]plat_1105:W]bfgx_uart_state_set][BUART]bfgx_uart_state_set:0-->1
+[   23.153198] [pid:208,cpu1,kworker/u16:2,6]plat_1105:W]chr chr_write_errno_to_queue]chr_write_errno_to_queue success errno=913900004
+[   23.170471] [pid:785,cpu4,1103start.sh,7]plat_1105:W]reset_uart_rx_buf_hi1105][BUART]uart rx buf has data, rx_have_recv_pkt_len=4
+[   23.170471] [pid:785,cpu4,1103start.sh,8]plat_1105:W]reset_uart_rx_buf_hi1105][BUART]uart rx buf has data, rx_have_del_public_len=0
+[   23.170471] [pid:785,cpu4,1103start.sh,9]plat_1105:W]reset_uart_rx_buf_hi1105][BUART]uart rx buf has data, rx_decode_public_buf_ptr=00000000e079a545
+[   23.170471] [pid:785,cpu4,1103start.sh,0]plat_1105:W]reset_uart_rx_buf_hi1105][BUART]uart rx buf has data, rx_public_buf_org_ptr=00000000e079a545
+[   23.170471] [pid:785,cpu4,1103start.sh,1]plat_1105:W]reset_uart_rx_buf_hi1105][BUART]uart rx buf has data, data[0]=0x7e
+[   23.170471] [pid:785,cpu4,1103start.sh,2]plat_1105:W]reset_uart_rx_buf_hi1105][BUART]uart rx buf has data, data[1]=0xe
+[   23.170471] [pid:785,cpu4,1103start.sh,3]plat_1105:W]reset_uart_rx_buf_hi1105][BUART]uart rx buf has data, data[2]=0x12
+[   23.170501] [pid:785,cpu4,1103start.sh,4]plat_1105:W]reset_uart_rx_buf_hi1105][BUART]uart rx buf has data, data[3]=0x0
+[   23.170593] [pid:785,cpu4,1103start.sh,5][k_pcie_port][ERR]:Already suspend by EP
+[   23.174835] [pid:785,cpu6,1103start.sh,6]kernel module /sys/hisys/boot/plat init succ
+[   23.186431] [pid:7,cpu4,kworker/u16:0,7]([tzdriver] 7, kworker/u16:0)cmd_monitor_tick: [cmd_monitor_tick] pid=731,pname=teecd,tid=731, tname=teecd,lastcmdid=6,count=4,agent call count=0, timetotal=4000 us returned, remained command(s)=2
+[   23.186462] [pid:7,cpu4,kworker/u16:0,8]([tzdriver] 7, kworker/u16:0)cmd_monitor_tick: [cmd_monitor_tick] pid=731,pname=teecd,tid=775, tname=teecd,lastcmdid=18,count=2,agent call count=0, timetotal=0 us returned, remained command(s)=1
+[   23.536346] [pid:785,cpu2,1103start.sh,9]INI_DRV:W]hwifi_get_mac_addr_drveprom:4714]hwifi_get_mac_addr_drveprom get MAC from EEPROM SUCC
+
+[   23.536346] [pid:785,cpu2,1103start.sh,0]INI_DRV:W]hwifi_get_mac_addr_drveprom:4726]hwifi_get_mac_addr_drveprom get MAC from EEPROM: mac=24:**:**:**:9d:ed
+
+[   23.753814] [2026:09:29 09:28:59][pid:1992,cpu7,ukui-kwin_wayla,1]mali gpu: kctx 0000000000000000 create 
+[   23.806427] [pid:785,cpu6,1103start.sh,2]plat_1105:W]firmware_download_function_priv_hi1105]download firmware, count [2], current time [152465]us, max time [152465]us
+[   23.808837] [pid:785,cpu2,1103start.sh,3]plat_1105:W]wlan_power_on_timedebug]power on, count [1], current time [267990]us, max time [267990]us
+[   24.216125] [pid:2361,cpu1,insmod,4]qax_tq_base: loading out-of-tree module taints kernel.
+[   25.010986] [2026:09:29 09:29:00][pid:1992,cpu3,ukui-kwin_wayla,5][HISI_DRM W]:get_rdma_addr: failed to get iova from gem, plz check
+[   25.010986] [pid:1992,cpu3,ukui-kwin_wayla,6][HISI_DRM W]:get_rdma_addr: we will map iova to it
+[   25.036712] [pid:208,cpu6,kworker/u16:2,7][HISI_DRM W]:get_rdma_addr: failed to get iova from gem, plz check
+[   25.036712] [pid:208,cpu6,kworker/u16:2,8][HISI_DRM W]:get_rdma_addr: we will map iova to it
+[   25.047180] [pid:208,cpu4,kworker/u16:2,9][HISI_DRM W]:get_rdma_addr: failed to get iova from gem, plz check
+[   25.047180] [pid:208,cpu4,kworker/u16:2,0][HISI_DRM W]:get_rdma_addr: we will map iova to it
+[   25.234466] [pid:208,cpu2,kworker/u16:2,1]([tzdriver] 208, kworker/u16:2)cmd_monitor_tick: [cmd_monitor_tick] pid=809,pname=fingerprint_dae,tid=809, tname=fingerprint_dae,lastcmdid=45,count=21,agent call count=0, timetotal=244000 us returned, remained command(s)=0
+[   25.822143] [pid:785,cpu4,1103start.sh,2]kernel module /sys/hisys/boot/wifi init succ
+[   25.822204] [pid:785,cpu4,1103start.sh,3]insmod all hisi kernel modules succ
+[   25.829467] [pid:2524,cpu0,hciattach,4][HI11XX][E][HCC_BUS]hisi_hci_recv sched_setscheduler failed! ret =-22, prio=0[oal_thread_create_hi1105:2578]
+[   25.837036] [pid:2523,cpu0,oam_hisi,5]plat_1105:W]hw_debug_ioctl]hw_debug_ioctl cmd = 1074035302 not find
+[   26.028930] [2026:09:29 09:29:01][pid:96,cpu7,kworker/u17:0,6]plat_1105:W]firmware_download_function_priv_hi1105]download firmware, count [3], current time [87633]us, max time [152465]us
+[   26.040954] [pid:0,cpu0,in irq,7]plat_1105:W]bfgx_dev_state_set][BUART]bfgx_dev_state_set:0 --> 1
+[   26.040985] [pid:94,cpu7,kworker/u16:1,8]plat_1105:W]bfgx_uart_state_set][BUART]bfgx_uart_state_set:0-->1
+[   26.090515] [pid:94,cpu7,kworker/u16:1,9]plat_1105:W]bfgx_uart_state_set][BUART]bfgx_uart_state_set:1-->0
+[   26.090515] [pid:94,cpu7,kworker/u16:1,0]plat_1105:W]bfgx_dev_state_set][BUART]bfgx_dev_state_set:1 --> 0
+[   26.094726] [pid:96,cpu7,kworker/u17:0,1]plat_1105:W]bfgx_power_on][BUART]power on, count [2], current time [265140]us, max time [381430]us
+[   26.109375] [pid:0,cpu0,in irq,2]plat_1105:W]bfgx_dev_state_set][BUART]bfgx_dev_state_set:0 --> 1
+[   26.109405] [pid:94,cpu7,kworker/u16:1,3]plat_1105:W]bfgx_uart_state_set][BUART]bfgx_uart_state_set:0-->1
+[   26.378112] [pid:94,cpu7,kworker/u16:1,4]plat_1105:W]chr chr_write_errno_to_queue]chr report limited, dispose errno=913900004
+[   26.381927] [pid:96,cpu7,kworker/u17:0,5]INI_DRV:W]hci_bt_bdaddr:261]hci_bt_bdaddr get MAC from EEPROM: mac= 24:**:**:**:95:4d 
+
+[   26.610443] [pid:208,cpu7,kworker/u16:2,6]([tzdriver] 208, kworker/u16:2)cmd_monitor_tick: [cmd_monitor_tick] pid=809,pname=fingerprint_dae,tid=2366, tname=fingerprint_dae,lastcmdid=65,count=4,agent call count=0, timetotal=44000 us returned, remained command(s)=0
+[   27.922424] [2026:09:29 09:29:03][pid:210,cpu7,kworker/u16:3,7]plat_1105:W]bfgx_uart_state_set][BUART]bfgx_uart_state_set:1-->0
+[   27.922424] [pid:210,cpu7,kworker/u16:3,8]plat_1105:W]bfgx_dev_state_set][BUART]bfgx_dev_state_set:1 --> 0
+[   28.436431] [pid:0,cpu0,in irq,9]plat_1105:W]bfgx_dev_state_set][BUART]bfgx_dev_state_set:0 --> 1
+[   28.436462] [pid:96,cpu7,kworker/u17:0,0]plat_1105:W]bfgx_uart_state_set][BUART]bfgx_uart_state_set:0-->1
+[   28.450500] [pid:96,cpu7,kworker/u17:0,1]plat_1105:W]reset_uart_rx_buf_hi1105][BUART]uart rx buf has data, rx_have_recv_pkt_len=4
+[   28.450500] [pid:96,cpu7,kworker/u17:0,2]plat_1105:W]reset_uart_rx_buf_hi1105][BUART]uart rx buf has data, rx_have_del_public_len=0
+[   28.450500] [pid:96,cpu7,kworker/u17:0,3]plat_1105:W]reset_uart_rx_buf_hi1105][BUART]uart rx buf has data, rx_decode_public_buf_ptr=00000000e079a545
+[   28.450500] [pid:96,cpu7,kworker/u17:0,4]plat_1105:W]reset_uart_rx_buf_hi1105][BUART]uart rx buf has data, rx_public_buf_org_ptr=00000000e079a545
+[   28.450500] [pid:96,cpu7,kworker/u17:0,5]plat_1105:W]reset_uart_rx_buf_hi1105][BUART]uart rx buf has data, data[0]=0x7e
+[   28.450500] [pid:96,cpu7,kworker/u17:0,6]plat_1105:W]reset_uart_rx_buf_hi1105][BUART]uart rx buf has data, data[1]=0xe
+[   28.450531] [pid:96,cpu7,kworker/u17:0,7]plat_1105:W]reset_uart_rx_buf_hi1105][BUART]uart rx buf has data, data[2]=0x12
+[   28.450531] [pid:96,cpu7,kworker/u17:0,8]plat_1105:W]reset_uart_rx_buf_hi1105][BUART]uart rx buf has data, data[3]=0x0
+[   28.450653] [pid:96,cpu7,kworker/u17:0,9][k_pcie_port][ERR]:Already suspend by EP
+[   31.056579] [2026:09:29 09:29:06][pid:3751,cpu6,insmod,0][lskg netlink.c:175 netlink_init][insmod:3751][E]Can't create Netlink socket for network activities!
+[   31.056579] [pid:3751,cpu6,insmod,1][lskg lskguard.c:696 init_guard][insmod:3751][E]netlink_init -5
+[   31.167877] [pid:3817,cpu6,insmod,2][lskg netlink.c:175 netlink_init][insmod:3817][E]Can't create Netlink socket for network activities!
+[   31.167877] [pid:3817,cpu6,insmod,3][lskg lskguard.c:696 init_guard][insmod:3817][E]netlink_init -5
+[   36.311401] [2026:09:29 09:29:11][pid:4040,cpu7,systemd-gpt-aut,4]ufshcd_ioctl: sdev or buffer is NULL!
+[   36.595397] [pid:4062,cpu4,systemd-gpt-aut,5]ufshcd_ioctl: sdev or buffer is NULL!
+[   49.771148] [2026:09:29 09:29:25][pid:1992,cpu7,ukui-kwin_wayla,6]mali gpu: kctx 0000000000000000 being destroyed
+[   49.825164] [pid:4895,cpu7,ukui-kwin_wayla,7]mali gpu: kctx 0000000000000000 create 
+[   50.070678] [pid:5065,cpu7,hwaudioservice,8]dsp_utils audio[W]:656: scene: 0 is not started
+[   50.070678] [pid:5065,cpu7,hwaudioservice,9]dsp_utils audio[W]:656: scene: 1 is not started
+[   50.070678] [pid:5065,cpu7,hwaudioservice,0]dsp_utils audio[W]:656: scene: 2 is not started
+[   50.070678] [pid:5065,cpu7,hwaudioservice,1]dsp_utils audio[W]:656: scene: 3 is not started
+[   50.070678] [pid:5065,cpu7,hwaudioservice,2]dsp_utils audio[W]:656: scene: 4 is not started
+[   50.070678] [pid:5065,cpu7,hwaudioservice,3]dsp_utils audio[W]:656: scene: 5 is not started
+[   50.070678] [pid:5065,cpu7,hwaudioservice,4]dsp_utils audio[W]:656: scene: 6 is not started
+[   50.070678] [pid:5065,cpu7,hwaudioservice,5]dsp_utils audio[W]:656: scene: 7 is not started
+[   50.070678] [pid:5065,cpu7,hwaudioservice,6]dsp_utils audio[W]:656: scene: 8 is not started
+[   50.070709] [pid:5065,cpu7,hwaudioservice,7]dsp_utils audio[W]:656: scene: 9 is not started
+[   50.070709] [pid:5065,cpu7,hwaudioservice,8]dsp_utils audio[W]:656: scene: 10 is not started
+[   50.070709] [pid:5065,cpu7,hwaudioservice,9]dsp_utils audio[W]:656: scene: 11 is not started
+[   50.070709] [pid:5065,cpu7,hwaudioservice,0]dsp_utils audio[W]:656: scene: 12 is not started
+[   50.070709] [pid:5065,cpu7,hwaudioservice,1]dsp_utils audio[W]:656: scene: 13 is not started
+[   50.070709] [pid:5065,cpu7,hwaudioservice,2]dsp_utils audio[W]:656: scene: 14 is not started
+[   50.070709] [pid:5065,cpu7,hwaudioservice,3]dsp_utils audio[W]:656: scene: 15 is not started
+[   50.070709] [pid:5065,cpu7,hwaudioservice,4]dsp_utils audio[W]:656: scene: 16 is not started
+[   50.070709] [pid:5065,cpu7,hwaudioservice,5]dsp_utils audio[W]:656: scene: 17 is not started
+[   50.070709] [pid:5065,cpu7,hwaudioservice,6]dsp_utils audio[W]:656: scene: 18 is not started
+[   50.070709] [pid:5065,cpu7,hwaudioservice,7]dsp_utils audio[W]:733: scene: 0 is not started
+[   50.070739] [pid:5065,cpu7,hwaudioservice,8]dsp_utils audio[W]:733: scene: 1 is not started
+[   50.070739] [pid:5065,cpu7,hwaudioservice,9]dsp_utils audio[W]:733: scene: 2 is not started
+[   50.070739] [pid:5065,cpu7,hwaudioservice,0]dsp_utils audio[W]:733: scene: 3 is not started
+[   50.070739] [pid:5065,cpu7,hwaudioservice,1]dsp_utils audio[W]:733: scene: 4 is not started
+[   50.070739] [pid:5065,cpu7,hwaudioservice,2]dsp_utils audio[W]:733: scene: 5 is not started
+[   50.070770] [pid:5065,cpu7,hwaudioservice,3]dsp_utils audio[W]:733: scene: 6 is not started
+[   50.070770] [pid:5065,cpu7,hwaudioservice,4]dsp_utils audio[W]:733: scene: 7 is not started
+[   50.537719] [pid:5260,cpu4,krd-daemon,5]mali gpu: kctx 0000000000000000 create 
+[   50.543182] [pid:4895,cpu4,ukui-kwin_wayla,6][HISI_DRM W]:get_rdma_addr: failed to get iova from gem, plz check
+[   50.543182] [pid:4895,cpu4,ukui-kwin_wayla,7][HISI_DRM W]:get_rdma_addr: we will map iova to it
+[   50.568511] [pid:208,cpu3,kworker/u16:2,8][HISI_DRM W]:get_rdma_addr: failed to get iova from gem, plz check
+[   50.568511] [pid:208,cpu3,kworker/u16:2,9][HISI_DRM W]:get_rdma_addr: we will map iova to it
+[   50.582580] [pid:208,cpu6,kworker/u16:2,0][HISI_DRM W]:get_rdma_addr: failed to get iova from gem, plz check
+[   50.582611] [pid:208,cpu6,kworker/u16:2,1][HISI_DRM W]:get_rdma_addr: we will map iova to it
+[   51.149230] [2026:09:29 09:29:26][pid:5065,cpu7,hwaudioservice,2][E/smartpakit] smartpakit_ctrl_do_ioctl: not support cmd = 0x835c4d01
+[   51.229644] [pid:5743,cpu7,hwaudioservice,3]dsp_utils audio[W]:656: scene: 0 is not started
+[   51.229644] [pid:5743,cpu7,hwaudioservice,4]dsp_utils audio[W]:656: scene: 1 is not started
+[   51.229644] [pid:5743,cpu7,hwaudioservice,5]dsp_utils audio[W]:656: scene: 2 is not started
+[   51.229644] [pid:5743,cpu7,hwaudioservice,6]dsp_utils audio[W]:656: scene: 3 is not started
+[   51.229644] [pid:5743,cpu7,hwaudioservice,7]dsp_utils audio[W]:656: scene: 4 is not started
+[   51.229644] [pid:5743,cpu7,hwaudioservice,8]dsp_utils audio[W]:656: scene: 5 is not started
+[   51.229644] [pid:5743,cpu7,hwaudioservice,9]dsp_utils audio[W]:656: scene: 6 is not started
+[   51.229675] [pid:5743,cpu7,hwaudioservice,0]dsp_utils audio[W]:656: scene: 7 is not started
+[   51.229675] [pid:5743,cpu7,hwaudioservice,1]dsp_utils audio[W]:656: scene: 8 is not started
+[   51.229675] [pid:5743,cpu7,hwaudioservice,2]dsp_utils audio[W]:656: scene: 9 is not started
+[   51.229675] [pid:5743,cpu7,hwaudioservice,3]dsp_utils audio[W]:656: scene: 10 is not started
+[   51.229675] [pid:5743,cpu7,hwaudioservice,4]dsp_utils audio[W]:656: scene: 11 is not started
+[   51.229675] [pid:5743,cpu7,hwaudioservice,5]dsp_utils audio[W]:656: scene: 12 is not started
+[   51.229675] [pid:5743,cpu7,hwaudioservice,6]dsp_utils audio[W]:656: scene: 13 is not started
+[   51.229675] [pid:5743,cpu7,hwaudioservice,7]dsp_utils audio[W]:656: scene: 14 is not started
+[   51.229675] [pid:5743,cpu7,hwaudioservice,8]dsp_utils audio[W]:656: scene: 15 is not started
+[   51.229675] [pid:5743,cpu7,hwaudioservice,9]dsp_utils audio[W]:656: scene: 16 is not started
+[   51.229675] [pid:5743,cpu7,hwaudioservice,0]dsp_utils audio[W]:656: scene: 17 is not started
+[   51.229705] [pid:5743,cpu7,hwaudioservice,1]dsp_utils audio[W]:656: scene: 18 is not started
+[   51.229705] [pid:5743,cpu7,hwaudioservice,2]dsp_utils audio[W]:733: scene: 0 is not started
+[   51.229705] [pid:5743,cpu7,hwaudioservice,3]dsp_utils audio[W]:733: scene: 1 is not started
+[   51.229705] [pid:5743,cpu7,hwaudioservice,4]dsp_utils audio[W]:733: scene: 2 is not started
+[   51.229705] [pid:5743,cpu7,hwaudioservice,5]dsp_utils audio[W]:733: scene: 3 is not started
+[   51.229705] [pid:5743,cpu7,hwaudioservice,6]dsp_utils audio[W]:733: scene: 4 is not started
+[   51.229705] [pid:5743,cpu7,hwaudioservice,7]dsp_utils audio[W]:733: scene: 5 is not started
+[   51.229705] [pid:5743,cpu7,hwaudioservice,8]dsp_utils audio[W]:733: scene: 6 is not started
+[   51.229705] [pid:5743,cpu7,hwaudioservice,9]dsp_utils audio[W]:733: scene: 7 is not started
+[   51.306365] [pid:200,cpu7,kworker/u17:1,0]plat_1105:W]firmware_download_function_priv_hi1105]download firmware, count [4], current time [88054]us, max time [152465]us
+[   51.318237] [pid:5387,cpu0,in irq,1]plat_1105:W]bfgx_dev_state_set][BUART]bfgx_dev_state_set:0 --> 1
+[   51.318298] [pid:210,cpu6,kworker/u16:3,2]plat_1105:W]bfgx_uart_state_set][BUART]bfgx_uart_state_set:0-->1
+[   51.366943] [pid:210,cpu6,kworker/u16:3,3]plat_1105:W]bfgx_uart_state_set][BUART]bfgx_uart_state_set:1-->0
+[   51.366943] [pid:210,cpu6,kworker/u16:3,4]plat_1105:W]bfgx_dev_state_set][BUART]bfgx_dev_state_set:1 --> 0
+[   51.370849] [pid:200,cpu7,kworker/u17:1,5]plat_1105:W]bfgx_power_on][BUART]power on, count [3], current time [267736]us, max time [381430]us
+[   51.394073] [pid:5512,cpu0,in irq,6]plat_1105:W]bfgx_dev_state_set][BUART]bfgx_dev_state_set:0 --> 1
+[   51.395812] [pid:208,cpu4,kworker/u16:2,7]plat_1105:W]bfgx_uart_state_set][BUART]bfgx_uart_state_set:0-->1
+[   51.662292] [pid:208,cpu4,kworker/u16:2,8]plat_1105:W]chr chr_write_errno_to_queue]chr_write_errno_to_queue success errno=913900004
+[   51.667846] [pid:200,cpu0,kworker/u17:1,9]INI_DRV:W]hci_bt_bdaddr:261]hci_bt_bdaddr get MAC from EEPROM: mac= 24:**:**:**:95:4d 
+
+[   51.734863] [pid:5681,cpu5,hciconfig,0]plat_1105:W]reset_uart_rx_buf_hi1105][BUART]uart rx buf has data, rx_have_recv_pkt_len=4
+[   51.734863] [pid:5681,cpu5,hciconfig,1]plat_1105:W]reset_uart_rx_buf_hi1105][BUART]uart rx buf has data, rx_have_del_public_len=0
+[   51.734863] [pid:5681,cpu5,hciconfig,2]plat_1105:W]reset_uart_rx_buf_hi1105][BUART]uart rx buf has data, rx_decode_public_buf_ptr=00000000e079a545
+[   51.734893] [pid:5681,cpu5,hciconfig,3]plat_1105:W]reset_uart_rx_buf_hi1105][BUART]uart rx buf has data, rx_public_buf_org_ptr=00000000e079a545
+[   51.734893] [pid:5681,cpu5,hciconfig,4]plat_1105:W]reset_uart_rx_buf_hi1105][BUART]uart rx buf has data, data[0]=0x7e
+[   51.734893] [pid:5681,cpu5,hciconfig,5]plat_1105:W]reset_uart_rx_buf_hi1105][BUART]uart rx buf has data, data[1]=0xe
+[   51.734893] [pid:5681,cpu5,hciconfig,6]plat_1105:W]reset_uart_rx_buf_hi1105][BUART]uart rx buf has data, data[2]=0x12
+[   51.734893] [pid:5681,cpu5,hciconfig,7]plat_1105:W]reset_uart_rx_buf_hi1105][BUART]uart rx buf has data, data[3]=0x0
+[   51.734985] [pid:5681,cpu5,hciconfig,8][k_pcie_port][ERR]:Already suspend by EP
+[   52.351348] [2026:09:29 09:29:27][pid:727,cpu3,systemd-logind,9]ufshcd_ioctl: sdev or buffer is NULL!
+[   52.373870] [pid:727,cpu0,systemd-logind,0]ufshcd_ioctl: sdev or buffer is NULL!
+[   52.445587] [pid:747,cpu1,update_rtc,1][hisi_soc_rtc_set_time]: 2026-9-29 9:29:27
+[   52.991394] [pid:440,cpu5,kworker/5:3,2]rd 0-7: Disabling EAS, schedutil is mandatory
+[   53.131164] [pid:5743,cpu6,hwaudioservice,3]DA_combine_v5_config audio[W]:432: invalid param dsp if id: 6, sample rate in: 48000
+[   53.145202] [pid:5743,cpu7,hwaudioservice,4][E/smartpakit] smartpakit_is_param_valid: argument invalid, param num 0
+[   53.145202] [pid:5743,cpu7,hwaudioservice,5][E/smartpakit] smartpakit_get_param_from_user: get param head failed
+[   53.145202] [pid:5743,cpu7,hwaudioservice,6][E/smartpakit] smartpakit_parse_params: get param from user failed
+[   57.006256] [2026:09:29 09:29:32][pid:5743,cpu7,hwaudioservice,7][E/smartpakit] smartpakit_is_param_valid: argument invalid, param num 0
+[   57.006256] [pid:5743,cpu7,hwaudioservice,8][E/smartpakit] smartpakit_get_param_from_user: get param head failed
+[   57.006286] [pid:5743,cpu7,hwaudioservice,9][E/smartpakit] smartpakit_parse_params: get param from user failed
+[   58.078582] [2026:09:29 09:29:33][pid:56,cpu7,bbox_bootcheck,0][blackbox]:<bbox fail>is_need_save_dfx2file():544:open /dev/disk/by-partlabel/dfx fail[-2]
+[   67.167175] [2026:09:29 09:29:42][pid:12521,cpu5,insmod,1][lskg netlink.c:175 netlink_init][insmod:12521][E]Can't create Netlink socket for network activities!
+[   67.167175] [pid:12521,cpu5,insmod,2][lskg lskguard.c:696 init_guard][insmod:12521][E]netlink_init -5
+[   77.485168] [2026:09:29 09:29:53][pid:18633,cpu4,insmod,3][lskg netlink.c:175 netlink_init][insmod:18633][E]Can't create Netlink socket for network activities!
+[   77.485168] [pid:18633,cpu4,insmod,4][lskg lskguard.c:696 init_guard][insmod:18633][E]netlink_init -5
+[   84.223205] [2026:09:29 09:30:00][pid:747,cpu6,update_rtc,5][hisi_soc_rtc_set_time]: 2026-9-29 9:30:0
+[   92.721984] [2026:09:29 09:30:08][pid:21482,cpu7,insmod,6][lskg netlink.c:175 netlink_init][insmod:21482][E]Can't create Netlink socket for network activities!
+[   92.721984] [pid:21482,cpu7,insmod,7][lskg lskguard.c:696 init_guard][insmod:21482][E]netlink_init -5
+[  100.592681] [2026:09:29 09:30:16][pid:21912,cpu7,dumpe2fs,8]ufshcd_ioctl: sdev or buffer is NULL!
+[  100.595031] [pid:21912,cpu6,dumpe2fs,9]ufshcd_ioctl: sdev or buffer is NULL!
+[  100.607788] [pid:21915,cpu5,dumpe2fs,0]ufshcd_ioctl: sdev or buffer is NULL!
+[  100.615020] [pid:21915,cpu6,dumpe2fs,1]ufshcd_ioctl: sdev or buffer is NULL!
+[  100.629852] [pid:21918,cpu7,dumpe2fs,2]ufshcd_ioctl: sdev or buffer is NULL!
+[  100.637054] [pid:21918,cpu6,dumpe2fs,3]ufshcd_ioctl: sdev or buffer is NULL!
+[  100.654968] [pid:21921,cpu6,dumpe2fs,4]ufshcd_ioctl: sdev or buffer is NULL!
+[  100.682739] [pid:21928,cpu7,dumpe2fs,5]ufshcd_ioctl: sdev or buffer is NULL!
+[  100.696136] [pid:21931,cpu7,dumpe2fs,6]ufshcd_ioctl: sdev or buffer is NULL!
+[  100.713775] [pid:21934,cpu6,dumpe2fs,7]ufshcd_ioctl: sdev or buffer is NULL!
+[  100.729888] [pid:21937,cpu7,dumpe2fs,8]ufshcd_ioctl: sdev or buffer is NULL!
+[  100.747955] [pid:21940,cpu6,dumpe2fs,9]ufshcd_ioctl: sdev or buffer is NULL!
+[  100.776245] [pid:21943,cpu6,dumpe2fs,0]ufshcd_ioctl: sdev or buffer is NULL!
+[  100.794891] [pid:21949,cpu7,dumpe2fs,1]ufshcd_ioctl: sdev or buffer is NULL!
+[  100.813934] [pid:21952,cpu6,dumpe2fs,2]ufshcd_ioctl: sdev or buffer is NULL!
+[  100.828216] [pid:21955,cpu7,dumpe2fs,3]ufshcd_ioctl: sdev or buffer is NULL!
+[  100.842590] [pid:21958,cpu7,dumpe2fs,4]ufshcd_ioctl: sdev or buffer is NULL!
+[  100.859863] [pid:21961,cpu7,dumpe2fs,5]ufshcd_ioctl: sdev or buffer is NULL!
+[  100.875885] [pid:21964,cpu6,dumpe2fs,6]ufshcd_ioctl: sdev or buffer is NULL!
+[  100.891906] [pid:21967,cpu6,dumpe2fs,7]ufshcd_ioctl: sdev or buffer is NULL!
+[  100.910736] [pid:21970,cpu6,dumpe2fs,8]ufshcd_ioctl: sdev or buffer is NULL!
+[  100.925079] [pid:21973,cpu7,dumpe2fs,9]ufshcd_ioctl: sdev or buffer is NULL!
+[  100.948242] [pid:21976,cpu7,dumpe2fs,0]ufshcd_ioctl: sdev or buffer is NULL!
+[  100.988342] [pid:21983,cpu6,dumpe2fs,1]ufshcd_ioctl: sdev or buffer is NULL!
+[  101.030151] [pid:21990,cpu7,dumpe2fs,2]ufshcd_ioctl: sdev or buffer is NULL!
+[  101.046325] [pid:21993,cpu6,dumpe2fs,3]ufshcd_ioctl: sdev or buffer is NULL!
+[  101.047912] [pid:21993,cpu6,dumpe2fs,4]ufshcd_ioctl: sdev or buffer is NULL!
+[  101.060394] [pid:21996,cpu6,dumpe2fs,5]ufshcd_ioctl: sdev or buffer is NULL!
+[  126.987121] [2026:09:29 09:30:42][pid:23616,cpu5,insmod,6][lskg netlink.c:175 netlink_init][insmod:23616][E]Can't create Netlink socket for network activities!
+[  126.987152] [pid:23616,cpu5,insmod,7][lskg lskguard.c:696 init_guard][insmod:23616][E]netlink_init -5
+[  136.302124] [2026:09:29 09:30:52][pid:24289,cpu4,insmod,8][lskg netlink.c:175 netlink_init][insmod:24289][E]Can't create Netlink socket for network activities!
+[  136.302154] [pid:24289,cpu4,insmod,9][lskg lskguard.c:696 init_guard][insmod:24289][E]netlink_init -5
+[  148.445404] [2026:09:29 09:31:04][pid:747,cpu6,update_rtc,0][hisi_soc_rtc_set_time]: 2026-9-29 9:31:4
+[  162.576721] [2026:09:29 09:31:18][pid:26204,cpu5,insmod,1][lskg netlink.c:175 netlink_init][insmod:26204][E]Can't create Netlink socket for network activities!
+[  162.576721] [pid:26204,cpu5,insmod,2][lskg lskguard.c:696 init_guard][insmod:26204][E]netlink_init -5
+[  194.784790] [2026:09:29 09:31:50][pid:27771,cpu7,insmod,3][lskg netlink.c:175 netlink_init][insmod:27771][E]Can't create Netlink socket for network activities!
+[  194.784820] [pid:27771,cpu7,insmod,4][lskg lskguard.c:696 init_guard][insmod:27771][E]netlink_init -5
+[  236.118041] [2026:09:29 09:32:31][pid:29548,cpu5,insmod,5][lskg netlink.c:175 netlink_init][insmod:29548][E]Can't create Netlink socket for network activities!
+[  236.118041] [pid:29548,cpu5,insmod,6][lskg lskguard.c:696 init_guard][insmod:29548][E]netlink_init -5
+[  276.699127] [2026:09:29 09:33:12][pid:747,cpu3,update_rtc,7][hisi_soc_rtc_set_time]: 2026-9-29 9:33:12
+[  280.398529] [2026:09:29 09:33:16][pid:31573,cpu5,insmod,8][lskg netlink.c:175 netlink_init][insmod:31573][E]Can't create Netlink socket for network activities!
+[  280.398529] [pid:31573,cpu5,insmod,9][lskg lskguard.c:696 init_guard][insmod:31573][E]netlink_init -5
+[  315.594329] [2026:09:29 09:33:51][pid:33838,cpu6,insmod,0][lskg netlink.c:175 netlink_init][insmod:33838][E]Can't create Netlink socket for network activities!
+[  315.594329] [pid:33838,cpu6,insmod,1][lskg lskguard.c:696 init_guard][insmod:33838][E]netlink_init -5
+[  348.773071] [2026:09:29 09:34:24][pid:35476,cpu7,insmod,2][lskg netlink.c:175 netlink_init][insmod:35476][E]Can't create Netlink socket for network activities!
+[  348.773101] [pid:35476,cpu7,insmod,3][lskg lskguard.c:696 init_guard][insmod:35476][E]netlink_init -5
+[  373.063720] [2026:09:29 09:34:48][pid:36532,cpu4,insmod,4][lskg netlink.c:175 netlink_init][insmod:36532][E]Can't create Netlink socket for network activities!
+[  373.063720] [pid:36532,cpu4,insmod,5][lskg lskguard.c:696 init_guard][insmod:36532][E]netlink_init -5
+[  410.248413] [2026:09:29 09:35:26][pid:38233,cpu6,insmod,6][lskg netlink.c:175 netlink_init][insmod:38233][E]Can't create Netlink socket for network activities!
+[  410.248443] [pid:38233,cpu6,insmod,7][lskg lskguard.c:696 init_guard][insmod:38233][E]netlink_init -5
+[  433.417175] [2026:09:29 09:35:49][pid:39577,cpu7,insmod,8][lskg netlink.c:175 netlink_init][insmod:39577][E]Can't create Netlink socket for network activities!
+[  433.417175] [pid:39577,cpu7,insmod,9][lskg lskguard.c:696 init_guard][insmod:39577][E]netlink_init -5
+[  439.672912] [2026:09:29 09:35:55][pid:39811,cpu5,insmod,0][lskg netlink.c:175 netlink_init][insmod:39811][E]Can't create Netlink socket for network activities!
+[  439.672912] [pid:39811,cpu5,insmod,1][lskg lskguard.c:696 init_guard][insmod:39811][E]netlink_init -5
+[  462.856719] [2026:09:29 09:36:18][pid:40876,cpu7,insmod,2][lskg netlink.c:175 netlink_init][insmod:40876][E]Can't create Netlink socket for network activities!
+[  462.856719] [pid:40876,cpu7,insmod,3][lskg lskguard.c:696 init_guard][insmod:40876][E]netlink_init -5
+[  476.094238] [2026:09:29 09:36:31][pid:41460,cpu4,insmod,4][lskg netlink.c:175 netlink_init][insmod:41460][E]Can't create Netlink socket for network activities!
+[  476.094238] [pid:41460,cpu4,insmod,5][lskg lskguard.c:696 init_guard][insmod:41460][E]netlink_init -5
+[  515.347961] [2026:09:29 09:37:11][pid:43221,cpu4,insmod,6][lskg netlink.c:175 netlink_init][insmod:43221][E]Can't create Netlink socket for network activities!
+[  515.347961] [pid:43221,cpu4,insmod,7][lskg lskguard.c:696 init_guard][insmod:43221][E]netlink_init -5
+[  532.951232] [2026:09:29 09:37:28][pid:747,cpu6,update_rtc,8][hisi_soc_rtc_set_time]: 2026-9-29 9:37:28
+[  541.540863] [2026:09:29 09:37:37][pid:44310,cpu7,insmod,9][lskg netlink.c:175 netlink_init][insmod:44310][E]Can't create Netlink socket for network activities!
+[  541.540863] [pid:44310,cpu7,insmod,0][lskg lskguard.c:696 init_guard][insmod:44310][E]netlink_init -5
+[  550.715789] [2026:09:29 09:37:46][pid:44887,cpu7,insmod,1][lskg netlink.c:175 netlink_init][insmod:44887][E]Can't create Netlink socket for network activities!
+[  550.715820] [pid:44887,cpu7,insmod,2][lskg lskguard.c:696 init_guard][insmod:44887][E]netlink_init -5
+[  555.926757] [2026:09:29 09:37:51][pid:45077,cpu5,insmod,3][lskg netlink.c:175 netlink_init][insmod:45077][E]Can't create Netlink socket for network activities!
+[  555.926757] [pid:45077,cpu5,insmod,4][lskg lskguard.c:696 init_guard][insmod:45077][E]netlink_init -5
+[  573.162750] [2026:09:29 09:38:08][pid:45842,cpu4,insmod,5][lskg netlink.c:175 netlink_init][insmod:45842][E]Can't create Netlink socket for network activities!
+[  573.162780] [pid:45842,cpu4,insmod,6][lskg lskguard.c:696 init_guard][insmod:45842][E]netlink_init -5
+[  601.355194] [2026:09:29 09:38:37][pid:47041,cpu7,insmod,7][lskg netlink.c:175 netlink_init][insmod:47041][E]Can't create Netlink socket for network activities!
+[  601.355224] [pid:47041,cpu7,insmod,8][lskg lskguard.c:696 init_guard][insmod:47041][E]netlink_init -5
+[  645.620758] [2026:09:29 09:39:21][pid:49102,cpu5,insmod,9][lskg netlink.c:175 netlink_init][insmod:49102][E]Can't create Netlink socket for network activities!
+[  645.620758] [pid:49102,cpu5,insmod,0][lskg lskguard.c:696 init_guard][insmod:49102][E]netlink_init -5
+[  654.873718] [2026:09:29 09:39:30][pid:49440,cpu4,insmod,1][lskg netlink.c:175 netlink_init][insmod:49440][E]Can't create Netlink socket for network activities!
+[  654.873748] [pid:49440,cpu4,insmod,2][lskg lskguard.c:696 init_guard][insmod:49440][E]netlink_init -5
+[  660.142181] [2026:09:29 09:39:35][pid:49696,cpu5,insmod,3][lskg netlink.c:175 netlink_init][insmod:49696][E]Can't create Netlink socket for network activities!
+[  660.142181] [pid:49696,cpu5,insmod,4][lskg lskguard.c:696 init_guard][insmod:49696][E]netlink_init -5
+[  688.152221] [2026:09:29 09:40:03][pid:213,cpu7,kworker/7:2,5][AOD] vote = 5, cur vote ip = dsssubsys, c_f = 0, ret = 0!
+[  688.152252] [pid:213,cpu7,kworker/7:2,6][AOD] vote = 1, cur vote ip = vivobus, c_f = 0, ret = 0!
+[  688.153015] [pid:213,cpu7,kworker/7:2,7][AOD] vote = 0, cur vote ip = media1_subsys, c_f = 0, ret = 0!
+[  690.331939] [2026:09:29 09:40:06][pid:51137,cpu6,insmod,8][lskg netlink.c:175 netlink_init][insmod:51137][E]Can't create Netlink socket for network activities!
+[  690.331939] [pid:51137,cpu6,insmod,9][lskg lskguard.c:696 init_guard][insmod:51137][E]netlink_init -5
+[  719.505584] [2026:09:29 09:40:35][pid:52199,cpu7,insmod,0][lskg netlink.c:175 netlink_init][insmod:52199][E]Can't create Netlink socket for network activities!
+[  719.505584] [pid:52199,cpu7,insmod,1][lskg lskguard.c:696 init_guard][insmod:52199][E]netlink_init -5
+[  747.696014] [2026:09:29 09:41:03][pid:53603,cpu7,insmod,2][lskg netlink.c:175 netlink_init][insmod:53603][E]Can't create Netlink socket for network activities!
+[  747.696014] [pid:53603,cpu7,insmod,3][lskg lskguard.c:696 init_guard][insmod:53603][E]netlink_init -5
+[  784.863647] [2026:09:29 09:41:40][pid:54924,cpu7,insmod,4][lskg netlink.c:175 netlink_init][insmod:54924][E]Can't create Netlink socket for network activities!
+[  784.863647] [pid:54924,cpu7,insmod,5][lskg lskguard.c:696 init_guard][insmod:54924][E]netlink_init -5
+[  791.036010] [2026:09:29 09:41:46][pid:55175,cpu6,insmod,6][lskg netlink.c:175 netlink_init][insmod:55175][E]Can't create Netlink socket for network activities!
+[  791.036010] [pid:55175,cpu6,insmod,7][lskg lskguard.c:696 init_guard][insmod:55175][E]netlink_init -5
+[  807.199218] [2026:09:29 09:42:03][pid:55928,cpu6,insmod,8][lskg netlink.c:175 netlink_init][insmod:55928][E]Can't create Netlink socket for network activities!
+[  807.199218] [pid:55928,cpu6,insmod,9][lskg lskguard.c:696 init_guard][insmod:55928][E]netlink_init -5
+[  824.371887] [2026:09:29 09:42:20][pid:56546,cpu7,insmod,0][lskg netlink.c:175 netlink_init][insmod:56546][E]Can't create Netlink socket for network activities!
+[  824.371887] [pid:56546,cpu7,insmod,1][lskg lskguard.c:696 init_guard][insmod:56546][E]netlink_init -5
+[  843.684722] [2026:09:29 09:42:39][pid:57213,cpu5,insmod,2][lskg netlink.c:175 netlink_init][insmod:57213][E]Can't create Netlink socket for network activities!
+[  843.684753] [pid:57213,cpu5,insmod,3][lskg lskguard.c:696 init_guard][insmod:57213][E]netlink_init -5
+[  881.864929] [2026:09:29 09:43:17][pid:58806,cpu6,insmod,4][lskg netlink.c:175 netlink_init][insmod:58806][E]Can't create Netlink socket for network activities!
+[  881.864959] [pid:58806,cpu6,insmod,5][lskg lskguard.c:696 init_guard][insmod:58806][E]netlink_init -5
+[  925.063812] [2026:09:29 09:44:00][pid:60287,cpu4,insmod,6][lskg netlink.c:175 netlink_init][insmod:60287][E]Can't create Netlink socket for network activities!
+[  925.063842] [pid:60287,cpu4,insmod,7][lskg lskguard.c:696 init_guard][insmod:60287][E]netlink_init -5
+[  933.260498] [2026:09:29 09:44:09][pid:60841,cpu7,insmod,8][lskg netlink.c:175 netlink_init][insmod:60841][E]Can't create Netlink socket for network activities!
+[  933.260498] [pid:60841,cpu7,insmod,9][lskg lskguard.c:696 init_guard][insmod:60841][E]netlink_init -5
+[  969.480773] [2026:09:29 09:44:45][pid:62099,cpu5,insmod,0][lskg netlink.c:175 netlink_init][insmod:62099][E]Can't create Netlink socket for network activities!
+[  969.480773] [pid:62099,cpu5,insmod,1][lskg lskguard.c:696 init_guard][insmod:62099][E]netlink_init -5
+[  983.659912] [2026:09:29 09:44:59][pid:62616,cpu6,insmod,2][lskg netlink.c:175 netlink_init][insmod:62616][E]Can't create Netlink socket for network activities!
+[  983.659942] [pid:62616,cpu6,insmod,3][lskg lskguard.c:696 init_guard][insmod:62616][E]netlink_init -5
+[ 1005.846557] [2026:09:29 09:45:21][pid:63613,cpu6,insmod,4][lskg netlink.c:175 netlink_init][insmod:63613][E]Can't create Netlink socket for network activities!
+[ 1005.846588] [pid:63613,cpu6,insmod,5][lskg lskguard.c:696 init_guard][insmod:63613][E]netlink_init -5
+[ 1025.027038] [2026:09:29 09:45:40][pid:64283,cpu7,insmod,6][lskg netlink.c:175 netlink_init][insmod:64283][E]Can't create Netlink socket for network activities!
+[ 1025.027038] [pid:64283,cpu7,insmod,7][lskg lskguard.c:696 init_guard][insmod:64283][E]netlink_init -5
+[ 1041.197235] [2026:09:29 09:45:57][pid:64886,cpu7,insmod,8][lskg netlink.c:175 netlink_init][insmod:64886][E]Can't create Netlink socket for network activities!
+[ 1041.197265] [pid:64886,cpu7,insmod,9][lskg lskguard.c:696 init_guard][insmod:64886][E]netlink_init -5
+[ 1045.204620] [2026:09:29 09:46:01][pid:747,cpu7,update_rtc,0][hisi_soc_rtc_set_time]: 2026-9-29 9:46:1
+[ 1078.382537] [2026:09:29 09:46:34][pid:66643,cpu6,insmod,1][lskg netlink.c:175 netlink_init][insmod:66643][E]Can't create Netlink socket for network activities!
+[ 1078.382537] [pid:66643,cpu6,insmod,2][lskg lskguard.c:696 init_guard][insmod:66643][E]netlink_init -5
+[ 1084.553375] [2026:09:29 09:46:40][pid:66834,cpu7,insmod,3][lskg netlink.c:175 netlink_init][insmod:66834][E]Can't create Netlink socket for network activities!
+[ 1084.553375] [pid:66834,cpu7,insmod,4][lskg lskguard.c:696 init_guard][insmod:66834][E]netlink_init -5
+[ 1112.737823] [2026:09:29 09:47:08][pid:67878,cpu7,insmod,5][lskg netlink.c:175 netlink_init][insmod:67878][E]Can't create Netlink socket for network activities!
+[ 1112.737823] [pid:67878,cpu7,insmod,6][lskg lskguard.c:696 init_guard][insmod:67878][E]netlink_init -5
+[ 1152.916076] [2026:09:29 09:47:48][pid:69489,cpu6,insmod,7][lskg netlink.c:175 netlink_init][insmod:69489][E]Can't create Netlink socket for network activities!
+[ 1152.916107] [pid:69489,cpu6,insmod,8][lskg lskguard.c:696 init_guard][insmod:69489][E]netlink_init -5
+[ 1174.188507] [2026:09:29 09:48:09][pid:70251,cpu4,insmod,9][lskg netlink.c:175 netlink_init][insmod:70251][E]Can't create Netlink socket for network activities!
+[ 1174.188507] [pid:70251,cpu4,insmod,0][lskg lskguard.c:696 init_guard][insmod:70251][E]netlink_init -5
+[ 1201.373565] [2026:09:29 09:48:37][pid:71376,cpu7,insmod,1][lskg netlink.c:175 netlink_init][insmod:71376][E]Can't create Netlink socket for network activities!
+[ 1201.373596] [pid:71376,cpu7,insmod,2][lskg lskguard.c:696 init_guard][insmod:71376][E]netlink_init -5
+[ 1207.551696] [2026:09:29 09:48:43][pid:71587,cpu6,insmod,3][lskg netlink.c:175 netlink_init][insmod:71587][E]Can't create Netlink socket for network activities!
+[ 1207.551727] [pid:71587,cpu6,insmod,4][lskg lskguard.c:696 init_guard][insmod:71587][E]netlink_init -5
+[ 1235.721679] [2026:09:29 09:49:11][pid:72655,cpu6,insmod,5][lskg netlink.c:175 netlink_init][insmod:72655][E]Can't create Netlink socket for network activities!
+[ 1235.721710] [pid:72655,cpu6,insmod,6][lskg lskguard.c:696 init_guard][insmod:72655][E]netlink_init -5
+[ 1261.885620] [2026:09:29 09:49:37][pid:73756,cpu6,insmod,7][lskg netlink.c:175 netlink_init][insmod:73756][E]Can't create Netlink socket for network activities!
+[ 1261.885620] [pid:73756,cpu6,insmod,8][lskg lskguard.c:696 init_guard][insmod:73756][E]netlink_init -5
+[ 1267.061187] [2026:09:29 09:49:42][pid:73931,cpu7,insmod,9][lskg netlink.c:175 netlink_init][insmod:73931][E]Can't create Netlink socket for network activities!
+[ 1267.061187] [pid:73931,cpu7,insmod,0][lskg lskguard.c:696 init_guard][insmod:73931][E]netlink_init -5
+[ 1307.230834] [2026:09:29 09:50:23][pid:75414,cpu7,insmod,1][lskg netlink.c:175 netlink_init][insmod:75414][E]Can't create Netlink socket for network activities!
+[ 1307.230834] [pid:75414,cpu7,insmod,2][lskg lskguard.c:696 init_guard][insmod:75414][E]netlink_init -5
+[ 1336.487213] [2026:09:29 09:50:52][pid:76594,cpu5,insmod,3][lskg netlink.c:175 netlink_init][insmod:76594][E]Can't create Netlink socket for network activities!
+[ 1336.487213] [pid:76594,cpu5,insmod,4][lskg lskguard.c:696 init_guard][insmod:76594][E]netlink_init -5
+[ 1344.666076] [2026:09:29 09:51:00][pid:76891,cpu6,insmod,5][lskg netlink.c:175 netlink_init][insmod:76891][E]Can't create Netlink socket for network activities!
+[ 1344.666107] [pid:76891,cpu6,insmod,6][lskg lskguard.c:696 init_guard][insmod:76891][E]netlink_init -5
+[ 1361.934570] [2026:09:29 09:51:17][pid:77571,cpu6,insmod,7][lskg netlink.c:175 netlink_init][insmod:77571][E]Can't create Netlink socket for network activities!
+[ 1361.934570] [pid:77571,cpu6,insmod,8][lskg lskguard.c:696 init_guard][insmod:77571][E]netlink_init -5
+[ 1377.228790] [2026:09:29 09:51:33][pid:78264,cpu6,insmod,9][lskg netlink.c:175 netlink_init][insmod:78264][E]Can't create Netlink socket for network activities!
+[ 1377.228820] [pid:78264,cpu6,insmod,0][lskg lskguard.c:696 init_guard][insmod:78264][E]netlink_init -5
+[ 1394.398651] [2026:09:29 09:51:50][pid:79105,cpu6,insmod,1][lskg netlink.c:175 netlink_init][insmod:79105][E]Can't create Netlink socket for network activities!
+[ 1394.398651] [pid:79105,cpu6,insmod,2][lskg lskguard.c:696 init_guard][insmod:79105][E]netlink_init -5
+[ 1431.578582] [2026:09:29 09:52:27][pid:80447,cpu6,insmod,3][lskg netlink.c:175 netlink_init][insmod:80447][E]Can't create Netlink socket for network activities!
+[ 1431.578613] [pid:80447,cpu6,insmod,4][lskg lskguard.c:696 init_guard][insmod:80447][E]netlink_init -5
+[ 1444.760650] [2026:09:29 09:52:40][pid:81084,cpu7,insmod,5][lskg netlink.c:175 netlink_init][insmod:81084][E]Can't create Netlink socket for network activities!
+[ 1444.760650] [pid:81084,cpu7,insmod,6][lskg lskguard.c:696 init_guard][insmod:81084][E]netlink_init -5
+[ 1474.931060] [2026:09:29 09:53:10][pid:82184,cpu7,insmod,7][lskg netlink.c:175 netlink_init][insmod:82184][E]Can't create Netlink socket for network activities!
+[ 1474.931060] [pid:82184,cpu7,insmod,8][lskg lskguard.c:696 init_guard][insmod:82184][E]netlink_init -5
+[ 1496.105865] [2026:09:29 09:53:31][pid:82989,cpu6,insmod,9][lskg netlink.c:175 netlink_init][insmod:82989][E]Can't create Netlink socket for network activities!
+[ 1496.105865] [pid:82989,cpu6,insmod,0][lskg lskguard.c:696 init_guard][insmod:82989][E]netlink_init -5
+[ 1517.277801] [2026:09:29 09:53:53][pid:83845,cpu6,insmod,1][lskg netlink.c:175 netlink_init][insmod:83845][E]Can't create Netlink socket for network activities!
+[ 1517.277832] [pid:83845,cpu6,insmod,2][lskg lskguard.c:696 init_guard][insmod:83845][E]netlink_init -5
+[ 1559.463012] [2026:09:29 09:54:35][pid:85450,cpu7,insmod,3][lskg netlink.c:175 netlink_init][insmod:85450][E]Can't create Netlink socket for network activities!
+[ 1559.463012] [pid:85450,cpu7,insmod,4][lskg lskguard.c:696 init_guard][insmod:85450][E]netlink_init -5
+[ 1564.638061] [2026:09:29 09:54:40][pid:85639,cpu6,insmod,5][lskg netlink.c:175 netlink_init][insmod:85639][E]Can't create Netlink socket for network activities!
+[ 1564.638061] [pid:85639,cpu6,insmod,6][lskg lskguard.c:696 init_guard][insmod:85639][E]netlink_init -5
+[ 1581.809875] [2026:09:29 09:54:57][pid:86350,cpu7,insmod,7][lskg netlink.c:175 netlink_init][insmod:86350][E]Can't create Netlink socket for network activities!
+[ 1581.809875] [pid:86350,cpu7,insmod,8][lskg lskguard.c:696 init_guard][insmod:86350][E]netlink_init -5
+[ 1623.982360] [2026:09:29 09:55:39][pid:87907,cpu6,insmod,9][lskg netlink.c:175 netlink_init][insmod:87907][E]Can't create Netlink socket for network activities!
+[ 1623.982360] [pid:87907,cpu6,insmod,0][lskg lskguard.c:696 init_guard][insmod:87907][E]netlink_init -5
+[ 1660.259613] [2026:09:29 09:56:16][pid:89386,cpu5,insmod,1][lskg netlink.c:175 netlink_init][insmod:89386][E]Can't create Netlink socket for network activities!
+[ 1660.259643] [pid:89386,cpu5,insmod,2][lskg lskguard.c:696 init_guard][insmod:89386][E]netlink_init -5
+[ 1674.437988] [2026:09:29 09:56:30][pid:89876,cpu7,insmod,3][lskg netlink.c:175 netlink_init][insmod:89876][E]Can't create Netlink socket for network activities!
+[ 1674.437988] [pid:89876,cpu7,insmod,4][lskg lskguard.c:696 init_guard][insmod:89876][E]netlink_init -5
+[ 1699.611877] [2026:09:29 09:56:55][pid:91164,cpu6,insmod,5][lskg netlink.c:175 netlink_init][insmod:91164][E]Can't create Netlink socket for network activities!
+[ 1699.611877] [pid:91164,cpu6,insmod,6][lskg lskguard.c:696 init_guard][insmod:91164][E]netlink_init -5
+[ 1715.789947] [2026:09:29 09:57:11][pid:91786,cpu6,insmod,7][lskg netlink.c:175 netlink_init][insmod:91786][E]Can't create Netlink socket for network activities!
+[ 1715.789947] [pid:91786,cpu6,insmod,8][lskg lskguard.c:696 init_guard][insmod:91786][E]netlink_init -5
+[ 1743.060699] [2026:09:29 09:57:38][pid:92771,cpu4,insmod,9][lskg netlink.c:175 netlink_init][insmod:92771][E]Can't create Netlink socket for network activities!
+[ 1743.060729] [pid:92771,cpu4,insmod,0][lskg lskguard.c:696 init_guard][insmod:92771][E]netlink_init -5
+[ 1778.236602] [2026:09:29 09:58:14][pid:94200,cpu7,insmod,1][lskg netlink.c:175 netlink_init][insmod:94200][E]Can't create Netlink socket for network activities!
+[ 1778.236602] [pid:94200,cpu7,insmod,2][lskg lskguard.c:696 init_guard][insmod:94200][E]netlink_init -5
+[ 1820.404602] [2026:09:29 09:58:56][pid:95688,cpu6,insmod,3][lskg netlink.c:175 netlink_init][insmod:95688][E]Can't create Netlink socket for network activities!
+[ 1820.404602] [pid:95688,cpu6,insmod,4][lskg lskguard.c:696 init_guard][insmod:95688][E]netlink_init -5
+[ 1843.568725] [2026:09:29 09:59:19][pid:96764,cpu6,insmod,5][lskg netlink.c:175 netlink_init][insmod:96764][E]Can't create Netlink socket for network activities!
+[ 1843.568725] [pid:96764,cpu6,insmod,6][lskg lskguard.c:696 init_guard][insmod:96764][E]netlink_init -5
+[ 1856.743011] [2026:09:29 09:59:32][pid:97248,cpu7,insmod,7][lskg netlink.c:175 netlink_init][insmod:97248][E]Can't create Netlink socket for network activities!
+[ 1856.743011] [pid:97248,cpu7,insmod,8][lskg lskguard.c:696 init_guard][insmod:97248][E]netlink_init -5
+[ 1884.999694] [2026:09:29 10:00:00][pid:98213,cpu5,insmod,9][lskg netlink.c:175 netlink_init][insmod:98213][E]Can't create Netlink socket for network activities!
+[ 1884.999694] [pid:98213,cpu5,insmod,0][lskg lskguard.c:696 init_guard][insmod:98213][E]netlink_init -5
+[ 1927.272277] [2026:09:29 10:00:43][pid:101296,cpu4,insmod,1][lskg netlink.c:175 netlink_init][insmod:101296][E]Can't create Netlink socket for network activities!
+[ 1927.272277] [pid:101296,cpu4,insmod,2][lskg lskguard.c:696 init_guard][insmod:101296][E]netlink_init -5
+[ 1958.470001] [2026:09:29 10:01:14][pid:102778,cpu7,insmod,3][lskg netlink.c:175 netlink_init][insmod:102778][E]Can't create Netlink socket for network activities!
+[ 1958.470001] [pid:102778,cpu7,insmod,4][lskg lskguard.c:696 init_guard][insmod:102778][E]netlink_init -5
+[ 1974.639556] [2026:09:29 10:01:30][pid:103453,cpu6,insmod,5][lskg netlink.c:175 netlink_init][insmod:103453][E]Can't create Netlink socket for network activities!
+[ 1974.639556] [pid:103453,cpu6,insmod,6][lskg lskguard.c:696 init_guard][insmod:103453][E]netlink_init -5
+[ 1988.878173] [2026:09:29 10:01:44][pid:104057,cpu4,insmod,7][lskg netlink.c:175 netlink_init][insmod:104057][E]Can't create Netlink socket for network activities!
+[ 1988.878204] [pid:104057,cpu4,insmod,8][lskg lskguard.c:696 init_guard][insmod:104057][E]netlink_init -5
+[ 2005.127807] [2026:09:29 10:02:00][pid:104733,cpu5,insmod,9][lskg netlink.c:175 netlink_init][insmod:104733][E]Can't create Netlink socket for network activities!
+[ 2005.127838] [pid:104733,cpu5,insmod,0][lskg lskguard.c:696 init_guard][insmod:104733][E]netlink_init -5
+[ 2018.349639] [2026:09:29 10:02:14][pid:105488,cpu5,insmod,1][lskg netlink.c:175 netlink_init][insmod:105488][E]Can't create Netlink socket for network activities!
+[ 2018.349670] [pid:105488,cpu5,insmod,2][lskg lskguard.c:696 init_guard][insmod:105488][E]netlink_init -5
+[ 2028.549438] [2026:09:29 10:02:24][pid:106160,cpu7,insmod,3][lskg netlink.c:175 netlink_init][insmod:106160][E]Can't create Netlink socket for network activities!
+[ 2028.549438] [pid:106160,cpu7,insmod,4][lskg lskguard.c:696 init_guard][insmod:106160][E]netlink_init -5
+[ 2057.715850] [2026:09:29 10:02:53][pid:107371,cpu7,insmod,5][lskg netlink.c:175 netlink_init][insmod:107371][E]Can't create Netlink socket for network activities!
+[ 2057.715850] [pid:107371,cpu7,insmod,6][lskg lskguard.c:696 init_guard][insmod:107371][E]netlink_init -5
+[ 2088.989532] [2026:09:29 10:03:24][pid:108866,cpu5,insmod,7][lskg netlink.c:175 netlink_init][insmod:108866][E]Can't create Netlink socket for network activities!
+[ 2088.989532] [pid:108866,cpu5,insmod,8][lskg lskguard.c:696 init_guard][insmod:108866][E]netlink_init -5
+[ 2110.274749] [2026:09:29 10:03:46][pid:109739,cpu5,insmod,9][lskg netlink.c:175 netlink_init][insmod:109739][E]Can't create Netlink socket for network activities!
+[ 2110.274780] [pid:109739,cpu5,insmod,0][lskg lskguard.c:696 init_guard][insmod:109739][E]netlink_init -5
+[ 2125.463195] [2026:09:29 10:04:01][pid:110461,cpu6,insmod,1][lskg netlink.c:175 netlink_init][insmod:110461][E]Can't create Netlink socket for network activities!
+[ 2125.463226] [pid:110461,cpu6,insmod,2][lskg lskguard.c:696 init_guard][insmod:110461][E]netlink_init -5
+[ 2168.634765] [2026:09:29 10:04:44][pid:112392,cpu6,insmod,3][lskg netlink.c:175 netlink_init][insmod:112392][E]Can't create Netlink socket for network activities!
+[ 2168.634765] [pid:112392,cpu6,insmod,4][lskg lskguard.c:696 init_guard][insmod:112392][E]netlink_init -5
+[ 2174.821899] [2026:09:29 10:04:50][pid:112687,cpu7,insmod,5][lskg netlink.c:175 netlink_init][insmod:112687][E]Can't create Netlink socket for network activities!
+[ 2174.821899] [pid:112687,cpu7,insmod,6][lskg lskguard.c:696 init_guard][insmod:112687][E]netlink_init -5
+[ 2191.041442] [2026:09:29 10:05:06][pid:113382,cpu5,insmod,7][lskg netlink.c:175 netlink_init][insmod:113382][E]Can't create Netlink socket for network activities!
+[ 2191.041473] [pid:113382,cpu5,insmod,8][lskg lskguard.c:696 init_guard][insmod:113382][E]netlink_init -5
+[ 2197.270843] [2026:09:29 10:05:13][pid:113643,cpu5,insmod,9][lskg netlink.c:175 netlink_init][insmod:113643][E]Can't create Netlink socket for network activities!
+[ 2197.270843] [pid:113643,cpu5,insmod,0][lskg lskguard.c:696 init_guard][insmod:113643][E]netlink_init -5
+[ 2216.453643] [2026:09:29 10:05:32][pid:114617,cpu7,insmod,1][lskg netlink.c:175 netlink_init][insmod:114617][E]Can't create Netlink socket for network activities!
+[ 2216.453643] [pid:114617,cpu7,insmod,2][lskg lskguard.c:696 init_guard][insmod:114617][E]netlink_init -5
+[ 2252.631195] [2026:09:29 10:06:08][pid:116136,cpu7,insmod,3][lskg netlink.c:175 netlink_init][insmod:116136][E]Can't create Netlink socket for network activities!
+[ 2252.631195] [pid:116136,cpu7,insmod,4][lskg lskguard.c:696 init_guard][insmod:116136][E]netlink_init -5
+[ 2276.810974] [2026:09:29 10:06:32][pid:117327,cpu6,insmod,5][lskg netlink.c:175 netlink_init][insmod:117327][E]Can't create Netlink socket for network activities!
+[ 2276.810974] [pid:117327,cpu6,insmod,6][lskg lskguard.c:696 init_guard][insmod:117327][E]netlink_init -5
+[ 2290.997222] [2026:09:29 10:06:46][pid:117946,cpu7,insmod,7][lskg netlink.c:175 netlink_init][insmod:117946][E]Can't create Netlink socket for network activities!
+[ 2290.997222] [pid:117946,cpu7,insmod,8][lskg lskguard.c:696 init_guard][insmod:117946][E]netlink_init -5
+[ 2305.265838] [2026:09:29 10:07:01][pid:118509,cpu4,insmod,9][lskg netlink.c:175 netlink_init][insmod:118509][E]Can't create Netlink socket for network activities!
+[ 2305.265838] [pid:118509,cpu4,insmod,0][lskg lskguard.c:696 init_guard][insmod:118509][E]netlink_init -5
+[ 2322.547271] [2026:09:29 10:07:18][pid:119304,cpu4,insmod,1][lskg netlink.c:175 netlink_init][insmod:119304][E]Can't create Netlink socket for network activities!
+[ 2322.547302] [pid:119304,cpu4,insmod,2][lskg lskguard.c:696 init_guard][insmod:119304][E]netlink_init -5
+[ 2327.850006] [2026:09:29 10:07:23][pid:119512,cpu6,insmod,3][lskg netlink.c:175 netlink_init][insmod:119512][E]Can't create Netlink socket for network activities!
+[ 2327.850006] [pid:119512,cpu6,insmod,4][lskg lskguard.c:696 init_guard][insmod:119512][E]netlink_init -5
+[ 2369.124908] [2026:09:29 10:08:04][pid:121641,cpu4,insmod,5][lskg netlink.c:175 netlink_init][insmod:121641][E]Can't create Netlink socket for network activities!
+[ 2369.124908] [pid:121641,cpu4,insmod,6][lskg lskguard.c:696 init_guard][insmod:121641][E]netlink_init -5
+[ 2393.413757] [2026:09:29 10:08:29][pid:122626,cpu4,insmod,7][lskg netlink.c:175 netlink_init][insmod:122626][E]Can't create Netlink socket for network activities!
+[ 2393.413757] [pid:122626,cpu4,insmod,8][lskg lskguard.c:696 init_guard][insmod:122626][E]netlink_init -5
+[ 2411.598754] [2026:09:29 10:08:47][pid:123576,cpu7,insmod,9][lskg netlink.c:175 netlink_init][insmod:123576][E]Can't create Netlink socket for network activities!
+[ 2411.598785] [pid:123576,cpu7,insmod,0][lskg lskguard.c:696 init_guard][insmod:123576][E]netlink_init -5
+[ 2433.954467] [2026:09:29 10:09:09][pid:124571,cpu5,insmod,1][lskg netlink.c:175 netlink_init][insmod:124571][E]Can't create Netlink socket for network activities!
+[ 2433.954467] [pid:124571,cpu5,insmod,2][lskg lskguard.c:696 init_guard][insmod:124571][E]netlink_init -5
+[ 2451.242126] [2026:09:29 10:09:27][pid:125287,cpu5,insmod,3][lskg netlink.c:175 netlink_init][insmod:125287][E]Can't create Netlink socket for network activities!
+[ 2451.242156] [pid:125287,cpu5,insmod,4][lskg lskguard.c:696 init_guard][insmod:125287][E]netlink_init -5
+[ 2491.475494] [2026:09:29 10:10:07][pid:127168,cpu5,insmod,5][lskg netlink.c:175 netlink_init][insmod:127168][E]Can't create Netlink socket for network activities!
+[ 2491.475524] [pid:127168,cpu5,insmod,6][lskg lskguard.c:696 init_guard][insmod:127168][E]netlink_init -5
+[ 2520.709838] [2026:09:29 10:10:36][pid:128366,cpu7,insmod,7][lskg netlink.c:175 netlink_init][insmod:128366][E]Can't create Netlink socket for network activities!
+[ 2520.709838] [pid:128366,cpu7,insmod,8][lskg lskguard.c:696 init_guard][insmod:128366][E]netlink_init -5
+[ 2540.888000] [2026:09:29 10:10:56][pid:129338,cpu6,insmod,9][lskg netlink.c:175 netlink_init][insmod:129338][E]Can't create Netlink socket for network activities!
+[ 2540.888000] [pid:129338,cpu6,insmod,0][lskg lskguard.c:696 init_guard][insmod:129338][E]netlink_init -5
+[ 2573.166564] [2026:09:29 10:11:28][pid:130728,cpu5,insmod,1][lskg netlink.c:175 netlink_init][insmod:130728][E]Can't create Netlink socket for network activities!
+[ 2573.166595] [pid:130728,cpu5,insmod,2][lskg lskguard.c:696 init_guard][insmod:130728][E]netlink_init -5
+[ 2611.337982] [2026:09:29 10:12:07][pid:132522,cpu6,insmod,3][lskg netlink.c:175 netlink_init][insmod:132522][E]Can't create Netlink socket for network activities!
+[ 2611.337982] [pid:132522,cpu6,insmod,4][lskg lskguard.c:696 init_guard][insmod:132522][E]netlink_init -5
+[ 2649.588500] [2026:09:29 10:12:45][pid:134081,cpu4,insmod,5][lskg netlink.c:175 netlink_init][insmod:134081][E]Can't create Netlink socket for network activities!
+[ 2649.588500] [pid:134081,cpu4,insmod,6][lskg lskguard.c:696 init_guard][insmod:134081][E]netlink_init -5
+[ 2676.766418] [2026:09:29 10:13:12][pid:135650,cpu6,insmod,7][lskg netlink.c:175 netlink_init][insmod:135650][E]Can't create Netlink socket for network activities!
+[ 2676.766448] [pid:135650,cpu6,insmod,8][lskg lskguard.c:696 init_guard][insmod:135650][E]netlink_init -5
+[ 2700.949218] [2026:09:29 10:13:36][pid:136648,cpu6,insmod,9][lskg netlink.c:175 netlink_init][insmod:136648][E]Can't create Netlink socket for network activities!
+[ 2700.949218] [pid:136648,cpu6,insmod,0][lskg lskguard.c:696 init_guard][insmod:136648][E]netlink_init -5
+[ 2744.324584] [2026:09:29 10:14:20][pid:138695,cpu5,insmod,1][lskg netlink.c:175 netlink_init][insmod:138695][E]Can't create Netlink socket for network activities!
+[ 2744.324584] [pid:138695,cpu5,insmod,2][lskg lskguard.c:696 init_guard][insmod:138695][E]netlink_init -5
+[ 2760.518676] [2026:09:29 10:14:36][pid:139379,cpu7,insmod,3][lskg netlink.c:175 netlink_init][insmod:139379][E]Can't create Netlink socket for network activities!
+[ 2760.518676] [pid:139379,cpu7,insmod,4][lskg lskguard.c:696 init_guard][insmod:139379][E]netlink_init -5
+[ 2797.693939] [2026:09:29 10:15:13][pid:141061,cpu6,insmod,5][lskg netlink.c:175 netlink_init][insmod:141061][E]Can't create Netlink socket for network activities!
+[ 2797.693939] [pid:141061,cpu6,insmod,6][lskg lskguard.c:696 init_guard][insmod:141061][E]netlink_init -5
+[ 2811.981109] [2026:09:29 10:15:27][pid:141674,cpu5,insmod,7][lskg netlink.c:175 netlink_init][insmod:141674][E]Can't create Netlink socket for network activities!
+[ 2811.981140] [pid:141674,cpu5,insmod,8][lskg lskguard.c:696 init_guard][insmod:141674][E]netlink_init -5
+[ 2823.166564] [2026:09:29 10:15:38][pid:142162,cpu7,insmod,9][lskg netlink.c:175 netlink_init][insmod:142162][E]Can't create Netlink socket for network activities!
+[ 2823.166564] [pid:142162,cpu7,insmod,0][lskg lskguard.c:696 init_guard][insmod:142162][E]netlink_init -5
+[ 2837.940673] [2026:09:29 10:15:53][pid:747,cpu7,update_rtc,1][hisi_soc_rtc_set_time]: 2026-9-29 10:15:53
+[ 2843.355438] [2026:09:29 10:15:59][pid:142995,cpu7,insmod,2][lskg netlink.c:175 netlink_init][insmod:142995][E]Can't create Netlink socket for network activities!
+[ 2843.355438] [pid:142995,cpu7,insmod,3][lskg lskguard.c:696 init_guard][insmod:142995][E]netlink_init -5
+[ 2871.548339] [2026:09:29 10:16:27][pid:144390,cpu6,insmod,4][lskg netlink.c:175 netlink_init][insmod:144390][E]Can't create Netlink socket for network activities!
+[ 2871.548370] [pid:144390,cpu6,insmod,5][lskg lskguard.c:696 init_guard][insmod:144390][E]netlink_init -5
+[ 2892.730010] [2026:09:29 10:16:48][pid:145298,cpu6,insmod,6][lskg netlink.c:175 netlink_init][insmod:145298][E]Can't create Netlink socket for network activities!
+[ 2892.730010] [pid:145298,cpu6,insmod,7][lskg lskguard.c:696 init_guard][insmod:145298][E]netlink_init -5
+[ 2928.015502] [2026:09:29 10:17:23][pid:146921,cpu5,insmod,8][lskg netlink.c:175 netlink_init][insmod:146921][E]Can't create Netlink socket for network activities!
+[ 2928.015502] [pid:146921,cpu5,insmod,9][lskg lskguard.c:696 init_guard][insmod:146921][E]netlink_init -5
+[ 2971.233367] [2026:09:29 10:18:07][pid:148780,cpu7,insmod,0][lskg netlink.c:175 netlink_init][insmod:148780][E]Can't create Netlink socket for network activities!
+[ 2971.233398] [pid:148780,cpu7,insmod,1][lskg lskguard.c:696 init_guard][insmod:148780][E]netlink_init -5
+[ 3005.413787] [2026:09:29 10:18:41][pid:150556,cpu6,insmod,2][lskg netlink.c:175 netlink_init][insmod:150556][E]Can't create Netlink socket for network activities!
+[ 3005.413787] [pid:150556,cpu6,insmod,3][lskg lskguard.c:696 init_guard][insmod:150556][E]netlink_init -5
+[ 3026.596099] [2026:09:29 10:19:02][pid:151487,cpu6,insmod,4][lskg netlink.c:175 netlink_init][insmod:151487][E]Can't create Netlink socket for network activities!
+[ 3026.596099] [pid:151487,cpu6,insmod,5][lskg lskguard.c:696 init_guard][insmod:151487][E]netlink_init -5
+[ 3032.767883] [2026:09:29 10:19:08][pid:151775,cpu7,insmod,6][lskg netlink.c:175 netlink_init][insmod:151775][E]Can't create Netlink socket for network activities!
+[ 3032.767883] [pid:151775,cpu7,insmod,7][lskg lskguard.c:696 init_guard][insmod:151775][E]netlink_init -5
+[ 3064.029541] [2026:09:29 10:19:39][pid:153202,cpu4,insmod,8][lskg netlink.c:175 netlink_init][insmod:153202][E]Can't create Netlink socket for network activities!
+[ 3064.029541] [pid:153202,cpu4,insmod,9][lskg lskguard.c:696 init_guard][insmod:153202][E]netlink_init -5
+[ 3086.259277] [2026:09:29 10:20:02][pid:154171,cpu5,insmod,0][lskg netlink.c:175 netlink_init][insmod:154171][E]Can't create Netlink socket for network activities!
+[ 3086.259277] [pid:154171,cpu5,insmod,1][lskg lskguard.c:696 init_guard][insmod:154171][E]netlink_init -5
+[ 3094.264709] [2026:09:29 10:20:10][pid:747,cpu6,update_rtc,2][hisi_soc_rtc_set_time]: 2026-9-29 10:20:10
+[ 3119.420379] [2026:09:29 10:20:35][pid:155738,cpu7,insmod,3][lskg netlink.c:175 netlink_init][insmod:155738][E]Can't create Netlink socket for network activities!
+[ 3119.420379] [pid:155738,cpu7,insmod,4][lskg lskguard.c:696 init_guard][insmod:155738][E]netlink_init -5
+[ 3143.594085] [2026:09:29 10:20:59][pid:156710,cpu5,insmod,5][lskg netlink.c:175 netlink_init][insmod:156710][E]Can't create Netlink socket for network activities!
+[ 3143.594116] [pid:156710,cpu5,insmod,6][lskg lskguard.c:696 init_guard][insmod:156710][E]netlink_init -5
+[ 3162.791595] [2026:09:29 10:21:18][pid:157603,cpu6,insmod,7][lskg netlink.c:175 netlink_init][insmod:157603][E]Can't create Netlink socket for network activities!
+[ 3162.791625] [pid:157603,cpu6,insmod,8][lskg lskguard.c:696 init_guard][insmod:157603][E]netlink_init -5
+[ 3180.961364] [2026:09:29 10:21:36][pid:158515,cpu6,insmod,9][lskg netlink.c:175 netlink_init][insmod:158515][E]Can't create Netlink socket for network activities!
+[ 3180.961395] [pid:158515,cpu6,insmod,0][lskg lskguard.c:696 init_guard][insmod:158515][E]netlink_init -5
+[ 3200.225646] [2026:09:29 10:21:55][pid:159292,cpu4,insmod,1][lskg netlink.c:175 netlink_init][insmod:159292][E]Can't create Netlink socket for network activities!
+[ 3200.225677] [pid:159292,cpu4,insmod,2][lskg lskguard.c:696 init_guard][insmod:159292][E]netlink_init -5
+[ 3241.499359] [2026:09:29 10:22:37][pid:161219,cpu5,insmod,3][lskg netlink.c:175 netlink_init][insmod:161219][E]Can't create Netlink socket for network activities!
+[ 3241.499359] [pid:161219,cpu5,insmod,4][lskg lskguard.c:696 init_guard][insmod:161219][E]netlink_init -5
+[ 3280.697723] [2026:09:29 10:23:16][pid:162897,cpu6,insmod,5][lskg netlink.c:175 netlink_init][insmod:162897][E]Can't create Netlink socket for network activities!
+[ 3280.697753] [pid:162897,cpu6,insmod,6][lskg lskguard.c:696 init_guard][insmod:162897][E]netlink_init -5
+[ 3319.890502] [2026:09:29 10:23:55][pid:164881,cpu7,insmod,7][lskg netlink.c:175 netlink_init][insmod:164881][E]Can't create Netlink socket for network activities!
+[ 3319.890502] [pid:164881,cpu7,insmod,8][lskg lskguard.c:696 init_guard][insmod:164881][E]netlink_init -5
+[ 3360.077789] [2026:09:29 10:24:35][pid:166649,cpu6,insmod,9][lskg netlink.c:175 netlink_init][insmod:166649][E]Can't create Netlink socket for network activities!
+[ 3360.077819] [pid:166649,cpu6,insmod,0][lskg lskguard.c:696 init_guard][insmod:166649][E]netlink_init -5
+[ 3390.263366] [2026:09:29 10:25:06][pid:168063,cpu6,insmod,1][lskg netlink.c:175 netlink_init][insmod:168063][E]Can't create Netlink socket for network activities!
+[ 3390.263397] [pid:168063,cpu6,insmod,2][lskg lskguard.c:696 init_guard][insmod:168063][E]netlink_init -5
+[ 3406.436767] [2026:09:29 10:25:22][pid:168768,cpu7,insmod,3][lskg netlink.c:175 netlink_init][insmod:168768][E]Can't create Netlink socket for network activities!
+[ 3406.436767] [pid:168768,cpu7,insmod,4][lskg lskguard.c:696 init_guard][insmod:168768][E]netlink_init -5
+[ 3423.601287] [2026:09:29 10:25:39][pid:169469,cpu7,insmod,5][lskg netlink.c:175 netlink_init][insmod:169469][E]Can't create Netlink socket for network activities!
+[ 3423.601287] [pid:169469,cpu7,insmod,6][lskg lskguard.c:696 init_guard][insmod:169469][E]netlink_init -5
+[ 3467.784790] [2026:09:29 10:26:23][pid:171459,cpu7,insmod,7][lskg netlink.c:175 netlink_init][insmod:171459][E]Can't create Netlink socket for network activities!
+[ 3467.784790] [pid:171459,cpu7,insmod,8][lskg lskguard.c:696 init_guard][insmod:171459][E]netlink_init -5
+[ 3476.958435] [2026:09:29 10:26:32][pid:171881,cpu7,insmod,9][lskg netlink.c:175 netlink_init][insmod:171881][E]Can't create Netlink socket for network activities!
+[ 3476.958465] [pid:171881,cpu7,insmod,0][lskg lskguard.c:696 init_guard][insmod:171881][E]netlink_init -5
+[ 3489.203918] [2026:09:29 10:26:44][pid:172376,cpu5,insmod,1][lskg netlink.c:175 netlink_init][insmod:172376][E]Can't create Netlink socket for network activities!
+[ 3489.203918] [pid:172376,cpu5,insmod,2][lskg lskguard.c:696 init_guard][insmod:172376][E]netlink_init -5
+[ 3531.412506] [2026:09:29 10:27:27][pid:174326,cpu6,insmod,3][lskg netlink.c:175 netlink_init][insmod:174326][E]Can't create Netlink socket for network activities!
+[ 3531.412536] [pid:174326,cpu6,insmod,4][lskg lskguard.c:696 init_guard][insmod:174326][E]netlink_init -5
+[ 3542.575592] [2026:09:29 10:27:38][pid:174805,cpu7,insmod,5][lskg netlink.c:175 netlink_init][insmod:174805][E]Can't create Netlink socket for network activities!
+[ 3542.575592] [pid:174805,cpu7,insmod,6][lskg lskguard.c:696 init_guard][insmod:174805][E]netlink_init -5
+[ 3578.855712] [2026:09:29 10:28:14][pid:176456,cpu4,insmod,7][lskg netlink.c:175 netlink_init][insmod:176456][E]Can't create Netlink socket for network activities!
+[ 3578.855743] [pid:176456,cpu4,insmod,8][lskg lskguard.c:696 init_guard][insmod:176456][E]netlink_init -5
+[ 3594.129180] [2026:09:29 10:28:29][pid:177117,cpu4,insmod,9][lskg netlink.c:175 netlink_init][insmod:177117][E]Can't create Netlink socket for network activities!
+[ 3594.129211] [pid:177117,cpu4,insmod,0][lskg lskguard.c:696 init_guard][insmod:177117][E]netlink_init -5
+[ 3601.382812] [2026:09:29 10:28:37][pid:177444,cpu4,insmod,1][lskg netlink.c:175 netlink_init][insmod:177444][E]Can't create Netlink socket for network activities!
+[ 3601.382812] [pid:177444,cpu4,insmod,2][lskg lskguard.c:696 init_guard][insmod:177444][E]netlink_init -5
+[ 3606.536163] [2026:09:29 10:28:42][pid:747,cpu6,update_rtc,3][hisi_soc_rtc_set_time]: 2026-9-29 10:28:42
+[ 3633.615570] [2026:09:29 10:29:09][pid:179219,cpu7,insmod,4][lskg netlink.c:175 netlink_init][insmod:179219][E]Can't create Netlink socket for network activities!
+[ 3633.615570] [pid:179219,cpu7,insmod,5][lskg lskguard.c:696 init_guard][insmod:179219][E]netlink_init -5
+[ 3659.776000] [2026:09:29 10:29:35][pid:180369,cpu6,insmod,6][lskg netlink.c:175 netlink_init][insmod:180369][E]Can't create Netlink socket for network activities!
+[ 3659.776000] [pid:180369,cpu6,insmod,7][lskg lskguard.c:696 init_guard][insmod:180369][E]netlink_init -5
+[ 3689.956512] [2026:09:29 10:30:05][pid:181762,cpu7,insmod,8][lskg netlink.c:175 netlink_init][insmod:181762][E]Can't create Netlink socket for network activities!
+[ 3689.956512] [pid:181762,cpu7,insmod,9][lskg lskguard.c:696 init_guard][insmod:181762][E]netlink_init -5
+[ 3723.882354] [2026:09:29 10:30:39][pid:0,cpu7,swapper/7,0]ufshcd f8200000.ufs: Haven't got Idle interrupt over 3600 seconds
+[ 3728.127777] [2026:09:29 10:30:43][pid:183416,cpu6,insmod,1][lskg netlink.c:175 netlink_init][insmod:183416][E]Can't create Netlink socket for network activities!
+[ 3728.127777] [pid:183416,cpu6,insmod,2][lskg lskguard.c:696 init_guard][insmod:183416][E]netlink_init -5
+[ 3744.293792] [2026:09:29 10:31:00][pid:184160,cpu7,insmod,3][lskg netlink.c:175 netlink_init][insmod:184160][E]Can't create Netlink socket for network activities!
+[ 3744.293823] [pid:184160,cpu7,insmod,4][lskg lskguard.c:696 init_guard][insmod:184160][E]netlink_init -5
+[ 3767.466094] [2026:09:29 10:31:23][pid:185334,cpu6,insmod,5][lskg netlink.c:175 netlink_init][insmod:185334][E]Can't create Netlink socket for network activities!
+[ 3767.466094] [pid:185334,cpu6,insmod,6][lskg lskguard.c:696 init_guard][insmod:185334][E]netlink_init -5
+[ 3789.679046] [2026:09:29 10:31:45][pid:186789,cpu6,insmod,7][lskg netlink.c:175 netlink_init][insmod:186789][E]Can't create Netlink socket for network activities!
+[ 3789.679046] [pid:186789,cpu6,insmod,8][lskg lskguard.c:696 init_guard][insmod:186789][E]netlink_init -5
+[ 3816.877838] [2026:09:29 10:32:12][pid:188846,cpu6,insmod,9][lskg netlink.c:175 netlink_init][insmod:188846][E]Can't create Netlink socket for network activities!
+[ 3816.877838] [pid:188846,cpu6,insmod,0][lskg lskguard.c:696 init_guard][insmod:188846][E]netlink_init -5
+[ 3837.152832] [2026:09:29 10:32:32][pid:189930,cpu4,insmod,1][lskg netlink.c:175 netlink_init][insmod:189930][E]Can't create Netlink socket for network activities!
+[ 3837.152832] [pid:189930,cpu4,insmod,2][lskg lskguard.c:696 init_guard][insmod:189930][E]netlink_init -5
+[ 3851.351104] [2026:09:29 10:32:47][pid:190559,cpu6,insmod,3][lskg netlink.c:175 netlink_init][insmod:190559][E]Can't create Netlink socket for network activities!
+[ 3851.351104] [pid:190559,cpu6,insmod,4][lskg lskguard.c:696 init_guard][insmod:190559][E]netlink_init -5
+[ 3876.631958] [2026:09:29 10:33:12][pid:191756,cpu6,insmod,5][lskg netlink.c:175 netlink_init][insmod:191756][E]Can't create Netlink socket for network activities!
+[ 3876.631988] [pid:191756,cpu6,insmod,6][lskg lskguard.c:696 init_guard][insmod:191756][E]netlink_init -5
+[ 3903.807434] [2026:09:29 10:33:39][pid:192887,cpu7,insmod,7][lskg netlink.c:175 netlink_init][insmod:192887][E]Can't create Netlink socket for network activities!
+[ 3903.807434] [pid:192887,cpu7,insmod,8][lskg lskguard.c:696 init_guard][insmod:192887][E]netlink_init -5
+[ 3936.982818] [2026:09:29 10:34:12][pid:194310,cpu6,insmod,9][lskg netlink.c:175 netlink_init][insmod:194310][E]Can't create Netlink socket for network activities!
+[ 3936.982818] [pid:194310,cpu6,insmod,0][lskg lskguard.c:696 init_guard][insmod:194310][E]netlink_init -5
+[ 3969.258453] [2026:09:29 10:34:44][pid:196029,cpu4,insmod,1][lskg netlink.c:175 netlink_init][insmod:196029][E]Can't create Netlink socket for network activities!
+[ 3969.258453] [pid:196029,cpu4,insmod,2][lskg lskguard.c:696 init_guard][insmod:196029][E]netlink_init -5
+[ 4005.447082] [2026:09:29 10:35:21][pid:197764,cpu7,insmod,3][lskg netlink.c:175 netlink_init][insmod:197764][E]Can't create Netlink socket for network activities!
+[ 4005.447082] [pid:197764,cpu7,insmod,4][lskg lskguard.c:696 init_guard][insmod:197764][E]netlink_init -5
+[ 4015.614929] [2026:09:29 10:35:31][pid:198226,cpu7,insmod,5][lskg netlink.c:175 netlink_init][insmod:198226][E]Can't create Netlink socket for network activities!
+[ 4015.614929] [pid:198226,cpu7,insmod,6][lskg lskguard.c:696 init_guard][insmod:198226][E]netlink_init -5
+[ 4029.819915] [2026:09:29 10:35:45][pid:198725,cpu4,insmod,7][lskg netlink.c:175 netlink_init][insmod:198725][E]Can't create Netlink socket for network activities!
+[ 4029.819915] [pid:198725,cpu4,insmod,8][lskg lskguard.c:696 init_guard][insmod:198725][E]netlink_init -5
+[ 4044.995605] [2026:09:29 10:36:00][pid:199371,cpu7,insmod,9][lskg netlink.c:175 netlink_init][insmod:199371][E]Can't create Netlink socket for network activities!
+[ 4044.995605] [pid:199371,cpu7,insmod,0][lskg lskguard.c:696 init_guard][insmod:199371][E]netlink_init -5
+[ 4088.218597] [2026:09:29 10:36:43][pid:201382,cpu4,insmod,1][lskg netlink.c:175 netlink_init][insmod:201382][E]Can't create Netlink socket for network activities!
+[ 4088.218597] [pid:201382,cpu4,insmod,2][lskg lskguard.c:696 init_guard][insmod:201382][E]netlink_init -5
+[ 4115.410125] [2026:09:29 10:37:11][pid:202565,cpu7,insmod,3][lskg netlink.c:175 netlink_init][insmod:202565][E]Can't create Netlink socket for network activities!
+[ 4115.410125] [pid:202565,cpu7,insmod,4][lskg lskguard.c:696 init_guard][insmod:202565][E]netlink_init -5
+[ 4154.594024] [2026:09:29 10:37:50][pid:204366,cpu7,insmod,5][lskg netlink.c:175 netlink_init][insmod:204366][E]Can't create Netlink socket for network activities!
+[ 4154.594024] [pid:204366,cpu7,insmod,6][lskg lskguard.c:696 init_guard][insmod:204366][E]netlink_init -5
+[ 4166.795288] [2026:09:29 10:38:02][pid:204899,cpu6,insmod,7][lskg netlink.c:175 netlink_init][insmod:204899][E]Can't create Netlink socket for network activities!
+[ 4166.795288] [pid:204899,cpu6,insmod,8][lskg lskguard.c:696 init_guard][insmod:204899][E]netlink_init -5
+[ 4205.057739] [2026:09:29 10:38:40][pid:206605,cpu5,insmod,9][lskg netlink.c:175 netlink_init][insmod:206605][E]Can't create Netlink socket for network activities!
+[ 4205.057739] [pid:206605,cpu5,insmod,0][lskg lskguard.c:696 init_guard][insmod:206605][E]netlink_init -5
+[ 4218.242095] [2026:09:29 10:38:53][pid:207186,cpu6,insmod,1][lskg netlink.c:175 netlink_init][insmod:207186][E]Can't create Netlink socket for network activities!
+[ 4218.242126] [pid:207186,cpu6,insmod,2][lskg lskguard.c:696 init_guard][insmod:207186][E]netlink_init -5
+[ 4256.467559] [2026:09:29 10:39:32][pid:208870,cpu4,insmod,3][lskg netlink.c:175 netlink_init][insmod:208870][E]Can't create Netlink socket for network activities!
+[ 4256.467559] [pid:208870,cpu4,insmod,4][lskg lskguard.c:696 init_guard][insmod:208870][E]netlink_init -5
+[ 4271.648193] [2026:09:29 10:39:47][pid:209861,cpu7,insmod,5][lskg netlink.c:175 netlink_init][insmod:209861][E]Can't create Netlink socket for network activities!
+[ 4271.648193] [pid:209861,cpu7,insmod,6][lskg lskguard.c:696 init_guard][insmod:209861][E]netlink_init -5
+[ 4276.873931] [2026:09:29 10:39:52][pid:210044,cpu5,insmod,7][lskg netlink.c:175 netlink_init][insmod:210044][E]Can't create Netlink socket for network activities!
+[ 4276.873931] [pid:210044,cpu5,insmod,8][lskg lskguard.c:696 init_guard][insmod:210044][E]netlink_init -5
+[ 4317.098815] [2026:09:29 10:40:32][pid:211799,cpu4,insmod,9][lskg netlink.c:175 netlink_init][insmod:211799][E]Can't create Netlink socket for network activities!
+[ 4317.098846] [pid:211799,cpu4,insmod,0][lskg lskguard.c:696 init_guard][insmod:211799][E]netlink_init -5
+[ 4356.276977] [2026:09:29 10:41:11][pid:213604,cpu6,insmod,1][lskg netlink.c:175 netlink_init][insmod:213604][E]Can't create Netlink socket for network activities!
+[ 4356.277008] [pid:213604,cpu6,insmod,2][lskg lskguard.c:696 init_guard][insmod:213604][E]netlink_init -5
+[ 4379.450164] [2026:09:29 10:41:35][pid:214584,cpu7,insmod,3][lskg netlink.c:175 netlink_init][insmod:214584][E]Can't create Netlink socket for network activities!
+[ 4379.450195] [pid:214584,cpu7,insmod,4][lskg lskguard.c:696 init_guard][insmod:214584][E]netlink_init -5
+[ 4390.633178] [2026:09:29 10:41:46][pid:215204,cpu7,insmod,5][lskg netlink.c:175 netlink_init][insmod:215204][E]Can't create Netlink socket for network activities!
+[ 4390.633178] [pid:215204,cpu7,insmod,6][lskg lskguard.c:696 init_guard][insmod:215204][E]netlink_init -5
+[ 4420.856262] [2026:09:29 10:42:16][pid:216496,cpu4,insmod,7][lskg netlink.c:175 netlink_init][insmod:216496][E]Can't create Netlink socket for network activities!
+[ 4420.856262] [pid:216496,cpu4,insmod,8][lskg lskguard.c:696 init_guard][insmod:216496][E]netlink_init -5
+[ 4431.059051] [2026:09:29 10:42:26][pid:216887,cpu5,insmod,9][lskg netlink.c:175 netlink_init][insmod:216887][E]Can't create Netlink socket for network activities!
+[ 4431.059051] [pid:216887,cpu5,insmod,0][lskg lskguard.c:696 init_guard][insmod:216887][E]netlink_init -5
+[ 4436.315399] [2026:09:29 10:42:32][pid:217157,cpu4,insmod,1][lskg netlink.c:175 netlink_init][insmod:217157][E]Can't create Netlink socket for network activities!
+[ 4436.315429] [pid:217157,cpu4,insmod,2][lskg lskguard.c:696 init_guard][insmod:217157][E]netlink_init -5
+[ 4461.509613] [2026:09:29 10:42:57][pid:218305,cpu7,insmod,3][lskg netlink.c:175 netlink_init][insmod:218305][E]Can't create Netlink socket for network activities!
+[ 4461.509613] [pid:218305,cpu7,insmod,4][lskg lskguard.c:696 init_guard][insmod:218305][E]netlink_init -5
+[ 4475.690185] [2026:09:29 10:43:11][pid:218966,cpu7,insmod,5][lskg netlink.c:175 netlink_init][insmod:218966][E]Can't create Netlink socket for network activities!
+[ 4475.690216] [pid:218966,cpu7,insmod,6][lskg lskguard.c:696 init_guard][insmod:218966][E]netlink_init -5
+[ 4505.886016] [2026:09:29 10:43:41][pid:220238,cpu7,insmod,7][lskg netlink.c:175 netlink_init][insmod:220238][E]Can't create Netlink socket for network activities!
+[ 4505.886047] [pid:220238,cpu7,insmod,8][lskg lskguard.c:696 init_guard][insmod:220238][E]netlink_init -5
+[ 4535.089782] [2026:09:29 10:44:10][pid:221628,cpu5,insmod,9][lskg netlink.c:175 netlink_init][insmod:221628][E]Can't create Netlink socket for network activities!
+[ 4535.089813] [pid:221628,cpu5,insmod,0][lskg lskguard.c:696 init_guard][insmod:221628][E]netlink_init -5
+[ 4560.285736] [2026:09:29 10:44:35][pid:222726,cpu7,insmod,1][lskg netlink.c:175 netlink_init][insmod:222726][E]Can't create Netlink socket for network activities!
+[ 4560.285736] [pid:222726,cpu7,insmod,2][lskg lskguard.c:696 init_guard][insmod:222726][E]netlink_init -5
+[ 4593.460266] [2026:09:29 10:45:09][pid:224506,cpu7,insmod,3][lskg netlink.c:175 netlink_init][insmod:224506][E]Can't create Netlink socket for network activities!
+[ 4593.460266] [pid:224506,cpu7,insmod,4][lskg lskguard.c:696 init_guard][insmod:224506][E]netlink_init -5
+[ 4602.638641] [2026:09:29 10:45:18][pid:224931,cpu7,insmod,5][lskg netlink.c:175 netlink_init][insmod:224931][E]Can't create Netlink socket for network activities!
+[ 4602.638671] [pid:224931,cpu7,insmod,6][lskg lskguard.c:696 init_guard][insmod:224931][E]netlink_init -5
+[ 4619.823303] [2026:09:29 10:45:35][pid:225625,cpu5,insmod,7][lskg netlink.c:175 netlink_init][insmod:225625][E]Can't create Netlink socket for network activities!
+[ 4619.823333] [pid:225625,cpu5,insmod,8][lskg lskguard.c:696 init_guard][insmod:225625][E]netlink_init -5
+[ 4630.814300] [2026:09:29 10:45:46][pid:747,cpu6,update_rtc,9][hisi_soc_rtc_set_time]: 2026-9-29 10:45:46
+[ 4641.003753] [2026:09:29 10:45:56][pid:226487,cpu6,insmod,0][lskg netlink.c:175 netlink_init][insmod:226487][E]Can't create Netlink socket for network activities!
+[ 4641.003753] [pid:226487,cpu6,insmod,1][lskg lskguard.c:696 init_guard][insmod:226487][E]netlink_init -5
+[ 4662.206542] [2026:09:29 10:46:17][pid:227575,cpu4,insmod,2][lskg netlink.c:175 netlink_init][insmod:227575][E]Can't create Netlink socket for network activities!
+[ 4662.206542] [pid:227575,cpu4,insmod,3][lskg lskguard.c:696 init_guard][insmod:227575][E]netlink_init -5
+[ 4678.410034] [2026:09:29 10:46:34][pid:228256,cpu7,insmod,4][lskg netlink.c:175 netlink_init][insmod:228256][E]Can't create Netlink socket for network activities!
+[ 4678.410034] [pid:228256,cpu7,insmod,5][lskg lskguard.c:696 init_guard][insmod:228256][E]netlink_init -5
+[ 4697.590118] [2026:09:29 10:46:53][pid:229066,cpu7,insmod,6][lskg netlink.c:175 netlink_init][insmod:229066][E]Can't create Netlink socket for network activities!
+[ 4697.590148] [pid:229066,cpu7,insmod,7][lskg lskguard.c:696 init_guard][insmod:229066][E]netlink_init -5
+[ 4720.851928] [2026:09:29 10:47:16][pid:230252,cpu4,insmod,8][lskg netlink.c:175 netlink_init][insmod:230252][E]Can't create Netlink socket for network activities!
+[ 4720.851959] [pid:230252,cpu4,insmod,9][lskg lskguard.c:696 init_guard][insmod:230252][E]netlink_init -5
+[ 4761.085784] [2026:09:29 10:47:56][pid:231865,cpu4,insmod,0][lskg netlink.c:175 netlink_init][insmod:231865][E]Can't create Netlink socket for network activities!
+[ 4761.085815] [pid:231865,cpu4,insmod,1][lskg lskguard.c:696 init_guard][insmod:231865][E]netlink_init -5
+[ 4791.310821] [2026:09:29 10:48:27][pid:233321,cpu4,insmod,2][lskg netlink.c:175 netlink_init][insmod:233321][E]Can't create Netlink socket for network activities!
+[ 4791.310852] [pid:233321,cpu4,insmod,3][lskg lskguard.c:696 init_guard][insmod:233321][E]netlink_init -5
+[ 4822.486358] [2026:09:29 10:48:58][pid:234605,cpu7,insmod,4][lskg netlink.c:175 netlink_init][insmod:234605][E]Can't create Netlink socket for network activities!
+[ 4822.486358] [pid:234605,cpu7,insmod,5][lskg lskguard.c:696 init_guard][insmod:234605][E]netlink_init -5
+[ 4862.744415] [2026:09:29 10:49:38][pid:236498,cpu5,insmod,6][lskg netlink.c:175 netlink_init][insmod:236498][E]Can't create Netlink socket for network activities!
+[ 4862.744415] [pid:236498,cpu5,insmod,7][lskg lskguard.c:696 init_guard][insmod:236498][E]netlink_init -5
+[ 4883.975341] [2026:09:29 10:49:59][pid:237377,cpu5,insmod,8][lskg netlink.c:175 netlink_init][insmod:237377][E]Can't create Netlink socket for network activities!
+[ 4883.975341] [pid:237377,cpu5,insmod,9][lskg lskguard.c:696 init_guard][insmod:237377][E]netlink_init -5
+[ 4902.170562] [2026:09:29 10:50:17][pid:238368,cpu7,insmod,0][lskg netlink.c:175 netlink_init][insmod:238368][E]Can't create Netlink socket for network activities!
+[ 4902.170593] [pid:238368,cpu7,insmod,1][lskg lskguard.c:696 init_guard][insmod:238368][E]netlink_init -5
+[ 4939.357910] [2026:09:29 10:50:55][pid:240100,cpu6,insmod,2][lskg netlink.c:175 netlink_init][insmod:240100][E]Can't create Netlink socket for network activities!
+[ 4939.357940] [pid:240100,cpu6,insmod,3][lskg lskguard.c:696 init_guard][insmod:240100][E]netlink_init -5
+[ 4963.534210] [2026:09:29 10:51:19][pid:241192,cpu7,insmod,4][lskg netlink.c:175 netlink_init][insmod:241192][E]Can't create Netlink socket for network activities!
+[ 4963.534210] [pid:241192,cpu7,insmod,5][lskg lskguard.c:696 init_guard][insmod:241192][E]netlink_init -5
+[ 4995.732482] [2026:09:29 10:51:51][pid:242648,cpu6,insmod,6][lskg netlink.c:175 netlink_init][insmod:242648][E]Can't create Netlink socket for network activities!
+[ 4995.732482] [pid:242648,cpu6,insmod,7][lskg lskguard.c:696 init_guard][insmod:242648][E]netlink_init -5
+[ 5001.902313] [2026:09:29 10:51:57][pid:242905,cpu7,insmod,8][lskg netlink.c:175 netlink_init][insmod:242905][E]Can't create Netlink socket for network activities!
+[ 5001.902343] [pid:242905,cpu7,insmod,9][lskg lskguard.c:696 init_guard][insmod:242905][E]netlink_init -5
+[ 5011.094451] [2026:09:29 10:52:06][pid:243339,cpu7,insmod,0][lskg netlink.c:175 netlink_init][insmod:243339][E]Can't create Netlink socket for network activities!
+[ 5011.094451] [pid:243339,cpu7,insmod,1][lskg lskguard.c:696 init_guard][insmod:243339][E]netlink_init -5
+[ 5017.311767] [2026:09:29 10:52:13][pid:243603,cpu5,insmod,2][lskg netlink.c:175 netlink_init][insmod:243603][E]Can't create Netlink socket for network activities!
+[ 5017.311798] [pid:243603,cpu5,insmod,3][lskg lskguard.c:696 init_guard][insmod:243603][E]netlink_init -5
+[ 5047.495391] [2026:09:29 10:52:43][pid:244995,cpu7,insmod,4][lskg netlink.c:175 netlink_init][insmod:244995][E]Can't create Netlink socket for network activities!
+[ 5047.495391] [pid:244995,cpu7,insmod,5][lskg lskguard.c:696 init_guard][insmod:244995][E]netlink_init -5
+[ 5082.671966] [2026:09:29 10:53:18][pid:246536,cpu7,insmod,6][lskg netlink.c:175 netlink_init][insmod:246536][E]Can't create Netlink socket for network activities!
+[ 5082.671966] [pid:246536,cpu7,insmod,7][lskg lskguard.c:696 init_guard][insmod:246536][E]netlink_init -5
+[ 5111.937194] [2026:09:29 10:53:47][pid:247926,cpu5,insmod,8][lskg netlink.c:175 netlink_init][insmod:247926][E]Can't create Netlink socket for network activities!
+[ 5111.937225] [pid:247926,cpu5,insmod,9][lskg lskguard.c:696 init_guard][insmod:247926][E]netlink_init -5
+[ 5152.126983] [2026:09:29 10:54:27][pid:249610,cpu6,insmod,0][lskg netlink.c:175 netlink_init][insmod:249610][E]Can't create Netlink socket for network activities!
+[ 5152.126983] [pid:249610,cpu6,insmod,1][lskg lskguard.c:696 init_guard][insmod:249610][E]netlink_init -5
+[ 5167.315246] [2026:09:29 10:54:43][pid:250389,cpu7,insmod,2][lskg netlink.c:175 netlink_init][insmod:250389][E]Can't create Netlink socket for network activities!
+[ 5167.315246] [pid:250389,cpu7,insmod,3][lskg lskguard.c:696 init_guard][insmod:250389][E]netlink_init -5
+[ 5201.487121] [2026:09:29 10:55:17][pid:251899,cpu7,insmod,4][lskg netlink.c:175 netlink_init][insmod:251899][E]Can't create Netlink socket for network activities!
+[ 5201.487152] [pid:251899,cpu7,insmod,5][lskg lskguard.c:696 init_guard][insmod:251899][E]netlink_init -5
+[ 5244.731719] [2026:09:29 10:56:00][pid:253985,cpu4,insmod,6][lskg netlink.c:175 netlink_init][insmod:253985][E]Can't create Netlink socket for network activities!
+[ 5244.731719] [pid:253985,cpu4,insmod,7][lskg lskguard.c:696 init_guard][insmod:253985][E]netlink_init -5
+[ 5283.904785] [2026:09:29 10:56:39][pid:255699,cpu6,insmod,8][lskg netlink.c:175 netlink_init][insmod:255699][E]Can't create Netlink socket for network activities!
+[ 5283.904785] [pid:255699,cpu6,insmod,9][lskg lskguard.c:696 init_guard][insmod:255699][E]netlink_init -5
+[ 5312.156188] [2026:09:29 10:57:07][pid:257059,cpu5,insmod,0][lskg netlink.c:175 netlink_init][insmod:257059][E]Can't create Netlink socket for network activities!
+[ 5312.156188] [pid:257059,cpu5,insmod,1][lskg lskguard.c:696 init_guard][insmod:257059][E]netlink_init -5
+[ 5327.353393] [2026:09:29 10:57:23][pid:257704,cpu6,insmod,2][lskg netlink.c:175 netlink_init][insmod:257704][E]Can't create Netlink socket for network activities!
+[ 5327.353424] [pid:257704,cpu6,insmod,3][lskg lskguard.c:696 init_guard][insmod:257704][E]netlink_init -5
+[ 5349.532775] [2026:09:29 10:57:45][pid:258620,cpu6,insmod,4][lskg netlink.c:175 netlink_init][insmod:258620][E]Can't create Netlink socket for network activities!
+[ 5349.532775] [pid:258620,cpu6,insmod,5][lskg lskguard.c:696 init_guard][insmod:258620][E]netlink_init -5
+[ 5361.702331] [2026:09:29 10:57:57][pid:259288,cpu6,insmod,6][lskg netlink.c:175 netlink_init][insmod:259288][E]Can't create Netlink socket for network activities!
+[ 5361.702362] [pid:259288,cpu6,insmod,7][lskg lskguard.c:696 init_guard][insmod:259288][E]netlink_init -5
+[ 5405.885894] [2026:09:29 10:58:41][pid:261164,cpu6,insmod,8][lskg netlink.c:175 netlink_init][insmod:261164][E]Can't create Netlink socket for network activities!
+[ 5405.885894] [pid:261164,cpu6,insmod,9][lskg lskguard.c:696 init_guard][insmod:261164][E]netlink_init -5
+[ 5428.111724] [2026:09:29 10:59:03][pid:262282,cpu5,insmod,0][lskg netlink.c:175 netlink_init][insmod:262282][E]Can't create Netlink socket for network activities!
+[ 5428.111755] [pid:262282,cpu5,insmod,1][lskg lskguard.c:696 init_guard][insmod:262282][E]netlink_init -5
+[ 5450.302032] [2026:09:29 10:59:26][pid:263224,cpu7,insmod,2][lskg netlink.c:175 netlink_init][insmod:263224][E]Can't create Netlink socket for network activities!
+[ 5450.302032] [pid:263224,cpu7,insmod,3][lskg lskguard.c:696 init_guard][insmod:263224][E]netlink_init -5
+[ 5478.495269] [2026:09:29 10:59:54][pid:264543,cpu7,insmod,4][lskg netlink.c:175 netlink_init][insmod:264543][E]Can't create Netlink socket for network activities!
+[ 5478.495269] [pid:264543,cpu7,insmod,5][lskg lskguard.c:696 init_guard][insmod:264543][E]netlink_init -5
+[ 5488.695007] [2026:09:29 11:00:04][pid:265032,cpu5,insmod,6][lskg netlink.c:175 netlink_init][insmod:265032][E]Can't create Netlink socket for network activities!
+[ 5488.695007] [pid:265032,cpu5,insmod,7][lskg lskguard.c:696 init_guard][insmod:265032][E]netlink_init -5
+[ 5496.870758] [2026:09:29 11:00:12][pid:265380,cpu7,insmod,8][lskg netlink.c:175 netlink_init][insmod:265380][E]Can't create Netlink socket for network activities!
+[ 5496.870788] [pid:265380,cpu7,insmod,9][lskg lskguard.c:696 init_guard][insmod:265380][E]netlink_init -5
+[ 5505.054016] [2026:09:29 11:00:20][pid:265765,cpu7,insmod,0][lskg netlink.c:175 netlink_init][insmod:265765][E]Can't create Netlink socket for network activities!
+[ 5505.054016] [pid:265765,cpu7,insmod,1][lskg lskguard.c:696 init_guard][insmod:265765][E]netlink_init -5
+[ 5535.245605] [2026:09:29 11:00:50][pid:267027,cpu7,insmod,2][lskg netlink.c:175 netlink_init][insmod:267027][E]Can't create Netlink socket for network activities!
+[ 5535.245605] [pid:267027,cpu7,insmod,3][lskg lskguard.c:696 init_guard][insmod:267027][E]netlink_init -5
+[ 5558.424682] [2026:09:29 11:01:14][pid:268387,cpu7,insmod,4][lskg netlink.c:175 netlink_init][insmod:268387][E]Can't create Netlink socket for network activities!
+[ 5558.424682] [pid:268387,cpu7,insmod,5][lskg lskguard.c:696 init_guard][insmod:268387][E]netlink_init -5
+[ 5565.590454] [2026:09:29 11:01:21][pid:268741,cpu6,insmod,6][lskg netlink.c:175 netlink_init][insmod:268741][E]Can't create Netlink socket for network activities!
+[ 5565.590454] [pid:268741,cpu6,insmod,7][lskg lskguard.c:696 init_guard][insmod:268741][E]netlink_init -5
+[ 5576.761596] [2026:09:29 11:01:32][pid:269237,cpu7,insmod,8][lskg netlink.c:175 netlink_init][insmod:269237][E]Can't create Netlink socket for network activities!
+[ 5576.761627] [pid:269237,cpu7,insmod,9][lskg lskguard.c:696 init_guard][insmod:269237][E]netlink_init -5
+[ 5617.935516] [2026:09:29 11:02:13][pid:271090,cpu7,insmod,0][lskg netlink.c:175 netlink_init][insmod:271090][E]Can't create Netlink socket for network activities!
+[ 5617.935516] [pid:271090,cpu7,insmod,1][lskg lskguard.c:696 init_guard][insmod:271090][E]netlink_init -5
+[ 5656.121826] [2026:09:29 11:02:51][pid:272723,cpu6,insmod,2][lskg netlink.c:175 netlink_init][insmod:272723][E]Can't create Netlink socket for network activities!
+[ 5656.121826] [pid:272723,cpu6,insmod,3][lskg lskguard.c:696 init_guard][insmod:272723][E]netlink_init -5
+[ 5693.312225] [2026:09:29 11:03:29][pid:274432,cpu6,insmod,4][lskg netlink.c:175 netlink_init][insmod:274432][E]Can't create Netlink socket for network activities!
+[ 5693.312255] [pid:274432,cpu6,insmod,5][lskg lskguard.c:696 init_guard][insmod:274432][E]netlink_init -5
+[ 5702.488525] [2026:09:29 11:03:38][pid:274814,cpu6,insmod,6][lskg netlink.c:175 netlink_init][insmod:274814][E]Can't create Netlink socket for network activities!
+[ 5702.488525] [pid:274814,cpu6,insmod,7][lskg lskguard.c:696 init_guard][insmod:274814][E]netlink_init -5
+[ 5739.662384] [2026:09:29 11:04:15][pid:276559,cpu7,insmod,8][lskg netlink.c:175 netlink_init][insmod:276559][E]Can't create Netlink socket for network activities!
+[ 5739.662414] [pid:276559,cpu7,insmod,9][lskg lskguard.c:696 init_guard][insmod:276559][E]netlink_init -5
+[ 5756.850463] [2026:09:29 11:04:32][pid:277344,cpu7,insmod,0][lskg netlink.c:175 netlink_init][insmod:277344][E]Can't create Netlink socket for network activities!
+[ 5756.850463] [pid:277344,cpu7,insmod,1][lskg lskguard.c:696 init_guard][insmod:277344][E]netlink_init -5
+[ 5798.024353] [2026:09:29 11:05:13][pid:279190,cpu7,insmod,2][lskg netlink.c:175 netlink_init][insmod:279190][E]Can't create Netlink socket for network activities!
+[ 5798.024383] [pid:279190,cpu7,insmod,3][lskg lskguard.c:696 init_guard][insmod:279190][E]netlink_init -5
+[ 5824.202728] [2026:09:29 11:05:39][pid:280324,cpu6,insmod,4][lskg netlink.c:175 netlink_init][insmod:280324][E]Can't create Netlink socket for network activities!
+[ 5824.202728] [pid:280324,cpu6,insmod,5][lskg lskguard.c:696 init_guard][insmod:280324][E]netlink_init -5
+[ 5841.385681] [2026:09:29 11:05:57][pid:283166,cpu7,insmod,6][lskg netlink.c:175 netlink_init][insmod:283166][E]Can't create Netlink socket for network activities!
+[ 5841.385711] [pid:283166,cpu7,insmod,7][lskg lskguard.c:696 init_guard][insmod:283166][E]netlink_init -5
+[ 5850.663238] [2026:09:29 11:06:06][pid:284090,cpu7,insmod,8][lskg netlink.c:175 netlink_init][insmod:284090][E]Can't create Netlink socket for network activities!
+[ 5850.663238] [pid:284090,cpu7,insmod,9][lskg lskguard.c:696 init_guard][insmod:284090][E]netlink_init -5
+[ 5866.845306] [2026:09:29 11:06:22][pid:285123,cpu7,insmod,0][lskg netlink.c:175 netlink_init][insmod:285123][E]Can't create Netlink socket for network activities!
+[ 5866.845336] [pid:285123,cpu7,insmod,1][lskg lskguard.c:696 init_guard][insmod:285123][E]netlink_init -5
+[ 5909.017120] [2026:09:29 11:07:04][pid:286935,cpu7,insmod,2][lskg netlink.c:175 netlink_init][insmod:286935][E]Can't create Netlink socket for network activities!
+[ 5909.017120] [pid:286935,cpu7,insmod,3][lskg lskguard.c:696 init_guard][insmod:286935][E]netlink_init -5
+[ 5934.257934] [2026:09:29 11:07:29][pid:288079,cpu5,insmod,4][lskg netlink.c:175 netlink_init][insmod:288079][E]Can't create Netlink socket for network activities!
+[ 5934.257934] [pid:288079,cpu5,insmod,5][lskg lskguard.c:696 init_guard][insmod:288079][E]netlink_init -5
+[ 5943.446014] [2026:09:29 11:07:39][pid:288531,cpu7,insmod,6][lskg netlink.c:175 netlink_init][insmod:288531][E]Can't create Netlink socket for network activities!
+[ 5943.446014] [pid:288531,cpu7,insmod,7][lskg lskguard.c:696 init_guard][insmod:288531][E]netlink_init -5
+[ 5974.683624] [2026:09:29 11:08:10][pid:289842,cpu5,insmod,8][lskg netlink.c:175 netlink_init][insmod:289842][E]Can't create Netlink socket for network activities!
+[ 5974.683624] [pid:289842,cpu5,insmod,9][lskg lskguard.c:696 init_guard][insmod:289842][E]netlink_init -5
+[ 5986.948638] [2026:09:29 11:08:22][pid:290402,cpu7,insmod,0][lskg netlink.c:175 netlink_init][insmod:290402][E]Can't create Netlink socket for network activities!
+[ 5986.948669] [pid:290402,cpu7,insmod,1][lskg lskguard.c:696 init_guard][insmod:290402][E]netlink_init -5
+[ 5994.164367] [2026:09:29 11:08:29][pid:290805,cpu7,insmod,2][lskg netlink.c:175 netlink_init][insmod:290805][E]Can't create Netlink socket for network activities!
+[ 5994.164367] [pid:290805,cpu7,insmod,3][lskg lskguard.c:696 init_guard][insmod:290805][E]netlink_init -5
+[ 6002.392028] [2026:09:29 11:08:38][pid:291206,cpu4,insmod,4][lskg netlink.c:175 netlink_init][insmod:291206][E]Can't create Netlink socket for network activities!
+[ 6002.392059] [pid:291206,cpu4,insmod,5][lskg lskguard.c:696 init_guard][insmod:291206][E]netlink_init -5
+[ 6031.635314] [2026:09:29 11:09:07][pid:292483,cpu5,insmod,6][lskg netlink.c:175 netlink_init][insmod:292483][E]Can't create Netlink socket for network activities!
+[ 6031.635314] [pid:292483,cpu5,insmod,7][lskg lskguard.c:696 init_guard][insmod:292483][E]netlink_init -5
+[ 6055.863220] [2026:09:29 11:09:31][pid:293647,cpu6,insmod,8][lskg netlink.c:175 netlink_init][insmod:293647][E]Can't create Netlink socket for network activities!
+[ 6055.863250] [pid:293647,cpu6,insmod,9][lskg lskguard.c:696 init_guard][insmod:293647][E]netlink_init -5
+[ 6074.145172] [2026:09:29 11:09:49][pid:294427,cpu5,insmod,0][lskg netlink.c:175 netlink_init][insmod:294427][E]Can't create Netlink socket for network activities!
+[ 6074.145172] [pid:294427,cpu5,insmod,1][lskg lskguard.c:696 init_guard][insmod:294427][E]netlink_init -5
+[ 6112.421051] [2026:09:29 11:10:28][pid:296165,cpu6,insmod,2][lskg netlink.c:175 netlink_init][insmod:296165][E]Can't create Netlink socket for network activities!
+[ 6112.421051] [pid:296165,cpu6,insmod,3][lskg lskguard.c:696 init_guard][insmod:296165][E]netlink_init -5
+[ 6143.603546] [2026:09:29 11:10:59][pid:297607,cpu7,insmod,4][lskg netlink.c:175 netlink_init][insmod:297607][E]Can't create Netlink socket for network activities!
+[ 6143.603546] [pid:297607,cpu7,insmod,5][lskg lskguard.c:696 init_guard][insmod:297607][E]netlink_init -5
+[ 6178.775512] [2026:09:29 11:11:34][pid:299171,cpu7,insmod,6][lskg netlink.c:175 netlink_init][insmod:299171][E]Can't create Netlink socket for network activities!
+[ 6178.775512] [pid:299171,cpu7,insmod,7][lskg lskguard.c:696 init_guard][insmod:299171][E]netlink_init -5
+[ 6201.956146] [2026:09:29 11:11:57][pid:300432,cpu6,insmod,8][lskg netlink.c:175 netlink_init][insmod:300432][E]Can't create Netlink socket for network activities!
+[ 6201.956146] [pid:300432,cpu6,insmod,9][lskg lskguard.c:696 init_guard][insmod:300432][E]netlink_init -5
+[ 6241.223937] [2026:09:29 11:12:36][pid:302131,cpu4,insmod,0][lskg netlink.c:175 netlink_init][insmod:302131][E]Can't create Netlink socket for network activities!
+[ 6241.223968] [pid:302131,cpu4,insmod,1][lskg lskguard.c:696 init_guard][insmod:302131][E]netlink_init -5
+[ 6276.503906] [2026:09:29 11:13:12][pid:303760,cpu5,insmod,2][lskg netlink.c:175 netlink_init][insmod:303760][E]Can't create Netlink socket for network activities!
+[ 6276.503906] [pid:303760,cpu5,insmod,3][lskg lskguard.c:696 init_guard][insmod:303760][E]netlink_init -5
+[ 6299.824249] [2026:09:29 11:13:35][pid:304757,cpu4,insmod,4][lskg netlink.c:175 netlink_init][insmod:304757][E]Can't create Netlink socket for network activities!
+[ 6299.824249] [pid:304757,cpu4,insmod,5][lskg lskguard.c:696 init_guard][insmod:304757][E]netlink_init -5
+[ 6316.246093] [2026:09:29 11:13:51][pid:306745,cpu5,insmod,6][lskg netlink.c:175 netlink_init][insmod:306745][E]Can't create Netlink socket for network activities!
+[ 6316.246093] [pid:306745,cpu5,insmod,7][lskg lskguard.c:696 init_guard][insmod:306745][E]netlink_init -5
+[ 6346.651763] [2026:09:29 11:14:22][pid:308243,cpu4,insmod,8][lskg netlink.c:175 netlink_init][insmod:308243][E]Can't create Netlink socket for network activities!
+[ 6346.651763] [pid:308243,cpu4,insmod,9][lskg lskguard.c:696 init_guard][insmod:308243][E]netlink_init -5
+[ 6374.929046] [2026:09:29 11:14:50][pid:309446,cpu5,insmod,0][lskg netlink.c:175 netlink_init][insmod:309446][E]Can't create Netlink socket for network activities!
+[ 6374.929046] [pid:309446,cpu5,insmod,1][lskg lskguard.c:696 init_guard][insmod:309446][E]netlink_init -5
+[ 6392.669647] [2026:09:29 11:15:08][pid:310338,cpu5,insmod,2][lskg netlink.c:175 netlink_init][insmod:310338][E]Can't create Netlink socket for network activities!
+[ 6392.669647] [pid:310338,cpu5,insmod,3][lskg lskguard.c:696 init_guard][insmod:310338][E]netlink_init -5
+[ 6428.169433] [2026:09:29 11:15:43][pid:312247,cpu7,insmod,4][lskg netlink.c:175 netlink_init][insmod:312247][E]Can't create Netlink socket for network activities!
+[ 6428.169433] [pid:312247,cpu7,insmod,5][lskg lskguard.c:696 init_guard][insmod:312247][E]netlink_init -5
+[ 6465.345581] [2026:09:29 11:16:21][pid:314036,cpu7,insmod,6][lskg netlink.c:175 netlink_init][insmod:314036][E]Can't create Netlink socket for network activities!
+[ 6465.345611] [pid:314036,cpu7,insmod,7][lskg lskguard.c:696 init_guard][insmod:314036][E]netlink_init -5
+[ 6490.523132] [2026:09:29 11:16:46][pid:315134,cpu6,insmod,8][lskg netlink.c:175 netlink_init][insmod:315134][E]Can't create Netlink socket for network activities!
+[ 6490.523132] [pid:315134,cpu6,insmod,9][lskg lskguard.c:696 init_guard][insmod:315134][E]netlink_init -5
+[ 6533.718170] [2026:09:29 11:17:29][pid:317303,cpu7,insmod,0][lskg netlink.c:175 netlink_init][insmod:317303][E]Can't create Netlink socket for network activities!
+[ 6533.718170] [pid:317303,cpu7,insmod,1][lskg lskguard.c:696 init_guard][insmod:317303][E]netlink_init -5
+[ 6564.894073] [2026:09:29 11:18:00][pid:318593,cpu6,insmod,2][lskg netlink.c:175 netlink_init][insmod:318593][E]Can't create Netlink socket for network activities!
+[ 6564.894073] [pid:318593,cpu6,insmod,3][lskg lskguard.c:696 init_guard][insmod:318593][E]netlink_init -5
+[ 6600.075988] [2026:09:29 11:18:35][pid:320277,cpu7,insmod,4][lskg netlink.c:175 netlink_init][insmod:320277][E]Can't create Netlink socket for network activities!
+[ 6600.076019] [pid:320277,cpu7,insmod,5][lskg lskguard.c:696 init_guard][insmod:320277][E]netlink_init -5
+[ 6629.283203] [2026:09:29 11:19:04][pid:321531,cpu6,insmod,6][lskg netlink.c:175 netlink_init][insmod:321531][E]Can't create Netlink socket for network activities!
+[ 6629.283203] [pid:321531,cpu6,insmod,7][lskg lskguard.c:696 init_guard][insmod:321531][E]netlink_init -5
+[ 6663.445587] [2026:09:29 11:19:39][pid:323148,cpu7,insmod,8][lskg netlink.c:175 netlink_init][insmod:323148][E]Can't create Netlink socket for network activities!
+[ 6663.445617] [pid:323148,cpu7,insmod,9][lskg lskguard.c:696 init_guard][insmod:323148][E]netlink_init -5
+[ 6679.107177] [2026:09:29 11:19:54][pid:747,cpu7,update_rtc,0][hisi_soc_rtc_set_time]: 2026-9-29 11:19:54
+[ 6695.697387] [2026:09:29 11:20:11][pid:324629,cpu5,insmod,1][lskg netlink.c:175 netlink_init][insmod:324629][E]Can't create Netlink socket for network activities!
+[ 6695.697387] [pid:324629,cpu5,insmod,2][lskg lskguard.c:696 init_guard][insmod:324629][E]netlink_init -5
+[ 6716.876892] [2026:09:29 11:20:32][pid:325557,cpu6,insmod,3][lskg netlink.c:175 netlink_init][insmod:325557][E]Can't create Netlink socket for network activities!
+[ 6716.876892] [pid:325557,cpu6,insmod,4][lskg lskguard.c:696 init_guard][insmod:325557][E]netlink_init -5
+[ 6738.046661] [2026:09:29 11:20:53][pid:326413,cpu7,insmod,5][lskg netlink.c:175 netlink_init][insmod:326413][E]Can't create Netlink socket for network activities!
+[ 6738.046691] [pid:326413,cpu7,insmod,6][lskg lskguard.c:696 init_guard][insmod:326413][E]netlink_init -5
+[ 6778.226226] [2026:09:29 11:21:33][pid:328300,cpu7,insmod,7][lskg netlink.c:175 netlink_init][insmod:328300][E]Can't create Netlink socket for network activities!
+[ 6778.226226] [pid:328300,cpu7,insmod,8][lskg lskguard.c:696 init_guard][insmod:328300][E]netlink_init -5
+[ 6795.400634] [2026:09:29 11:21:51][pid:328987,cpu7,insmod,9][lskg netlink.c:175 netlink_init][insmod:328987][E]Can't create Netlink socket for network activities!
+[ 6795.400634] [pid:328987,cpu7,insmod,0][lskg lskguard.c:696 init_guard][insmod:328987][E]netlink_init -5
+[ 6827.682373] [2026:09:29 11:22:23][pid:330771,cpu5,insmod,1][lskg netlink.c:175 netlink_init][insmod:330771][E]Can't create Netlink socket for network activities!
+[ 6827.682403] [pid:330771,cpu5,insmod,2][lskg lskguard.c:696 init_guard][insmod:330771][E]netlink_init -5
+[ 6851.938659] [2026:09:29 11:22:47][pid:331779,cpu4,insmod,3][lskg netlink.c:175 netlink_init][insmod:331779][E]Can't create Netlink socket for network activities!
+[ 6851.938659] [pid:331779,cpu4,insmod,4][lskg lskguard.c:696 init_guard][insmod:331779][E]netlink_init -5
+[ 6857.148773] [2026:09:29 11:22:52][pid:331999,cpu4,insmod,5][lskg netlink.c:175 netlink_init][insmod:331999][E]Can't create Netlink socket for network activities!
+[ 6857.148773] [pid:331999,cpu4,insmod,6][lskg lskguard.c:696 init_guard][insmod:331999][E]netlink_init -5
+[ 6882.331726] [2026:09:29 11:23:18][pid:333129,cpu6,insmod,7][lskg netlink.c:175 netlink_init][insmod:333129][E]Can't create Netlink socket for network activities!
+[ 6882.331756] [pid:333129,cpu6,insmod,8][lskg lskguard.c:696 init_guard][insmod:333129][E]netlink_init -5
+[ 6887.501098] [2026:09:29 11:23:23][pid:333335,cpu7,insmod,9][lskg netlink.c:175 netlink_init][insmod:333335][E]Can't create Netlink socket for network activities!
+[ 6887.501129] [pid:333335,cpu7,insmod,0][lskg lskguard.c:696 init_guard][insmod:333335][E]netlink_init -5
+[ 6901.681091] [2026:09:29 11:23:37][pid:334073,cpu7,insmod,1][lskg netlink.c:175 netlink_init][insmod:334073][E]Can't create Netlink socket for network activities!
+[ 6901.681121] [pid:334073,cpu7,insmod,2][lskg lskguard.c:696 init_guard][insmod:334073][E]netlink_init -5
+[ 6910.865203] [2026:09:29 11:23:46][pid:334491,cpu5,insmod,3][lskg netlink.c:175 netlink_init][insmod:334491][E]Can't create Netlink socket for network activities!
+[ 6910.865234] [pid:334491,cpu5,insmod,4][lskg lskguard.c:696 init_guard][insmod:334491][E]netlink_init -5
+[ 6921.037658] [2026:09:29 11:23:56][pid:334883,cpu6,insmod,5][lskg netlink.c:175 netlink_init][insmod:334883][E]Can't create Netlink socket for network activities!
+[ 6921.037689] [pid:334883,cpu6,insmod,6][lskg lskguard.c:696 init_guard][insmod:334883][E]netlink_init -5
+[ 6965.312103] [2026:09:29 11:24:40][pid:336897,cpu5,insmod,7][lskg netlink.c:175 netlink_init][insmod:336897][E]Can't create Netlink socket for network activities!
+[ 6965.312103] [pid:336897,cpu5,insmod,8][lskg lskguard.c:696 init_guard][insmod:336897][E]netlink_init -5
+[ 6997.490264] [2026:09:29 11:25:13][pid:338429,cpu7,insmod,9][lskg netlink.c:175 netlink_init][insmod:338429][E]Can't create Netlink socket for network activities!
+[ 6997.490295] [pid:338429,cpu7,insmod,0][lskg lskguard.c:696 init_guard][insmod:338429][E]netlink_init -5
+[ 7028.663116] [2026:09:29 11:25:44][pid:339858,cpu7,insmod,1][lskg netlink.c:175 netlink_init][insmod:339858][E]Can't create Netlink socket for network activities!
+[ 7028.663146] [pid:339858,cpu7,insmod,2][lskg lskguard.c:696 init_guard][insmod:339858][E]netlink_init -5
+[ 7033.835235] [2026:09:29 11:25:49][pid:340129,cpu7,insmod,3][lskg netlink.c:175 netlink_init][insmod:340129][E]Can't create Netlink socket for network activities!
+[ 7033.835266] [pid:340129,cpu7,insmod,4][lskg lskguard.c:696 init_guard][insmod:340129][E]netlink_init -5
+[ 7075.015502] [2026:09:29 11:26:30][pid:341838,cpu6,insmod,5][lskg netlink.c:175 netlink_init][insmod:341838][E]Can't create Netlink socket for network activities!
+[ 7075.015502] [pid:341838,cpu6,insmod,6][lskg lskguard.c:696 init_guard][insmod:341838][E]netlink_init -5
+[ 7111.282531] [2026:09:29 11:27:06][pid:343562,cpu4,insmod,7][lskg netlink.c:175 netlink_init][insmod:343562][E]Can't create Netlink socket for network activities!
+[ 7111.282531] [pid:343562,cpu4,insmod,8][lskg lskguard.c:696 init_guard][insmod:343562][E]netlink_init -5
+[ 7138.460418] [2026:09:29 11:27:34][pid:344721,cpu6,insmod,9][lskg netlink.c:175 netlink_init][insmod:344721][E]Can't create Netlink socket for network activities!
+[ 7138.460449] [pid:344721,cpu6,insmod,0][lskg lskguard.c:696 init_guard][insmod:344721][E]netlink_init -5
+[ 7147.679260] [2026:09:29 11:27:43][pid:345480,cpu4,insmod,1][lskg netlink.c:175 netlink_init][insmod:345480][E]Can't create Netlink socket for network activities!
+[ 7147.679290] [pid:345480,cpu4,insmod,2][lskg lskguard.c:696 init_guard][insmod:345480][E]netlink_init -5
