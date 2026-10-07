@@ -1,0 +1,13 @@
+# /etc/systemd/system/l410-oomd-resync@.service
+# systemd 262: a user@UID.service that starts after systemd-oomd (every login after boot)
+# never reaches oomd's monitored list, although its ManagedOOMMemoryPressure=kill is set;
+# oomctl shows "Memory Pressure Monitored CGroups" empty. oomd gets the full, correct list
+# when it (re)subscribes, so restart it once the user manager is up. Started by
+# user@.service.d/l410-oomd.conf through l410-oomd-resync@.timer, 30 s after the user manager.
+[Unit]
+Description=Resubscribe systemd-oomd after user manager %i started
+After=user@%i.service systemd-oomd.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/systemctl try-restart systemd-oomd.service

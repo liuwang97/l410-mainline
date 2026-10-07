@@ -1,0 +1,2 @@
+# /etc/udev/rules.d/60-l410-iosched.rules: mq-deadline on the UFS LUNs (docs/tuning/memory.md)
+ACTION=="add|change", SUBSYSTEM=="block", KERNEL=="sd[a-z]", ATTR{queue/scheduler}="mq-deadline"

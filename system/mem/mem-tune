@@ -1,0 +1,24 @@
+#!/bin/sh
+# /usr/local/sbin/mem-tune: runtime memory knobs, run once at boot by mem-tune.service
+# (docs/tuning/memory.md). The kernel already boots with zswap on (zstd, shrinker) and the
+# multi-gen LRU enabled (l410/configs/98-memory.config); this sets what has no Kconfig default.
+# A missing file is reported and skipped.
+w() { if [ -w "$1" ]; then echo "$2" > "$1" || echo "mem-tune: cannot write $2 to $1" >&2; else echo "mem-tune: skip $1" >&2; fi; }
+
+Z=/sys/module/zswap/parameters
+w $Z/compressor zstd
+# pool up to 25% of RAM (~2 GB): hitting the limit sends new pages straight to the UFS swapfile
+w $Z/max_pool_percent 25
+w $Z/shrinker_enabled Y
+w $Z/enabled Y
+
+L=/sys/kernel/mm/lru_gen
+w $L/enabled y
+# pages used in the last second are never evicted; if that cannot hold, OOM instead of thrashing
+w $L/min_ttl_ms 1000
+
+T=/sys/kernel/mm/transparent_hugepage
+w $T/enabled madvise
+# never compact synchronously in a page fault: wake kswapd/kcompactd instead
+w $T/defrag defer
+exit 0

@@ -1,0 +1,18 @@
+# /etc/systemd/system/mem-tune.service
+[Unit]
+Description=L410 desktop memory tuning (zswap, multi-gen LRU, THP)
+DefaultDependencies=no
+# not Before=swap.target: tmp.mount is After=swap.target and local-fs.target After=tmp.mount,
+# so that closes an ordering cycle; systemd then drops tmp.mount from the boot transaction,
+# mounts the tmpfs later over the /tmp/.X11-unix that tmpfiles had created, and Xwayland,
+# ksmserver and kaccess fail at login. The zswap/LRU/THP knobs can change at any time.
+After=local-fs.target
+Before=sysinit.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/local/sbin/mem-tune
+
+[Install]
+WantedBy=sysinit.target

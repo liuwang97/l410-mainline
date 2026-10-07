@@ -1,0 +1,10 @@
+# /etc/systemd/system/l410-oomd-resync@.timer
+# Started with user@UID.service (user@.service.d/l410-oomd.conf). A resubscribe right after
+# the user manager comes up (16.5 s into boot, 30 ms later) still leaves user@UID out of
+# oomd's list; the same restart a little later picks it up. 30 s is well past that.
+[Unit]
+Description=Resubscribe systemd-oomd 30 s after user manager %i started
+
+[Timer]
+OnActiveSec=30s
+AccuracySec=1s
