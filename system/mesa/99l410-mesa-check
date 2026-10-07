@@ -1,0 +1,2 @@
+// L410: warn when the patched libgallium no longer matches Debian's Mesa (docs/tuning/launch-latency.md)
+DPkg::Post-Invoke { "/usr/local/lib/l410-mesa/l410-mesa-check"; };

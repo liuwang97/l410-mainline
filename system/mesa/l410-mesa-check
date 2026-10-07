@@ -1,0 +1,12 @@
+#!/bin/sh
+# /usr/local/lib/l410-mesa/l410-mesa-check (L410), run by apt after every dpkg run
+# (99l410-mesa-check): warn when Debian's Mesa no longer matches the patched libgallium here. The
+# override then simply goes unused (the library name carries the package version), so the panfrost
+# patch has to be rebuilt: system/mesa/build.sh, docs/tuning/launch-latency.md.
+for f in /usr/local/lib/l410-mesa/libgallium-*.so; do
+	[ -e "$f" ] || continue
+	n=${f##*/}
+	[ -e "/usr/lib/aarch64-linux-gnu/$n" ] ||
+		echo "L410: Mesa was upgraded; $n in /usr/local/lib/l410-mesa is no longer used, rebuild it (system/mesa/build.sh)"
+done
+exit 0

@@ -1,0 +1,15 @@
+#!/bin/sh
+# apt DPkg::Post-Invoke hook (system/launch/install.sh): /usr/local/bin/systemsettings is a patched
+# build of one Debian version of systemsettings (--resident). When Debian's package changes
+# version, move it aside so the menus start Debian's systemsettings again; rebuild it with
+# system/launch/systemsettings-build.sh to get the resident mode back.
+stamp=/usr/local/lib/l410-launch/systemsettings.version
+[ -f "$stamp" ] && [ -e /usr/local/bin/systemsettings ] || exit 0
+now=$(dpkg-query -W -f='${Version}' systemsettings 2> /dev/null)
+built=$(cat "$stamp")
+[ "$now" = "$built" ] && exit 0
+mv -f /usr/local/bin/systemsettings /usr/local/lib/l410-launch/systemsettings.disabled
+msg="systemsettings $built -> ${now:-removed}: resident System Settings disabled, rebuild with system/launch/systemsettings-build.sh"
+logger -t l410-launch "$msg"
+echo "l410-launch: $msg" >&2
+exit 0

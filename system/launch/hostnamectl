@@ -1,0 +1,17 @@
+#!/bin/sh
+# /usr/local/bin/hostnamectl (L410): WPS runs a bare `hostnamectl` through popen() on its main thread
+# at every start, which bus-activates systemd-hostnamed (~60 ms on the critical path). The bare
+# status query is answered from a per-boot cache in the caller's runtime dir, rebuilt when
+# /etc/hostname, /etc/machine-info or /etc/os-release change; anything with arguments goes to the
+# real tool. docs/tuning/launch-latency.md
+[ $# -eq 0 ] || exec /usr/bin/hostnamectl "$@"
+d=${XDG_RUNTIME_DIR:-/run/user/$(id -u)}
+read -r boot < /proc/sys/kernel/random/boot_id
+c=$d/l410-hostnamectl.$boot
+if [ -s "$c" ] && [ "$c" -nt /etc/hostname ] && [ "$c" -nt /etc/os-release ] &&
+   { [ ! -e /etc/machine-info ] || [ "$c" -nt /etc/machine-info ]; }; then
+	exec cat "$c"
+fi
+/usr/bin/hostnamectl > "$c.$$" 2>/dev/null && mv -f "$c.$$" "$c" && exec cat "$c"
+rm -f "$c.$$"
+exec /usr/bin/hostnamectl

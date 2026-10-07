@@ -1,0 +1,6 @@
+#!/bin/sh
+# /usr/local/bin/{wps,et,wpp,wpspdf} (L410): start WPS with libl410-fastrsa.so preloaded
+# (docs/tuning/launch-latency.md), then the vendor launcher of the same name in /usr/bin.
+L=/usr/local/lib/l410-wps/libl410-fastrsa.so
+[ -r "$L" ] && export LD_PRELOAD="$L${LD_PRELOAD:+:$LD_PRELOAD}"
+exec "/usr/bin/${0##*/}" "$@"

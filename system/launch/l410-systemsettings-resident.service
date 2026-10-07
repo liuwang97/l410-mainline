@@ -1,0 +1,19 @@
+# L410: keep one System Settings instance resident without a window (systemsettings --resident,
+# patched build in /usr/local/bin, system/launch/systemsettings-resident.py); opening System
+# Settings then only shows its window. Disable: systemctl --user disable --now l410-systemsettings-resident
+[Unit]
+Description=L410: resident System Settings for fast opening
+PartOf=graphical-session.target
+After=plasma-workspace.target
+ConditionPathExists=/usr/local/bin/systemsettings
+
+[Service]
+Type=exec
+ExecStartPre=/bin/sleep 25
+ExecStart=/usr/local/bin/systemsettings --resident
+Restart=always
+RestartSec=10
+Slice=app.slice
+
+[Install]
+WantedBy=plasma-workspace.target

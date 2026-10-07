@@ -1,0 +1,21 @@
+# L410: keep one Chromium browser process resident without windows, so opening Chromium only
+# opens a window in it: ~300-500 ms instead of ~950 ms for a cold start (docs/tuning/launch-latency.md).
+# The desktop entry's /usr/bin/chromium hands its arguments to this process (same profile).
+# Quitting Chromium from its menu ends the process; it comes back 10 s later.
+# Disable: systemctl --user disable --now l410-chromium-warm
+[Unit]
+Description=L410: resident Chromium for fast window opening
+PartOf=graphical-session.target
+After=plasma-workspace.target
+
+[Service]
+Type=exec
+# after the desktop has settled, so the login itself stays fast
+ExecStartPre=/bin/sleep 20
+ExecStart=/usr/bin/chromium --no-startup-window --keep-alive-for-test
+Restart=always
+RestartSec=10
+Slice=app.slice
+
+[Install]
+WantedBy=plasma-workspace.target
