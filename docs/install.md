@@ -61,7 +61,7 @@ linux-l410/l410/build.sh -o l410-build
 | `boot.cfg` | GRUB 片段：内核命令行，`@ROOT_UUID@` 在安装时换成真实值 |
 
 不想自己编，可以下载内核发布页的
-[l410-kernel-6.18.54-l410.tar.gz](https://github.com/liuwang97/linux-l410/releases/tag/v6.18.54-l410)，解开就是同样的 `bundle/`。
+[l410-kernel-6.18.54-l410.1.tar.gz](https://github.com/liuwang97/linux-l410/releases/tag/v6.18.54-l410.1)，解开就是同样的 `bundle/`。
 内核构建的细节见 [kernel.md](kernel.md)。
 
 ## 3. PC 上生成根文件系统

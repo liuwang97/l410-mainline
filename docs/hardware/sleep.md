@@ -40,6 +40,8 @@ deep 仍可选。`kirin990_sr.deep=1` 让 deep 成为默认。
 | platform 级之后 WiFi/蓝牙起不来 | hi110x 在 PM notifier 里就给 RC1 断电。PCI 核心在 noirq 阶段访问不到根端口，唤醒时等链路超时，把下面的端点永久标成已断开，之后 hi110x 的配置读全被挡掉，返回 ~0。4.19 的 PCI 核心没有这套检查 | `PCI: dwc: kport: keep the PM core off a hierarchy whose RC is off during system sleep` |
 | `i2c-7: Transfer while suspended` 警告 | EC 电池轮询在挂起过程中还在读 EC | `power: supply: huawei-echub-battery: poll on a freezable workqueue` |
 | s2idle 睡下去醒不来 | PMIC 中断芯片带 `IRQCHIP_SKIP_SET_WAKE`，它接 SoC 的那根线在挂起时和普通中断一起被关掉；RTC、电源键驱动也没注册唤醒中断 | `mfd: hisi-spmi-pmic: pass wakeup requests on to the PMIC's interrupt line`、`rtc: hisi-spmi: let the alarm wake the system`、`Input: hisi_powerkey - wake the system with the power key` |
+| Plasma 6.7 下第一次挂起必定中止（`Freezing user space processes aborted after 0.001 seconds`），systemd-sleep 立即用 freeze 重试 | PowerDevil 经 `/sys/power/wakeup_count` 挂起，防止和唤醒事件竞争。hi110x 厂商 OAL 层把内部 wakelock（hcc_tx、wlan_bus_lock、wlan_wal_lock、wifi_pm_wakelock、bfg_wake_lock 等）实现成系统唤醒源，读 wakeup_count 之后 NetworkManager 断 WiFi、驱动关芯片产生的收发都算唤醒事件，几十次 | wakelock 只在驱动内部计数，不再报给 PM 核心（`staging: hi110x: keep the driver's wake locks out of the PM core`） |
+| 唤醒后屏幕亮了，但 KWin 冻着、键鼠没反应，几十秒后才恢复或干脆睡死 | 中止后的重试里，驱动在 PM_POST_SUSPEND 刚同步重开蓝牙，一秒内又要关掉，HCI 设置命令超时，notifier 卡 33 s；systemd 要等写 `/sys/power/state` 返回（包括唤醒时的 PM_POST_SUSPEND notifier）才解冻用户会话，RTC 闹钟也因此错过 | 唤醒后用 1.5 s 后的工作项给芯片上电，挂起前先取消它；还没恢复就再次挂起时直接跳过（`staging: hi110x: resume the chip from a work item after system sleep`） |
 | deep 默认走 PSCI SYSTEM_SUSPEND | 设备树修补声明了 PSCI 1.0；厂商 DT 是 0.1，厂商内核从没用过 SYSTEM_SUSPEND | `soc: hisilicon: kirin990-sr: deep suspend through the LPM3 handshake`、`soc: hisilicon: kirin990-sr: default to suspend-to-idle` |
 
 内核另外打开了睡眠调试接口（`pm_test`、`pm_debug_messages`、`pm_print_times` 等，`l410: build the system sleep debugging interfaces`）。
@@ -49,10 +51,10 @@ deep 仍可选。`kirin990_sr.deep=1` 让 deep 成为默认。
 | 来源 | 路径 | 状态 |
 |---|---|---|
 | RTC 闹钟 | PMIC → IRQ 88 | 验证过，日志 `PM: Triggering wakeup from IRQ 88` |
-| 电源键 | 同一条 PMIC 中断链 | 没有实际按过 |
+| 电源键 | 同一条 PMIC 中断链 | 短按能唤醒（实机确认） |
 | 开盖 | 合盖开关是 gpio-keys，设备树里带 `wakeup-source` | 没有实测 |
 | 键盘 | i2c-hid | 不能唤醒：节点还没加 `wakeup-source` |
-| 网络 | Hi1105 不支持网络唤醒 | 不支持 |
+| 网络 | Hi1103 没有网络唤醒（WoWLAN），挂起时芯片断电 | 不支持 |
 
 ## 实测结果
 
@@ -60,6 +62,7 @@ deep 仍可选。`kirin990_sr.deep=1` 让 deep 成为默认。
 - s2idle 真实睡眠，RTC 20 s 唤醒：`PM: Triggering wakeup from IRQ 88`，计时挂起 19.2 s，所有设备恢复。
 - `systemctl suspend`（和 Plasma 菜单同一条路径）：NetworkManager 断开 WiFi → systemd 冻结 user.slice → s2idle → RTC 唤醒 → 解冻 → WiFi 自动重连，用户会话正常。
   Plasma 6.3（Debian 13）和 Plasma 6.7.4（forky）下各连续两轮通过，屏幕 252-337 ms 恢复；forky 下 KWin 还是原来的进程。
+- Plasma 6.7.4 下经 PowerDevil 挂起（和合盖、菜单“睡眠”同一条路径），RTC 30 s 唤醒，连续 6 次：全部第一次就挂起成功，`/sys/power/suspend_stats` 的 fail 为 0；从 `PM: suspend exit` 到 user.slice 解冻约 0.1 s，KWin 还是原来的进程，glmark2 4800-5000 分；WiFi（5 GHz WPA2/WPA3 混合 AP）20 s 内自动重连、ping 不丢包，hci0 和 USB 网卡恢复。挂起期间报唤醒事件的只有 RTC。
 - `tests/suspend.sh s2idle none 20`（开着 sched_ext lavd）：挂起前后 WiFi、蓝牙、显示、15 个 USB 设备、8 个输入节点、UFS 状态一致，lavd 唤醒后仍在运行。
 
 ## 怎么检查
@@ -140,7 +143,8 @@ BL31 看到这个标志，就把系统交给 LPM3 做 DDR 自刷新、关时钟�
 - deep 唤醒变冷启动（见上）。
 - s2idle 的耗电还没测：需要拔掉电源睡 10 分钟，对比 `energy_now`。
 - 键盘不能唤醒：i2c-hid 节点要加 `wakeup-source`。
-- 电源键和开盖唤醒还没有实际按过。
+- 开盖唤醒还没有实测。
+- Plasma 6.7 的 PowerDevil 在 RTC 闹钟这类不是用户触发的唤醒之后，会很快自动再次睡眠，这是它的设计，不是故障。
 - forky 上睡眠和唤醒时 journal 里有 bluetoothd、wireplumber 的 dbus `Rejected send message`，来自 forky 的 dbus 策略，不影响功能。
 
 ## 试过但没用

@@ -1,11 +1,12 @@
 # 内核
 
 源码：[linux-l410](https://github.com/liuwang97/linux-l410) 的 `l410-6.18` 分支，基于上游稳定版 v6.18.54
-（gregkh/linux 的同名标签）。L410 的全部改动都在 `git log v6.18.54..l410-6.18` 里（82 个提交），标签是 `v6.18.54-l410`，
-[发布页](https://github.com/liuwang97/linux-l410/releases/tag/v6.18.54-l410)有编好的整套文件。
+（gregkh/linux 的同名标签）。L410 的全部改动都在 `git log v6.18.54..l410-6.18` 里。当前标签是 `v6.18.54-l410.1`（86 个提交），
+[发布页](https://github.com/liuwang97/linux-l410/releases/tag/v6.18.54-l410.1)有编好的整套文件。
 
-和作者测试机上长期运行、跑过整套回归的内核相比，这个版本的内核配置相同、设备树逐字节相同，源码只多了
-`drm/panfrost: poll the MMU status every microsecond`（MMU 状态轮询间隔从 10 µs 改成 1 µs）和几处注释。
+v6.18.54-l410.1 的源码和作者在测试机上验证看门狗、睡眠修复时用的内核相同（只差几处注释）；它比第一版 `v6.18.54-l410` 多了
+看门狗接管（修开机约 60 s panic）和 hi110x 的两个睡眠修复。第一版和测试机上跑过整套回归的内核相比，配置相同、设备树逐字节相同，
+源码只多了 `drm/panfrost: poll the MMU status every microsecond`（MMU 状态轮询间隔从 10 µs 改成 1 µs）和几处注释。
 
 ## 提交是怎么组织的
 
@@ -82,7 +83,7 @@ devicetree /boot/l410/l410.dtb
 | `log_buf_len=16M ignore_loglevel printk.devkmsg=on` | 日志全量保留，出问题时从 pstore 能拿到完整记录 |
 | `panic=10` | panic 后 10 秒重启 |
 | `l410.mode=root` | initramfs 正常挂根分区（`probe` 是移植期的诊断模式，见 [../dev/README.md](../dev/README.md)） |
-| 不带 `l410_deadman=0` | `l410/build.sh` 生成的 `boot.cfg` 里有这个参数，`boot/install-kernel.sh` 安装时会把它去掉。固件在进内核前已经启动了看门狗 WDT0（约 60 s 后到期），只有 deadman 驱动在开机时改写它，开机后 `l410-watchdog-off.service` 再把它停掉；带着 `l410_deadman=0` 开机约 60 s 就会 panic |
+| `l410_deadman=0` | 固件在进内核前已经启动了看门狗 WDT0（约 60 s 后到期）。v6.18.54-l410.1 起内核开机就接管并停掉它，这也是默认值；`l410_deadman=<秒>` 则把它当成移植用的 deadman 武装起来。第一版 v6.18.54-l410 在这个参数下不碰 WDT0，开机约 60 s 会 panic，所以 `boot/install-kernel.sh` 安装时去掉它、再由 `l410-watchdog-off.service` 停掉 WDT0，这对新内核也无害 |
 
 GRUB 必须加载未压缩的 `Image`（GRUB 2.04 需要 arm64 Image 头，所以关了 `CONFIG_EFI_ZBOOT`）。
 

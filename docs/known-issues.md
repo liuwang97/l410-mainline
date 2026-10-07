@@ -16,12 +16,13 @@
 
 ## 已知缺陷
 
-- 看门狗：固件在进内核前已经启动 AP 看门狗 WDT0（SP805，0xfe026000），交给内核时约剩 60 s，中断经 BL31 转成 FIQ。
-  6.18 里没有驱动给它喂狗；内核分支 `l410/build.sh` 生成的 `boot.cfg` 带 `l410_deadman=0`，照原样启动会在开机约 60 s 时
-  panic（"FIQ taken without a root FIQ handler"）。本仓库的 `boot/install-kernel.sh` 安装时去掉这个参数，让 deadman 驱动先改写 WDT0，
-  `system/hardware/l410-watchdog-off.service` 开机后再把它停掉。内核侧的正式修复（`l410_deadman=0` 时也接管并停掉 WDT0）还在做。
-- 睡眠：s2idle 正常（默认）。deep（经 LPM3 的挂起）能睡下去，但唤醒后整机冷启动，所以没用它。s2idle 的耗电还没测；
-  键盘唤醒没做（i2c-hid 没设成唤醒源）；合盖、电源键唤醒还没实机按过。见 [hardware/sleep.md](hardware/sleep.md)。
+- 看门狗（v6.18.54-l410.1 已修）：固件在进内核前已经启动 AP 看门狗 WDT0（SP805，0xfe026000），交给内核时约剩 60 s，中断经 BL31 转成 FIQ。
+  v6.18.54-l410 带 `l410_deadman=0` 启动会在开机约 60 s 时 panic（"FIQ taken without a root FIQ handler"）。v6.18.54-l410.1 的内核开机就接管并停掉它。
+  为了让旧版内核也能用，`boot/install-kernel.sh` 仍会去掉 `l410_deadman=0`，`system/hardware/l410-watchdog-off.service` 开机后再停一次，对新内核没有影响。
+- 睡眠：s2idle 正常（默认）。v6.18.54-l410 在 Plasma 6.7 下第一次挂起总会中止、唤醒后桌面卡住，v6.18.54-l410.1 已修（hi110x 的唤醒源和唤醒顺序）。
+  deep（经 LPM3 的挂起）能睡下去，但唤醒后整机冷启动，所以没用它。s2idle 的耗电还没测；键盘唤醒没做（i2c-hid 没设成唤醒源）；
+  电源键能唤醒，开盖唤醒还没实测；挂起期间没有网络唤醒。Plasma 6.7 在 RTC 闹钟这类非用户触发的唤醒之后会自动再睡，这是 PowerDevil 的设计。
+  见 [hardware/sleep.md](hardware/sleep.md)。
 - 显示：`kirin990_drm.power_off=4`（关屏时连 vivobus/media1 一起断电）会让整机在约 1 秒后挂死，原因未知，默认用 3。
 - UFS：`rpm_lvl=5`（运行时让器件断电）恢复后第一次 auto-hibern8 退出会失败一次，170 ms 后自动恢复。默认的 `rpm_lvl=1` 碰不到。
 - WiFi：开机校准偶尔要 9 秒；蓝牙串口（BUART）走 PIO，没有 DMA；驱动不能卸载；PCIe RC1 一旦 completion timeout 不会自己恢复。
