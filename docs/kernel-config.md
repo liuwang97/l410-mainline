@@ -32,7 +32,7 @@ L410 的内核配置是 arm64 defconfig 加上内核树（[linux-l410](https://g
 - RTL8153 USB 网卡驱动（`USB_RTL8152`）编进内核，开发时用它连 ssh。
 - `01-noarch` 把 defconfig 里其他厂商的 `ARCH_*` 全部关掉，只留 HiSilicon，少编很多用不上的驱动。
 
-## 硬件驱动：09 到 80
+## 硬件驱动：09 到 85
 
 | 片段 | 主要选项 | 内容 |
 |---|---|---|
@@ -45,6 +45,7 @@ L410 的内核配置是 arm64 defconfig 加上内核树（[linux-l410](https://g
 | `60-graphics` | `DRM_KIRIN990`、`DRM_PANFROST`、`PWM_HISI_BLPWM`、`BACKLIGHT_PWM` | 显示（DSS）、Mali-G76、背光。见 [hardware/graphics.md](hardware/graphics.md) |
 | `70-wifi-bt` | `STAGING`、`HI110X=m`、`CFG80211=m`、`BT=m`、`RFKILL=m` | Hi110x 的 WiFi（PCIe RC1）和蓝牙（BUART，uart4）。见 [hardware/wifi-bt.md](hardware/wifi-bt.md) |
 | `80-audio` | `SND_SOC_HI6405_L410`、`SND_SOC_TAS2562` | Hi6405 编解码器（SSI + SLIMbus）、ASP DMA、TAS2562 智能功放。见 [hardware/audio.md](hardware/audio.md) |
+| `85-vcodec` | `VIDEO_HISI_VDEC=m` | VDH 视频解码器（V4L2 无状态），连带选上 v4l2-mem2mem、videobuf2-dma-sg、v4l2-h264、v4l2-vp9。见 [hardware/vcodec.md](hardware/vcodec.md) |
 
 ## 性能与功耗：90-perf
 

@@ -8,7 +8,7 @@
 |---|---|
 | DP / HDMI 输出 | 没有移植。厂商的 DP 控制器驱动约 6000 行，外加 PS176（DP 转 HDMI）；DP 音频也就没有 |
 | 指纹 | 传感器挂在 TEE 后面，需要厂商的 tzdriver（约 1.7 万行）和用户态 teecd、HAL，没有做 |
-| 硬件视频解码 | 厂商的 `hi_vcodec` 驱动没有移植，而且它走私有的 OMX 接口，不是 V4L2；浏览器只能软解 |
+| 硬件视频编码 | 两个 VENC 和 JPEG 单元没有做，只做了解码（[hardware/vcodec.md](hardware/vcodec.md)） |
 | Vulkan | Mesa 的 panvk 对 Bifrost（G76）还是实验性的，没有测试 |
 | 风扇转速 | 风扇完全由 EC 根据板上热敏电阻控制，厂商系统里也没有驱动，读不到转速 |
 | KVM | 固件只给 EL1，没有 EL2，不能用虚拟化 |
@@ -32,6 +32,9 @@
 - Chromium：在信息流很重的网页（例如 bilibili 首页）上极快滚动约 49 到 50 fps。原因在网页自己的主线程
   （追加卡片时 85 到 290 ms 的布局、长 JS 定时器），以及 Chromium 的 Wayland 帧回调节流；合成器和 GPU 都有余量。
   Firefox 在同样的页面上 58 到 60 fps。见 [tuning/desktop.md](tuning/desktop.md)。
+- 视频硬解（v6.18.54-l410.2 起）：Chromium 只硬解 8 bit（H.264、HEVC Main、VP8、VP9 profile 0），VP9 profile 2 回退软解，
+  HEVC 10 bit 在 Chromium 里放不了。Chromium 的 VA-API 路径是绿屏，所以用它自带的 V4L2 解码器；Firefox 没有硬解。
+  VA-API 驱动 libva-v4l2-request 销毁上下文时会丢掉还没取走的帧。见 [hardware/vcodec.md](hardware/vcodec.md)。
 - 应用启动：QQ 和 Firefox 的冷启动只比原来快 1.4 到 1.7 倍，剩下的是它们自己主线程的初始化。
 - sched_ext：lavd 下温控（IPA）降频比 EAS 温和；bilibili 的渲染主线程在 lavd 下有一半时间跑在 A55 上。
 - 2026-10-01 晚上测试机出现过两次原因不明的问题：一次是桌面画面全黑（KWin、plasmashell 都在，背光 100%）后日志突然中断；

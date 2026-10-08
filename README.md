@@ -23,7 +23,8 @@ GPU 用开源的 Panfrost/Mesa，不再依赖厂商内核和闭源 libmali。
 | 声卡 Hi6405 + 2×TAS2562 | 可用 | 扬声器、耳机、内置麦克风 |
 | 键盘、触控板、F 行热键、电池、合盖 | 可用 | |
 | 睡眠 | s2idle 可用 | deep 唤醒会变成冷启动，默认不用 |
-| DP/HDMI 输出、指纹、硬件视频编解码 | 不支持 | |
+| 硬件视频解码 | 可用 | H.264、HEVC（含 10 bit）、VP9、VP8、MPEG-2；GStreamer 自动使用，Chromium 由 `system/install.sh video` 打开 |
+| DP/HDMI 输出、指纹、硬件视频编码 | 不支持 | |
 
 各部件的细节在 [docs/hardware/](docs/hardware/)，已知问题见 [docs/known-issues.md](docs/known-issues.md)。
 
@@ -64,7 +65,7 @@ sudo bash l410-mainline/tests/quick.sh
 |---|---|
 | [boot/](boot/) | 装内核（`install-kernel.sh`）、在麒麟的 GRUB 里加启动项（`grub-entry.sh`） |
 | [rootfs/](rootfs/) | 生成根文件系统（`mkrootfs.sh`）、软件包清单、在 L410 上部署（`deploy.sh`）、要从麒麟拷的固件清单 |
-| [system/](system/) | Debian 的系统配置，`system/install.sh` 按阶段安装：基础、桌面、硬件、电源模式、调度器、内存、触控板、Mesa、启动速度、应用 |
+| [system/](system/) | Debian 的系统配置，`system/install.sh` 按阶段安装：基础、桌面、硬件、电源模式、调度器、内存、触控板、视频硬解、Mesa、启动速度、应用 |
 | [tests/](tests/) | 在 L410 上跑的测试：`quick.sh` 一分钟自检，各子系统测试，`bench/` 性能测量工具 |
 | [tools/](tools/) | 诊断信息收集 |
 | [docs/](docs/) | 安装、内核、硬件、调优、测试文档 |
@@ -75,7 +76,7 @@ sudo bash l410-mainline/tests/quick.sh
 - [docs/install.md](docs/install.md)：安装和升级
 - [docs/kernel.md](docs/kernel.md)：内核源码结构、构建、启动参数、出问题时怎么取日志
 - [docs/kernel-config.md](docs/kernel-config.md)：内核配置片段
-- [docs/hardware/](docs/hardware/)：SoC 时钟与核间通信、电源与温控、UFS、USB、PCIe、WiFi/蓝牙、音频、显示与 GPU、笔记本外设、睡眠
+- [docs/hardware/](docs/hardware/)：SoC 时钟与核间通信、电源与温控、UFS、USB、PCIe、WiFi/蓝牙、音频、显示与 GPU、视频解码、笔记本外设、睡眠
 - [docs/tuning/](docs/tuning/)：电源模式与性能、桌面帧延迟、sched_ext、内存、应用启动速度、触控板滚动、桌面
 - [docs/testing/](docs/testing/)：自检套件、测试计划、最近一次回归结果
 

@@ -119,8 +119,8 @@ Firefox ESR 140，同样的测试：
 Canvas、合成、光栅化（所有页面）、WebGL、WebGPU 都是硬件加速，ANGLE → Panfrost（Mesa 26.1.6），没有黑名单项，不需要 `--ignore-gpu-blocklist`。
 Debian 的 `/etc/chromium.d/default-flags` 已经带了 `--enable-gpu-rasterization`。
 
-视频：页面上写着 Video Decode 硬件加速，但 VA-API 初始化失败、解码器列表为空，实际是软解（这次移植没有视频硬解驱动）。
-VP9 和 AV1 软解比 H.264 贵得多，可以用 h264ify 一类的扩展强制 H.264（没有实测）。Vulkan（PanVK）在 Bifrost v7 上被 Mesa 拒绝。
+视频：v6.18.54-l410.2 起有硬件解码驱动 `hisi-vdec`。Chromium 用它自带的 V4L2 解码器（`system/video/`），硬解 H.264、HEVC Main、VP8、VP9 profile 0；
+AV1 和 VP9 profile 2 仍是软解，HEVC 10 bit 放不了，Chromium 的 VA-API 路径用不了，见 [../hardware/vcodec.md](../hardware/vcodec.md)。Vulkan（PanVK）在 Bifrost v7 上被 Mesa 拒绝。
 
 ### Chromium 为什么掉帧：页面主线程
 

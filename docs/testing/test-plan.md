@@ -426,7 +426,7 @@
 | PERF-03 | 存储 | 同 UFS-03 | A | P1 | quick（顺序读） |
 | PERF-04 | GPU | glmark2、WebGL 记录（与闭源 Mali 对比仅供参考） | A | P2 | graphics |
 | PERF-05 | 浏览器 | Speedometer 3、JetStream、MotionMark ≥ 基线 90%；滚动帧率达到 [调优文档](../tuning/) 的目标 | A | P1 | bench/browser-bench |
-| PERF-06 | 视频播放 | 本地 1080p30/60、4K30（H.264/HEVC/VP9/AV1）和网络视频的掉帧率、CPU 占用、功耗记录；1080p 不掉帧。没有硬件解码，软解能力要明确告诉用户 | S | P0 | |
+| PERF-06 | 视频播放 | 本地 1080p30/60、4K30（H.264/HEVC/VP9/AV1）和网络视频的掉帧率、CPU 占用、功耗记录；1080p 不掉帧。H.264、HEVC、VP9、VP8 有硬件解码（[hardware/vcodec.md](../hardware/vcodec.md)），AV1 和 Chromium 里的 VP9 10 bit 是软解、HEVC 10 bit 在 Chromium 里放不了，要明确告诉用户 | S | P0 | |
 | PERF-07 | 应用启动 | 浏览器、文件管理器、办公软件冷/热启动不比基线慢 | A | P1 | bench/launch、quick（launch boost） |
 | PERF-08 | 桌面流畅度 | 帧预算和桌面延迟达到调优文档的指标 | A | P1 | quick、perf、bench/frame-budget、bench/desktop-latency |
 | PERF-09 | 续航 | 本地视频循环（固定亮度、WiFi 开）、网页循环、亮屏空闲直到关机，≥ 基线 90% | L | P0 | |
@@ -583,7 +583,7 @@
 ## 不支持的功能
 
 交付前要逐项确认并写给用户：指纹（传感器在 TEE 后面，6.18 没有对应的驱动）；TPM（固件设备树里是 disabled）；NPU；ISP；
-硬件视频编解码；DP/HDMI 外接显示和 DP 音频；USB OTG/gadget、BC1.2、Type-C PD 角色切换；KVM（固件只给 EL1）；
+硬件视频编码；DP/HDMI 外接显示和 DP 音频；USB OTG/gadget、BC1.2、Type-C PD 角色切换；KVM（固件只给 EL1）；
 UFS inline 加密、RPMB、HPB；hi110x 模块不能卸载；休眠到磁盘、WiFi 热点/P2P、Vulkan（如果测下来不可用）。
 
 ## 还没有脚本的用例

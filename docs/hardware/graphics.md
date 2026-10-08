@@ -198,7 +198,7 @@ LOCK、FLUSH_PT 几微秒就完成，每次映射或解除映射缓冲区要等�
   KWin 渲染中位 2.1 ms，p99 4.3-6.1 ms，100% 双缓冲。
 - Chromium 经 ANGLE 用 Panfrost，`chrome://gpu` 里 Canvas、合成、光栅化、WebGL、WebGPU 都是硬件加速，没有黑名单项。
 - 没有 Vulkan：Mesa 的 PanVK 不接受 G76 所在的 v7 架构。
-- 没有硬件视频解码：Chromium 的 VA-API 初始化失败，实际是软解。
+- 视频硬件解码是单独的 VDH 驱动，见 [vcodec.md](vcodec.md)。
 - [system/mesa/](../../system/mesa/) 给 Mesa 的 panfrost 打了一个补丁（`0001-panfrost-convert-private-AFBC-resources-on-CPU-write.patch`）。
   panfrost 把大于 16×16 的纹理都建成 AFBC，CPU 每写一次都要建临时缓冲区、GPU blit、立即 flush，而 Qt Quick 的每个图标、每个字形都是一次上传。
   补丁让私有的 AFBC 资源第一次被 CPU 写时转成 u-interleaved 格式。系统设置启动时的 GPU 提交从 2626 次降到 64 次，
@@ -304,7 +304,7 @@ bash tests/display-power.sh 3 60     # 3 轮关屏/开屏，每次测功耗 60 s
 
 - DP/HDMI：厂商的 DP 控制器驱动（hidpc，约 6000 行）、USB-C combo PHY 的 DP 部分（`hisi_usb_dp_ctrl`）、PS176（I2C4 的 0x48）都没有移植，DP 音频也没有。
 - overlay 平面。
-- Vulkan、硬件视频编解码。
+- Vulkan、硬件视频编码（解码见 [vcodec.md](vcodec.md)）。
 
 ## 试过但没用
 
