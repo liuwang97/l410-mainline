@@ -1,0 +1,19 @@
+# Huawei Qingyun L410: hardware video decoding in Chromium (hisi-vdec, Kirin 990 VDH)
+# through Chromium's own V4L2 stateless decoder: H.264, HEVC Main, VP8, VP9 profile 0.
+# docs/hardware/vcodec.md.
+#
+# Install: /etc/chromium.d/ (Debian's /usr/bin/chromium sources every file there, in name
+# order). The features are merged into an existing --enable-features list, because a second
+# --enable-features switch would replace the first one (l410-touchpad-scroll's).
+l410_vdec_features=PreferV4L2VideoAcceleration,AcceleratedVideoDecodeLinuxGL
+case " $CHROMIUM_FLAGS " in
+*" --enable-features="*)
+	CHROMIUM_FLAGS=$(printf '%s' "$CHROMIUM_FLAGS" |
+		sed "s/--enable-features=\([^ ]*\)/--enable-features=\1,$l410_vdec_features/")
+	;;
+*)
+	CHROMIUM_FLAGS="$CHROMIUM_FLAGS --enable-features=$l410_vdec_features"
+	;;
+esac
+export CHROMIUM_FLAGS
+unset l410_vdec_features

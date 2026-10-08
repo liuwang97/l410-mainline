@@ -17,6 +17,7 @@
 #   sched-ext  scx_lavd started at boot (SCX_DEFAULT=none installs it disabled)
 #   mem        zswap + swap file tuning, sysctl, systemd-oomd, memory protection for the session
 #   input      libinput with touchpad scroll acceleration, Chromium touchpad scroll fix
+#   video      hardware video decoding: Chromium's V4L2 decoder, GStreamer's v4l2codecs
 #   mesa       Mesa panfrost with the AFBC upload fix (a patched libgallium next to Debian's)
 #   launch     faster app start: expedited RCU, fewer fonts, hostnamectl cache, resident
 #              Chromium and System Settings
@@ -32,13 +33,13 @@
 set -e
 HERE=$(cd "$(dirname "$(readlink -f "$0")")" && pwd)
 export L410_SYSTEM=$HERE
-ALL="base desktop hardware perf sched-ext mem input mesa launch apps"
+ALL="base desktop hardware perf sched-ext mem input video mesa launch apps"
 STAGES=
 while [ $# -gt 0 ]; do
 	case $1 in
 	--chroot) export L410_CHROOT=1; shift ;;
 	--user) export L410_USER=$2; shift 2 ;;
-	-h|--help) sed -n '2,33p' "$0"; exit 0 ;;
+	-h|--help) sed -n '2,32p' "$0"; exit 0 ;;
 	-*) echo "unknown option $1" >&2; exit 2 ;;
 	*) STAGES="$STAGES $1"; shift ;;
 	esac

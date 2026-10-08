@@ -61,7 +61,7 @@ linux-l410/l410/build.sh -o l410-build
 | `boot.cfg` | GRUB 片段：内核命令行，`@ROOT_UUID@` 在安装时换成真实值 |
 
 不想自己编，可以下载内核发布页的
-[l410-kernel-6.18.54-l410.1.tar.gz](https://github.com/liuwang97/linux-l410/releases/tag/v6.18.54-l410.1)，解开就是同样的 `bundle/`。
+[l410-kernel-6.18.54-l410.2.tar.gz](https://github.com/liuwang97/linux-l410/releases/tag/v6.18.54-l410.2)，解开就是同样的 `bundle/`。
 内核构建的细节见 [kernel.md](kernel.md)。
 
 ## 3. PC 上生成根文件系统
@@ -160,6 +160,7 @@ sudo bash /opt/l410/tests/quick.sh        # 约 1 分钟，不改动系统；--f
 | sched-ext | 开机启动 scx_lavd | [tuning/sched-ext.md](tuning/sched-ext.md) |
 | mem | zswap + swapfile、sysctl、systemd-oomd、会话内存保护、IO 调度器 | [tuning/memory.md](tuning/memory.md) |
 | input | 触控板滚动加速（打过补丁的 libinput）、Chromium 触控板滚动倍数 | [tuning/touchpad-scroll.md](tuning/touchpad-scroll.md) |
+| video | 视频硬解：Chromium 的 V4L2 解码器参数、GStreamer 的 v4l2codecs | [hardware/vcodec.md](hardware/vcodec.md) |
 | mesa | panfrost AFBC 上传修复（打过补丁的 libgallium） | [tuning/launch-latency.md](tuning/launch-latency.md) |
 | launch | RCU 加速、精简字体、hostnamectl 缓存、常驻 Chromium 和系统设置 | [tuning/launch-latency.md](tuning/launch-latency.md) |
 | apps | WPS、QQ 的启动加速（只处理已安装的） | [tuning/launch-latency.md](tuning/launch-latency.md) |

@@ -17,6 +17,7 @@ sudo system/install.sh --user alice    # 指定桌面用户（默认是调用 su
 | `sched-ext/` | `scx-lavd.service`、`scx-run`、scx 的两个补丁和构建脚本 |
 | `mem/` | `mem-tune`、sysctl、systemd-oomd 配置、cgroup 内存保护、IO 调度器规则 |
 | `input/` | 打补丁的 libinput（触控板滚动加速）、Chromium 的触控板参数 |
+| `video/` | Chromium 的 V4L2 视频硬解参数、GStreamer 的 v4l2codecs（`gstreamer1.0-plugins-bad`） |
 | `mesa/` | panfrost 的 AFBC 补丁、构建脚本、安装脚本、apt 提示钩子 |
 | `launch/` | RCU 加速、字体精简、hostnamectl 缓存、常驻 Chromium 和系统设置 |
 | `apps/` | WPS 的 RSA 加速垫片、QQ 的桌面文件 |
